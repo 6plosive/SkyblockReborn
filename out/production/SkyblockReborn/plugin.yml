@@ -1,0 +1,8 @@
+name: SkyblockReborn
+main: me.alwayslg.SkyblockReborn
+version: 1.0
+commands:
+  getitems:
+    usage: /<command>
+  spawnzombie:
+    usage: /<command>
