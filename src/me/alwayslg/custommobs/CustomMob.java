@@ -11,10 +11,8 @@ public class CustomMob {
     private int fullHealth;
     private String name;
     private int level;
-    private EntityType entityType;
     private OverheadDisplay overheadDisplay;
     private LivingEntity entity;
-    private Entity overheadDisplayEntity;
     private Class<? extends Entity> entityClass;
 
     public CustomMob(){
@@ -24,7 +22,7 @@ public class CustomMob {
     public void spawn(Location location){
         World world = location.getWorld();
         entity = (LivingEntity) world.spawn(location,entityClass);
-        Bukkit.broadcastMessage("Spawned zombie UUID: "+entity.getUniqueId());
+        Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
         entity.setMaxHealth(fullHealth);
         setHealth(fullHealth);
 //        entity.setNoDamageTicks(0);
@@ -32,7 +30,7 @@ public class CustomMob {
         DamageHandler.addMob(this);
 
         overheadDisplay.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d",getLevel(),getName(),(int)getHealth(),getFullHealth()));
-        overheadDisplayEntity = overheadDisplay.spawn(entity);
+        overheadDisplay.spawn(entity);
         OverheadDisplayHandler.addDisplay(overheadDisplay);
     }
 
@@ -49,9 +47,6 @@ public class CustomMob {
     }
     public String getName() {
         return name;
-    }
-    public EntityType getEntityType() {
-        return entityType;
     }
     public LivingEntity getEntity() {
         return entity;

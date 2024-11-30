@@ -25,6 +25,9 @@ public class OverheadDisplay {
 
         return e;
     }
+    public void kill(){
+        e.remove();
+    }
     public void updatePerTick(){
         Location targetlocation = target.getLocation();
 //        Bukkit.broadcastMessage("Target Y: "+targetlocation.getY());

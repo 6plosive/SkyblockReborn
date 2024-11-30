@@ -15,7 +15,7 @@ public class SkyblockReborn extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("Skyblock Reborn is ENABLED! Hail Alwayslg!!!");
-        GUI.init();
+        new GUI();
         OverheadDisplayHandler overheadDisplayManager = new OverheadDisplayHandler();
 
         getCommand("getitems").setExecutor(new GetItems());
@@ -23,12 +23,6 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GUI(),this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(),this);
         getServer().getPluginManager().registerEvents(new DamageHandler(),this);
-        BukkitRunnable runnable = new BukkitRunnable() {
-            @Override
-            public void run() {
-                //TODO
-            }
-        };
     }
 
     @Override

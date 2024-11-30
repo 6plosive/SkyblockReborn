@@ -14,19 +14,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.BlockVector;
 import org.bukkit.util.Vector;
 
-public class AspectOfTheEnd implements Listener {
-    private static ItemStack itemStack;
-    public static void init(){
-        itemStack = new ItemStack(Material.DIAMOND_SWORD);
-        ItemMeta meta = itemStack.getItemMeta();
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-        if (meta != null) {
-            meta.setDisplayName(ChatColor.RESET+(ChatColor.BLUE+"Aspect of the End"));
-            itemStack.setItemMeta(meta);
-        }
-    }
-    public static ItemStack getItem(){
-        return itemStack;
+public class AspectOfTheEnd extends CustomItem implements Listener {
+
+    public AspectOfTheEnd(){
+        setMaterial(Material.DIAMOND_SWORD);
+        setName("Aspect of the End");
+        setDamage(35);
+        setRarity(Rarity.VERY_SPECIAL);
+        setItemType(ItemType.DUNGEON_SWORD);
     }
 
     @EventHandler

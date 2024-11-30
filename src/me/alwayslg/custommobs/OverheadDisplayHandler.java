@@ -22,4 +22,8 @@ public class OverheadDisplayHandler {
     public static void addDisplay(OverheadDisplay display){
         displays.add(display);
     }
+    public static void removeDisplay(OverheadDisplay display){
+        display.kill();
+        displays.remove(display);
+    }
 }

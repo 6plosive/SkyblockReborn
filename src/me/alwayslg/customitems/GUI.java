@@ -10,11 +10,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class GUI implements Listener {
     private static Inventory inventory;
-    public static void init(){
-        AspectOfTheEnd.init();
+    public GUI(){
+        CustomItem aspectOfTheEnd = new AspectOfTheEnd();
 
         inventory = Bukkit.getServer().createInventory(null,54,"Alwayslg's Skyblock Items");
-        inventory.addItem(AspectOfTheEnd.getItem());
+        inventory.addItem(aspectOfTheEnd.getItemStack());
     }
 
     public static Inventory getInventory(){
