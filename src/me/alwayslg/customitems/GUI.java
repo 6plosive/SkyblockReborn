@@ -13,10 +13,11 @@ public class GUI implements Listener {
     public GUI(){
         CustomItem aspectOfTheEnd = new AspectOfTheEnd();
         CustomItem diamondSword = new DiamondSword();
-
+        CustomItem boomerang = new Boomerang();
         inventory = Bukkit.getServer().createInventory(null,54,"Alwayslg's Skyblock Items");
         inventory.addItem(aspectOfTheEnd.getItemStack());
         inventory.addItem(diamondSword.getItemStack());
+        inventory.addItem(boomerang.getItemStack());
     }
 
     public static Inventory getInventory(){
