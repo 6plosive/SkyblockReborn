@@ -12,7 +12,7 @@ import org.bukkit.inventory.Inventory;
 public class GetItems implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
-        if(sender instanceof Player){
+        if(sender instanceof Player){//esgesgesg
             Player p = (Player) sender;
             p.openInventory(GUI.getInventory());
 //            System.out.println("Player open getitems??!??");

@@ -23,7 +23,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GUI(),this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(),this);
         getServer().getPluginManager().registerEvents(new DamageHandler(),this);
-
+        //i think built 
     }
 
     @Override
