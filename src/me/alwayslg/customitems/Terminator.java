@@ -1,5 +1,6 @@
 package me.alwayslg.customitems;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -35,6 +36,12 @@ public class Terminator extends CustomItem implements Listener {
                     double angleOffset = i * 0.2; // Adjust for spread
                     Vector direction = player.getLocation().getDirection();
 
+
+
+                    Bukkit.broadcastMessage("i=" + i); // DEBUGGGESWOPKJGJIOAESGJIOPAWSEGKOPJIK(OP)ES
+
+
+
                     // Calculate new direction with a slight spread
                     Vector arrowDirection = new Vector(
                             direction.getX() + Math.sin(angleOffset), // Sideways offset
@@ -49,6 +56,7 @@ public class Terminator extends CustomItem implements Listener {
                             1.0f
                     );
                     arrow.setShooter(player);
+                    Bukkit.broadcastMessage("shooted arrow");
                 }
             }
         }
