@@ -29,7 +29,7 @@ public class Terminator extends CustomItem implements Listener {
 
         if (item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
-            if (meta != null && meta.getDisplayName().equals("Terminator")) {
+            if (meta != null && meta.getDisplayName().contains("Terminator")) {
                 // Shoot 3 arrows in a fan pattern
                 for (int i = -1; i <= 1; i++) {
                     // Calculate the direction for each arrow
