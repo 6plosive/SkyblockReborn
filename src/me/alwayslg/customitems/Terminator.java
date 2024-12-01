@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
+import java.util.HashMap;
+
 public class Terminator extends CustomItem implements Listener {
 
     public Terminator() {
@@ -30,7 +32,7 @@ public class Terminator extends CustomItem implements Listener {
 
         return vector.setX(x).setZ(z);
     }
-
+    private HashMap<Player, Long> cooldowns = new HashMap<>(); // Store cooldowns
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -39,6 +41,21 @@ public class Terminator extends CustomItem implements Listener {
         if (item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getDisplayName().contains("Terminator")) {
+                event.setCancelled(true);
+                if (cooldowns.containsKey(player)) {
+                    long lastUsed = cooldowns.get(player);
+
+                    long currentTime = System.currentTimeMillis();
+
+                    // If the cooldown is still active
+                    if (currentTime - lastUsed < 500) { // 1000 milliseconds = 1 second
+                        player.sendMessage("You must wait before using this again!");
+                        return; // Exit the method if on cooldown
+                    }
+                }
+
+
+
                 // Shoot 3 arrows in a fan pattern
                 // Shoot 3 arrows in a fan pattern
                 Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
@@ -48,6 +65,7 @@ public class Terminator extends CustomItem implements Listener {
                 arrow.setShooter(player);
                 arrow2.setShooter(player);
                 arrow3.setShooter(player);
+                cooldowns.put(player, System.currentTimeMillis());
             }
 
 

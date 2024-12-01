@@ -23,6 +23,7 @@ public class GUI implements Listener {
         inventory.addItem(boomerang.getItemStack());
         inventory.addItem(jerjerShortBow.getItemStack());
         inventory.addItem(terminator.getItemStack());
+        inventory.addItem(bonzostaff.getItemStack());
     }
 
     public static Inventory getInventory(){

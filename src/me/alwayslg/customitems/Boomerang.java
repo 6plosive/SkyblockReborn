@@ -24,7 +24,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.List;
 import java.util.UUID;
 
-public class Boomerang extends CustomItem implements Listener {
+public class Boomerang extends CustomItem implements Listener { //hi alwayslg is gay im not UR RR R URU RU UR OGMMGMGM u stupid niggerfuck u
     public Boomerang() {
         setMaterial(Material.BONE);
         setRarity(Rarity.LEGENDARY);
@@ -66,7 +66,7 @@ public class Boomerang extends CustomItem implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if ( item != null && item.hasItemMeta()) {
+        if (event.getAction().toString().contains("RIGHT") && item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getDisplayName().contains("Boner")) { //
                 event.setCancelled(true);
@@ -103,7 +103,16 @@ public class Boomerang extends CustomItem implements Listener {
         armorStand.setCustomNameVisible(false);
         armorStand.setRemoveWhenFarAway(false); // Prevents removal when far away
         armorStand.setCanPickupItems(false); // Prevent item pickup
-        armorStand.setHelmet(new ItemStack(Material.AIR)); // Ensure no visible helmet
+//        armorStand.setItemInHand(new ItemStack(Material.BONE)); // Set bone as the held item
+
+        armorStand2.setVisible(true);
+        armorStand2.setMarker(true);
+        armorStand2.setGravity(false);
+        armorStand2.setCustomNameVisible(false);
+        armorStand2.setRemoveWhenFarAway(false); // Prevents removal when far away
+        armorStand2.setCanPickupItems(false); // Prevent item pickup
+        armorStand2.setItemInHand(new ItemStack(Material.BONE)); // Set bone as the held item
+        armorStand2.setRightArmPose(new EulerAngle(0, 0, 0));
 
         // Distance settings
         final double travelDistance = 10.0; // Distance to travel
@@ -113,6 +122,7 @@ public class Boomerang extends CustomItem implements Listener {
         // Move the armor stand forward in a repeating task
         new BukkitRunnable() {
             private double distanceTraveled = 0.0; // Track distance traveled
+            private boolean returning = false; // Track if the armor stand is returning
 
             @Override
             public void run() {
@@ -128,17 +138,77 @@ public class Boomerang extends CustomItem implements Listener {
                     return;
                 }
 
-                // Move the armor stand forward
-                armorStand.teleport(armorStand.getLocation().add(direction.clone().multiply(speed))); // Move the armor stand
+                // If returning phase
+                if (returning) {
+                    // Update direction to the player's current location
+                    Vector playerDirection = player.getLocation().toVector().subtract(armorStand.getLocation().toVector()).normalize();
+                    // Move the armor stand back toward the player
+                    armorStand.teleport(armorStand.getLocation().add(playerDirection.multiply(speed))); // Move back
 
-                // Update the distance traveled
-                distanceTraveled += speed;
+                    //Add rotation
+                    Location prev = armorStand.getLocation();
+                    prev.setYaw(prev.getYaw()+30);
+                    armorStand.teleport(prev);
 
-                // Check if the armor stand has traveled the specified distance
-                if (distanceTraveled >= travelDistance) {
-                    // Return the armor stand to the player
-                    armorStand.teleport(player.getLocation());
-                    cancel(); // Stop the task
+                    //Add correct bone
+                    Location armorStand2loc = armorStand.getLocation();// .5 .5 0d
+                    armorStand2loc.setYaw(armorStand2loc.getYaw()+225); //.5 .5 225d
+                    armorStand2loc.add(armorStand2loc.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
+                    armorStand2loc.setYaw(armorStand2loc.getYaw()-225);
+
+                    armorStand2.teleport(armorStand2loc);
+                    distanceTraveled += speed;
+                    // Check if the armor stand has reached the player
+                    if (armorStand.getLocation().distance(player.getLocation()) < 0.5) {
+                        armorStand.teleport(player.getLocation()); // Teleport back to the player
+                        armorStand.remove(); // Remove the armor stand
+                        List<MetadataValue> values = armorStand.getMetadata("owner");
+                        if (!values.isEmpty()) {
+                            UUID ownerUUID = UUID.fromString(values.get(0).asString());
+                            Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+                            int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
+                            setThrown(false, player.getInventory(), itemSlot);
+                        }
+                        cancel(); // Stop the task
+                        return;
+                    }
+                    if (distanceTraveled>30){
+                        armorStand.remove();
+                        List<MetadataValue> values = armorStand.getMetadata("owner");
+                        if (!values.isEmpty()) {
+                            UUID ownerUUID = UUID.fromString(values.get(0).asString());
+                            Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+                            int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
+                            setThrown(false, player.getInventory(), itemSlot);
+                        }
+                        cancel();
+                        return;
+                    }
+                } else {
+                    // Move the armor stand forward
+                    armorStand.teleport(armorStand.getLocation().add(direction.clone().multiply(speed))); // Move forward
+
+                    //Add rotation
+                    Location prev = armorStand.getLocation();
+                    prev.setYaw(prev.getYaw()+30);
+                    armorStand.teleport(prev);
+
+                    //Add correct bone
+                    Location armorStand2loc = armorStand.getLocation();// .5 .5 0d
+                    armorStand2loc.setYaw(armorStand2loc.getYaw()+225); //.5 .5 225d
+                    armorStand2loc.add(armorStand2loc.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
+                    armorStand2loc.setYaw(armorStand2loc.getYaw()-225);
+
+                    armorStand2.teleport(armorStand2loc);
+
+                    // Update the distance traveled
+                    distanceTraveled += speed;
+
+                    // Check if the armor stand has traveled the specified distance
+                    if (distanceTraveled >= travelDistance) {
+                        returning = true; // Start returning
+                        distanceTraveled = 0.0; // Reset distance for return trip
+                    }
                 }
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick
