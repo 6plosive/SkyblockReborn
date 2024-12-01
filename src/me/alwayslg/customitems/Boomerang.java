@@ -41,23 +41,26 @@ public class Boomerang extends CustomItem implements Listener {
     }
     private void spawnMovingArmorStand(Player player) {
         // Create the armor stand at the player's eye location
-        Location location = player.getEyeLocation();
-        ArmorStand armorStand = player.getWorld().spawn(location, ArmorStand.class);
+        Location initialLocation = player.getEyeLocation();
+        ArmorStand armorStand = player.getWorld().spawn(initialLocation, ArmorStand.class);
 
         // Set armor stand properties
-        armorStand.setVisible(true);
+        armorStand.setVisible(false);
         armorStand.setGravity(false);
         armorStand.setCustomNameVisible(false);
         armorStand.setRemoveWhenFarAway(false); // Prevents removal when far away
         armorStand.setCanPickupItems(false); // Prevent item pickup
-        armorStand.setHelmet(new ItemStack(Material.BONE)); // Ensure no visible helmet
+        armorStand.setHelmet(new ItemStack(Material.AIR)); // Ensure no visible helmet
 
-        // Initial position of the armor stand
-        Location initialLocation = armorStand.getLocation();
-        final double[] distanceTraveled = {0.0}; // Use an array to hold the distance
+        // Distance settings
+        final double travelDistance = 10.0; // Distance to travel
+        final double speed = 0.5; // Movement speed
+        Vector direction = player.getEyeLocation().getDirection().normalize(); // Get the direction the player is looking
 
         // Move the armor stand forward in a repeating task
         new BukkitRunnable() {
+            private double distanceTraveled = 0.0; // Track distance traveled
+
             @Override
             public void run() {
                 if (armorStand.isDead()) {
@@ -66,21 +69,21 @@ public class Boomerang extends CustomItem implements Listener {
                 }
 
                 // Move the armor stand forward
-                Vector direction = player.getEyeLocation().getDirection();
-                Location newLocation = armorStand.getLocation().add(direction.multiply(0.5)); // Adjust speed here
-                armorStand.teleport(newLocation); // Use teleport to move the armor stand
+                armorStand.teleport(armorStand.getLocation().add(direction.clone().multiply(speed))); // Move the armor stand
 
-                // Calculate distance traveled
-                distanceTraveled[0] += initialLocation.distance(armorStand.getLocation());
+                // Update the distance traveled
+                distanceTraveled += speed;
 
-                // Check if the armor stand has traveled 10 blocks
-                if (distanceTraveled[0] >= 10.0) {
-                    armorStand.teleport(player.getLocation()); // Teleport back to the player
+                // Check if the armor stand has traveled the specified distance
+                if (distanceTraveled >= travelDistance) {
+                    // Return the armor stand to the player
+                    armorStand.teleport(player.getLocation());
                     cancel(); // Stop the task
                 }
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick
     }
-
-
     }
+
+
+
