@@ -1,6 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/SkyblockReborn.iml
+/.idea/misc.xml
 ../out/
 ../SkyblockReborn.iml
 misc.xml
