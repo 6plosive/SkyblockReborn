@@ -1,5 +1,6 @@
 package me.alwayslg.customitems;
 
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
@@ -31,6 +32,9 @@ public class CustomItem {
 
     }
 
+    public void setNBTTags(NBTTagCompound nbtTagCompound){
+//        nbtTagCompound
+    }
     public void setDamage(int damage){
         this.damage=damage;
         ItemMeta h;

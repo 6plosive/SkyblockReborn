@@ -35,6 +35,7 @@ public class DamageHandler implements Listener {
 //                Bukkit.broadcastMessage("Damage to zombie: "+damage+" | Remaining Health: "+remainingHealth);
                 customMob.getOverheadDisplay().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d",customMob.getLevel(),customMob.getName(),healthColor,remainingHealth,customMob.getFullHealth()));
 
+                // Remove no damage ticks completely making player damage it every tick
 //                customMob.getEntity().setNoDamageTicks(1);
 //                customMob.getEntity().setMaximumNoDamageTicks(1);
                 break;
