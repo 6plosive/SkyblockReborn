@@ -1,6 +1,7 @@
 package me.alwayslg.customitems;
 
 import me.alwayslg.SkyblockReborn;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
@@ -33,22 +34,24 @@ public class Boomerang extends CustomItem implements Listener {
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getDisplayName().equals("Niggerang")) {
                 spawnMovingArmorStand(player);
+                Bukkit.broadcastMessage("NIGGER RIGHT CLICKED");
             }
         }
     }
 
     private void spawnMovingArmorStand(Player player) {
         // Create the armor stand at the player's eye location
+        Bukkit.broadcastMessage("NIGGErSPAWNED");
         Location location = player.getEyeLocation();
         ArmorStand armorStand = player.getWorld().spawn(location, ArmorStand.class);
 
         // Set armor stand properties
-        armorStand.setVisible(true);
+        //armorStand.setVisible(false);
         armorStand.setGravity(false);
         armorStand.setCustomNameVisible(false);
         armorStand.setRemoveWhenFarAway(false); // Prevents removal when far away
         armorStand.setCanPickupItems(false); // Prevent item pickup
-        armorStand.setHelmet(new ItemStack(Material.BONE)); // Ensure no visible helmet
+        armorStand.setHelmet(new ItemStack(Material.AIR)); // Ensure no visible helmet
 
         // Move the armor stand forward in a repeating task
         new BukkitRunnable() {
@@ -65,5 +68,6 @@ public class Boomerang extends CustomItem implements Listener {
                 armorStand.teleport(newLocation); // Use teleport to move the armor stand
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick
+
     }
 }
