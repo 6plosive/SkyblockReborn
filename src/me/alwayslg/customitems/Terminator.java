@@ -9,14 +9,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class JerJerShortBow extends CustomItem implements Listener {
-    public JerJerShortBow(){
+public class Terminator extends CustomItem implements Listener {
+    public Terminator(){
         setMaterial(Material.BOW);
-        setRarity(Rarity.EPIC);
+        setRarity(Rarity.LEGENDARY);
         setItemType(ItemType.SHORTBOW);
 
-        setName("JerJer ShortBow");
-        setDamage(10);
+        setName("Terminator");
+        setDamage(20);
     }
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
@@ -24,9 +24,14 @@ public class JerJerShortBow extends CustomItem implements Listener {
         ItemStack item = event.getItem();
         if (item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
-            if (meta != null && meta.getDisplayName().contains("JerJer ShortBow")) {
-                Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
-                arrow.setShooter(player);
+            if (meta != null && meta.getDisplayName().contains("Terminator")) {
+                for (int i = 0; i < 3; i++) {
+                    Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
+                    arrow.setShooter(player);
+
+                    // Optional: Add some spread for the arrows
+                    arrow.setVelocity(arrow.getVelocity().add(player.getLocation().getDirection().multiply(0.1 * (i - 1))));
+                }
 
 
             }
