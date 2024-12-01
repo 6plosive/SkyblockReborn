@@ -12,8 +12,8 @@ public enum Rarity{
     DIVINE(ChatColor.AQUA,"DIVINE"),
     SPECIAL(ChatColor.RED,"SPECIAL"),
     VERY_SPECIAL(ChatColor.RED,"VERY SPECIAL"),
-    ULTIMATE(ChatColor.DARK_RED,"ULTIMATE"),
-    NULL(ChatColor.DARK_RED,"NULL");
+    ULTIMATE(ChatColor.DARK_RED,"ULTIMATE");
+//    NULL(ChatColor.DARK_RED,"NULL");
     private final ChatColor color;
     private final String name;
     private Rarity(ChatColor color,String name){

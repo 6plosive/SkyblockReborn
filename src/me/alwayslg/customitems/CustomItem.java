@@ -2,6 +2,7 @@ package me.alwayslg.customitems;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -21,12 +22,20 @@ public class CustomItem {
     public CustomItem(){
         //Initialize dummy itemStack
         itemStack=new ItemStack(Material.STONE);
-        setRarity(Rarity.NULL);
-        setItemType(ItemType.NULL);
+//        setRarity(Rarity.NULL);
+//        setItemType(ItemType.NULL);
+    }
+
+    public static void getDamage(ItemStack itemStack){
+//        net.md_5.bungee.api.chat.
+
     }
 
     public void setDamage(int damage){
         this.damage=damage;
+        ItemMeta h;
+//        itemStack.getString();
+        updateLore();
     }
     public void setMaterial(Material material) {
         this.material = material;
@@ -40,9 +49,11 @@ public class CustomItem {
         updateName();
     }
     private void updateName(){
-        ItemMeta tempItemMeta = getItemMeta();
-        tempItemMeta.setDisplayName(ChatColor.RESET.toString()+getRarity().getColor().toString()+name);
-        setItemMeta(tempItemMeta);
+        if(getRarity()!=null) {
+            ItemMeta tempItemMeta = getItemMeta();
+            tempItemMeta.setDisplayName(ChatColor.RESET.toString() + getRarity().getColor().toString() + name);
+            setItemMeta(tempItemMeta);
+        }
     }
     private void setLore(List<String> lore) {
         this.lore = lore;
@@ -56,7 +67,7 @@ public class CustomItem {
             tempLore.add(String.format("§7Damage: §c+%d",damage));
         }
         tempLore.add(" ");
-        if(getRarity()!=Rarity.NULL&&getItemType()!=ItemType.NULL){
+        if(getRarity()!=null&&getItemType()!=null){
             tempLore.add(String.format("%s%s%s %s",getRarity().getColor().toString(),ChatColor.BOLD.toString(),getRarity().toString(),getItemType().toString()));
         }
 

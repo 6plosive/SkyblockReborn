@@ -19,10 +19,12 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../spigot-api-1.8.8-R0.1-20160221.082514-43-shaded.jar!/" />
+          <root url="jar://$MODULE_DIR$/../spigot-1.8.8.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../spigot-1.8.8.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

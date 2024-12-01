@@ -25,7 +25,7 @@ public class CustomMob {
         Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
         entity.setMaxHealth(fullHealth);
         setHealth(fullHealth);
-//        entity.setNoDamageTicks(0);
+        entity.setMaximumNoDamageTicks(10);
 //        entity.setMetadata("Custom", new FixedMetadataValue(SkyblockReborn.getPlugin(SkyblockReborn.class),true));
         DamageHandler.addMob(this);
 

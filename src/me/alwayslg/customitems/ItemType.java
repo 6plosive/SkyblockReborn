@@ -11,8 +11,8 @@ public enum ItemType {
     ACCESSORY("ACCESSORY"),
     DUNGEON_SWORD("DUNGEON SWORD"),
     SHORTBOW("SHORTBOW"),
-    LONGSWORD("LONGSWORD"),
-    NULL("NULL");
+    LONGSWORD("LONGSWORD");
+//    NULL("NULL");
     final private String name;
     private ItemType(String name){
         this.name = name;

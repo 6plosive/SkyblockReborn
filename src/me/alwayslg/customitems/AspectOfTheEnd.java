@@ -22,10 +22,10 @@ public class AspectOfTheEnd extends CustomItem implements Listener {
 
     public AspectOfTheEnd(){
         setMaterial(Material.DIAMOND_SWORD);
+        setRarity(Rarity.RARE);
+        setItemType(ItemType.SWORD);
         setName("Aspect of the End");
-        setDamage(35);
-        setRarity(Rarity.VERY_SPECIAL);
-        setItemType(ItemType.DUNGEON_SWORD);
+        setDamage(100);
     }
 
     @EventHandler
