@@ -4,6 +4,7 @@ import me.alwayslg.commands.GetItems;
 import me.alwayslg.commands.SpawnZombie;
 import me.alwayslg.customitems.AspectOfTheEnd;
 import me.alwayslg.customitems.GUI;
+import me.alwayslg.customitems.JerJerShortBow;
 import me.alwayslg.custommobs.CustomMob;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.OverheadDisplayHandler;
@@ -23,6 +24,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GUI(),this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(),this);
         getServer().getPluginManager().registerEvents(new DamageHandler(),this);
+        getServer().getPluginManager().registerEvents(new JerJerShortBow(), this);
         //i think built 
     }
 

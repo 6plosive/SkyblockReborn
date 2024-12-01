@@ -11,6 +11,7 @@ public enum ItemType {
     ACCESSORY("ACCESSORY"),
     DUNGEON_SWORD("DUNGEON SWORD"),
     SHORTBOW("SHORTBOW"),
+    BOW("BOW"),
     LONGSWORD("LONGSWORD");
 //    NULL("NULL");
     final private String name;
