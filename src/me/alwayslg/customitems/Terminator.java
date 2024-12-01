@@ -31,18 +31,13 @@ public class Terminator extends CustomItem implements Listener {
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getDisplayName().contains("Terminator")) {
                 // Shoot 3 arrows in a fan pattern
+                // Shoot 3 arrows in a fan pattern
                 for (int i = -1; i <= 1; i++) {
                     // Calculate the direction for each arrow
                     double angleOffset = i * 0.2; // Adjust for spread
                     Vector direction = player.getLocation().getDirection();
 
-
-
-                    Bukkit.broadcastMessage("i=" + i); // DEBUGGGESWOPKJGJIOAESGJIOPAWSEGKOPJIK(OP)ES
-
-
-
-                    // Calculate new direction with a slight spread
+                    // Create a new direction vector with slight adjustments for fan effect
                     Vector arrowDirection = new Vector(
                             direction.getX() + Math.sin(angleOffset), // Sideways offset
                             direction.getY() + 0.2, // Slight upward offset
@@ -52,13 +47,17 @@ public class Terminator extends CustomItem implements Listener {
                     Arrow arrow = player.getWorld().spawnArrow(
                             player.getEyeLocation(),
                             arrowDirection,
-                            4.0f,
-                            1.0f
+                            2.0f,
+                            12.0f
                     );
                     arrow.setShooter(player);
                     Bukkit.broadcastMessage("shooted arrow");
                 }
             }
-        }
+
+
+                }
+
+
     }
 }
