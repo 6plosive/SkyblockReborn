@@ -30,11 +30,12 @@ public class Boomerang extends CustomItem implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if (event.getAction().toString().contains("RIGHT") && item != null && item.hasItemMeta()) {
+        if ( item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
             if (meta != null && meta.getDisplayName().contains("Niggerang")) {
-                spawnMovingArmorStand(player);
                 Bukkit.broadcastMessage("NIGGER RIGHT CLICKED");
+                spawnMovingArmorStand(player);
+
             }
         }
     }
