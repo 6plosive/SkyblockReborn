@@ -43,8 +43,8 @@ public class Terminator extends CustomItem implements Listener {
                 // Shoot 3 arrows in a fan pattern
                 Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
 
-                Arrow arrow2 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),0.2), 4.0f, 1.0f);
-                Arrow arrow3 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),-0.2), 4.0f, 1.0f);
+                Arrow arrow2 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),0.1), 4.0f, 1.0f);
+                Arrow arrow3 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),-0.1), 4.0f, 1.0f);
                 arrow.setShooter(player);
                 arrow2.setShooter(player);
                 arrow3.setShooter(player);
