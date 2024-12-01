@@ -1,30 +1,66 @@
 package me.alwayslg.customitems;
 
 import me.alwayslg.SkyblockReborn;
+import net.minecraft.server.v1_8_R3.NBTTagByte;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 import org.bukkit.plugin.Plugin;
+
+import java.util.List;
+import java.util.UUID;
 
 public class Boomerang extends CustomItem implements Listener {
     public Boomerang() {
         setMaterial(Material.BONE);
         setRarity(Rarity.LEGENDARY);
-        setItemType(ItemType.SHORTBOW);
+        setItemType(ItemType.DUNGEON_BOW);
 
-        setName("Niggerang"); // Consider renaming for appropriateness
+        setName("Boner"); // Consider renaming for appropriateness
         setDamage(69);
+        setNBTTags("thrown",new NBTTagByte((byte) 0));
+        setUUID(UUID.randomUUID());
     }
+    private void setThrown(boolean isThrown, PlayerInventory playerInventory, int heldItemSlot){
+        setNBTTags("thrown", new NBTTagByte((byte) (isThrown ? 1 : 0 )));
+        if(isThrown){
+            Bukkit.broadcastMessage("UUID before setitem:"+getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(heldItemSlot)));
+            setMaterial(Material.GHAST_TEAR);
+            Bukkit.broadcastMessage("UUID between setitem:"+getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(heldItemSlot)));
+            Bukkit.broadcastMessage("UUID between 2 setitem:"+getStringNBTTagsFromItemStack("uuid",getItemStack()));
+            playerInventory.setItem(heldItemSlot,getItemStack());
 
+            Bukkit.broadcastMessage("UUID after setitem:"+getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(heldItemSlot)));
+        }else{
+            setMaterial(Material.BONE);
+            playerInventory.setItem(heldItemSlot,getItemStack());
+        }
+    }
+    private boolean getThrown(){
+        return getByteNBTTags("thrown") == 1;
+    }
+    private static int getItemSlotFromUUID(PlayerInventory playerInventory,UUID uuid){
+        for(int i=0;i<playerInventory.getContents().length;i++){
+            if(playerInventory.getItem(i).getType()!=Material.AIR && getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(i)).equals(uuid.toString())){
+                return i;
+            }
+        }
+        return -1;
+    }
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -32,17 +68,34 @@ public class Boomerang extends CustomItem implements Listener {
 
         if ( item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
-            if (meta != null && meta.getDisplayName().contains("Niggerang")) {
-                Bukkit.broadcastMessage("NIGGER RIGHT CLICKED");
-                spawnMovingArmorStand(player);
+            if (meta != null && meta.getDisplayName().contains("Boner")) { //
+                event.setCancelled(true);
 
+
+                if(!getThrown()) { //Have not thrown
+                    Bukkit.broadcastMessage("Right clicked my boner");
+                    setThrown(true, player.getInventory(),player.getInventory().getHeldItemSlot());
+                    Bukkit.broadcastMessage("bone get material: "+(getMaterial()));
+                    spawnMovingArmorStand(player);
+                }
             }
         }
     }
     private void spawnMovingArmorStand(Player player) {
         // Create the armor stand at the player's eye location
-        Location initialLocation = player.getEyeLocation();
+        Location initialLocation = player.getLocation();
         ArmorStand armorStand = player.getWorld().spawn(initialLocation, ArmorStand.class);
+        //Add correct bone
+        Location armorStand2loc = armorStand.getLocation();// .5 .5 0d
+        armorStand2loc.setYaw(armorStand2loc.getYaw()+225); //.5 .5 225d
+        Bukkit.broadcastMessage("armorStand2loc.getDirection().normalize(:"+armorStand2loc.getDirection().normalize());
+        Bukkit.broadcastMessage("armorStand2loc.getDirection()"+armorStand2loc.getDirection());
+        armorStand2loc.add(armorStand2loc.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
+        armorStand2loc.setYaw(armorStand2loc.getYaw()-225);
+
+        ArmorStand armorStand2 = armorStand.getWorld().spawn(armorStand2loc,ArmorStand.class);
+//        MetadataValue mdv;
+        armorStand.setMetadata("owner",new FixedMetadataValue(SkyblockReborn.getInstance(),getUUID()));
 
         // Set armor stand properties
         armorStand.setVisible(false);
@@ -64,6 +117,13 @@ public class Boomerang extends CustomItem implements Listener {
             @Override
             public void run() {
                 if (armorStand.isDead()) {
+                    List<MetadataValue> values = armorStand.getMetadata("owner");
+                    if (!values.isEmpty()) {
+                        UUID ownerUUID = UUID.fromString(values.get(0).asString());
+                        Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+                        int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
+                        setThrown(false, player.getInventory(), itemSlot);
+                    }
                     cancel(); // Stop the task if the armor stand is dead
                     return;
                 }
@@ -83,7 +143,7 @@ public class Boomerang extends CustomItem implements Listener {
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick
     }
-    }
+}
 
 
 

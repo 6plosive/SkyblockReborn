@@ -16,6 +16,7 @@ public class GUI implements Listener {
         CustomItem boomerang = new Boomerang();
         CustomItem jerjerShortBow = new JerJerShortBow();
         CustomItem terminator = new Terminator();
+        CustomItem bonzostaff = new BonzoStaff();
         inventory = Bukkit.getServer().createInventory(null,54,"Alwayslg's Skyblock Items");
         inventory.addItem(aspectOfTheEnd.getItemStack());
         inventory.addItem(diamondSword.getItemStack());

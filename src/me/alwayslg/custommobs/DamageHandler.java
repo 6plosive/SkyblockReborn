@@ -3,6 +3,8 @@ package me.alwayslg.custommobs;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagInt;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -14,7 +16,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.ArrayList;
 
-import static me.alwayslg.customitems.CustomItem.getNBTTagsFromItemStack;
+import static me.alwayslg.customitems.CustomItem.*;
 
 public class DamageHandler implements Listener {
     private static ArrayList<CustomMob> customMobs = new ArrayList<>();
@@ -27,17 +29,22 @@ public class DamageHandler implements Listener {
             if(customMob.getEntity().getUniqueId()==damagedEntity.getUniqueId()){
                 if(event.getDamager() instanceof Player){
                     Player damager = (Player) event.getDamager();
-//                    damager.getInventory().getItemInHand()
-                    int damage = getNBTTagsFromItemStack("damage",damager.getInventory().getItemInHand());
-                    damager.chat("This weapon dmg:"+damage);
-                    event.setDamage(damage);
+//                    Bukkit.broadcastMessage("Item in hand:"+damager.getInventory().getItemInHand().getType()+" | is custom?: "+isCustomItem(damager.getInventory().getItemInHand()));
+                    if(isCustomItem(damager.getInventory().getItemInHand())) {
+                        double damage = getDoubleNBTTagsFromItemStack("damage", damager.getInventory().getItemInHand());
+                        // This won't work because final damage is different
+//                    event.setDamage(damage);
+                        // Workaround for custom damage
+                        event.setDamage(0);
+                        // idk which func it is for setLastHurtByPlayer. Gave up after 1 min xd
+//                    net.minecraft.server.v1_8_R3.EntityLiving  nmsEntity = ((CraftLivingEntity) livingEntity).getHandle();
+//                    nmsEntity.setLastHurtByPlayer(((CraftPlayer) damager).getHandle());
+                        customMob.setHealth(Math.max(0, (customMob.getHealth() - damage)));
+                    }
                 }
-                double finalDamage = event.getFinalDamage();
-                Bukkit.broadcastMessage("Final Damage: "+finalDamage);
-
-                int remainingHealth = Math.max(0, (int) (customMob.getHealth() - finalDamage));
+                int remainingHealth = (int) customMob.getHealth();
                 char healthColor = 'a';
-                if(remainingHealth*2<customMob.getFullHealth()){
+                if(customMob.getHealth()*2<customMob.getFullHealth()){
                     healthColor = 'e';
                 }
 //                Bukkit.broadcastMessage("Damage to zombie: "+damage+" | Remaining Health: "+remainingHealth);

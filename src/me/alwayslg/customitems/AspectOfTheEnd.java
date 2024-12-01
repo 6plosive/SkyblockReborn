@@ -25,6 +25,7 @@ public class AspectOfTheEnd extends CustomItem implements Listener {
         setRarity(Rarity.RARE);
         setItemType(ItemType.SWORD);
         setName("Aspect of the End");
+        setID("ASPECT_OF_THE_END");
         setDamage(100);
     }
 

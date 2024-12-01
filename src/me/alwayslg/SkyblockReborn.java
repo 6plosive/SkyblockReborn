@@ -6,6 +6,7 @@ import me.alwayslg.customitems.*;
 import me.alwayslg.custommobs.CustomMob;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.OverheadDisplayHandler;
+import me.alwayslg.listeners.DingOnHit;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +30,8 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JerJerShortBow(), this);
         getServer().getPluginManager().registerEvents(new Terminator(), this);
         getServer().getPluginManager().registerEvents(new Boomerang(), this);
+        getServer().getPluginManager().registerEvents(new BonzoStaff(), this);
+        getServer().getPluginManager().registerEvents(new DingOnHit(), this);
     }
 
     @Override
