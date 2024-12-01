@@ -1,5 +1,6 @@
 package me.alwayslg.customitems;
 
+import net.minecraft.server.v1_8_R3.NBTTagString;
 import org.bukkit.Material;
 
 public class DiamondSword extends CustomItem{
@@ -10,5 +11,7 @@ public class DiamondSword extends CustomItem{
 
         setName("Diamond Sword");
         setDamage(35);
+
+//        setNBTTags("testing",new NBTTagString("nbtstringnigga"));
     }
 }

@@ -1,5 +1,7 @@
 package me.alwayslg.custommobs;
 
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagInt;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -12,6 +14,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.ArrayList;
 
+import static me.alwayslg.customitems.CustomItem.getNBTTagsFromItemStack;
+
 public class DamageHandler implements Listener {
     private static ArrayList<CustomMob> customMobs = new ArrayList<>();
     @EventHandler
@@ -23,11 +27,15 @@ public class DamageHandler implements Listener {
             if(customMob.getEntity().getUniqueId()==damagedEntity.getUniqueId()){
                 if(event.getDamager() instanceof Player){
                     Player damager = (Player) event.getDamager();
-//                    damager.getInventory().getItemInHand().get
+//                    damager.getInventory().getItemInHand()
+                    int damage = getNBTTagsFromItemStack("damage",damager.getInventory().getItemInHand());
+                    damager.chat("This weapon dmg:"+damage);
+                    event.setDamage(damage);
                 }
-//                event.setDamage();
-                double damage = event.getFinalDamage();
-                int remainingHealth = Math.max(0, (int) (customMob.getHealth() - damage));
+                double finalDamage = event.getFinalDamage();
+                Bukkit.broadcastMessage("Final Damage: "+finalDamage);
+
+                int remainingHealth = Math.max(0, (int) (customMob.getHealth() - finalDamage));
                 char healthColor = 'a';
                 if(remainingHealth*2<customMob.getFullHealth()){
                     healthColor = 'e';

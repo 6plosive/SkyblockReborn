@@ -1,8 +1,11 @@
 package me.alwayslg.customitems;
 
+import net.minecraft.server.v1_8_R3.NBTBase;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NBTTagInt;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,13 +35,18 @@ public class CustomItem {
 
     }
 
-    public void setNBTTags(NBTTagCompound nbtTagCompound){
-//        nbtTagCompound
+    public void setNBTTags(String s, NBTBase nbtBase){
+        net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
+        nbtTagCompound.set(s,nbtBase);
+        nmsItemStack.setTag(nbtTagCompound);
+        itemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
     }
     public void setDamage(int damage){
         this.damage=damage;
-        ItemMeta h;
-//        itemStack.getString();
+        //Set NBT Tags
+        setNBTTags("damage", new NBTTagInt(damage));
+        //Update lore cuz damage is inside lore
         updateLore();
     }
     public void setMaterial(Material material) {
@@ -110,5 +118,15 @@ public class CustomItem {
     }
     public ItemType getItemType() {
         return itemType;
+    }
+    public NBTBase getNBTTags(String s){
+        net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
+        return nbtTagCompound.get(s);
+    }
+    public static int getNBTTagsFromItemStack(String s,ItemStack itemStack){
+        net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
+        return nbtTagCompound.getInt(s);
     }
 }
