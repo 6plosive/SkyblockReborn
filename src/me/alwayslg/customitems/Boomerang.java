@@ -39,20 +39,22 @@ public class Boomerang extends CustomItem implements Listener {
             }
         }
     }
-
     private void spawnMovingArmorStand(Player player) {
         // Create the armor stand at the player's eye location
-        Bukkit.broadcastMessage("NIGGErSPAWNED");
         Location location = player.getEyeLocation();
         ArmorStand armorStand = player.getWorld().spawn(location, ArmorStand.class);
 
         // Set armor stand properties
-        //armorStand.setVisible(false);
+        armorStand.setVisible(true);
         armorStand.setGravity(false);
         armorStand.setCustomNameVisible(false);
         armorStand.setRemoveWhenFarAway(false); // Prevents removal when far away
         armorStand.setCanPickupItems(false); // Prevent item pickup
-        armorStand.setHelmet(new ItemStack(Material.AIR)); // Ensure no visible helmet
+        armorStand.setHelmet(new ItemStack(Material.BONE)); // Ensure no visible helmet
+
+        // Initial position of the armor stand
+        Location initialLocation = armorStand.getLocation();
+        final double[] distanceTraveled = {0.0}; // Use an array to hold the distance
 
         // Move the armor stand forward in a repeating task
         new BukkitRunnable() {
@@ -67,8 +69,18 @@ public class Boomerang extends CustomItem implements Listener {
                 Vector direction = player.getEyeLocation().getDirection();
                 Location newLocation = armorStand.getLocation().add(direction.multiply(0.5)); // Adjust speed here
                 armorStand.teleport(newLocation); // Use teleport to move the armor stand
+
+                // Calculate distance traveled
+                distanceTraveled[0] += initialLocation.distance(armorStand.getLocation());
+
+                // Check if the armor stand has traveled 10 blocks
+                if (distanceTraveled[0] >= 10.0) {
+                    armorStand.teleport(player.getLocation()); // Teleport back to the player
+                    cancel(); // Stop the task
+                }
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick
+    }
+
 
     }
-}
