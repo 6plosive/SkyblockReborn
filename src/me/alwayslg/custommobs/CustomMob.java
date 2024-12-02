@@ -29,7 +29,7 @@ public class CustomMob {
 //        entity.setMetadata("Custom", new FixedMetadataValue(SkyblockReborn.getPlugin(SkyblockReborn.class),true));
         DamageHandler.addMob(this);
 
-        overheadDisplay.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d",getLevel(),getName(),(int)getHealth(),getFullHealth()));
+        overheadDisplay.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d§c❤",getLevel(),getName(),(int)getHealth(),getFullHealth()));
         overheadDisplay.spawn(entity);
         OverheadDisplayHandler.addDisplay(overheadDisplay);
     }

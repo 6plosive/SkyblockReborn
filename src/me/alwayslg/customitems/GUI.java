@@ -8,6 +8,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.UUID;
+
 public class GUI implements Listener {
     private static Inventory inventory;
     public GUI(){
@@ -18,12 +20,12 @@ public class GUI implements Listener {
         CustomItem terminator = new Terminator();
         CustomItem bonzostaff = new BonzoStaff();
         inventory = Bukkit.getServer().createInventory(null,54,"Alwayslg's Skyblock Items");
-        inventory.addItem(aspectOfTheEnd.getItemStack());
-        inventory.addItem(diamondSword.getItemStack());
-        inventory.addItem(boomerang.getItemStack());
-        inventory.addItem(jerjerShortBow.getItemStack());
-        inventory.addItem(terminator.getItemStack());
-        inventory.addItem(bonzostaff.getItemStack());
+        inventory.addItem(aspectOfTheEnd);
+        inventory.addItem(diamondSword);
+        inventory.addItem(boomerang);
+        inventory.addItem(jerjerShortBow);
+        inventory.addItem(terminator);
+        inventory.addItem(bonzostaff);
     }
 
     public static Inventory getInventory(){
@@ -36,9 +38,11 @@ public class GUI implements Listener {
             event.setCancelled(true); // Prevent taking items from the inventory
 
             Player player = (Player) event.getWhoClicked();
-            ItemStack clickedItem = event.getCurrentItem();
+            CustomItem clickedItem = new CustomItem(event.getCurrentItem());
 
             if (clickedItem != null) {
+                // Unstackable + Some items need to change material for example boomerang
+                clickedItem.setUUID(UUID.randomUUID());
                 // Give the item to the player
                 player.getInventory().addItem(clickedItem);
                 player.sendMessage("You have received "+clickedItem.getItemMeta().getDisplayName());

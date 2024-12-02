@@ -13,12 +13,13 @@ import java.util.HashMap;
 
 public class JerJerShortBow extends CustomItem implements Listener {
     public JerJerShortBow(){
-        setMaterial(Material.BOW);
-        setRarity(Rarity.EPIC);
-        setItemType(ItemType.SHORTBOW);
-
-        setName("JerJer ShortBow");
-        setDamage(10);
+//        setMaterial(Material.BOW);
+//        setRarity(Rarity.EPIC);
+//        setItemType(ItemType.SHORTBOW);
+//
+//        setName("JerJer ShortBow");
+//        setDamage(10);
+        super(CustomItemID.JER_JER_SHORTBOW);
     }
     private HashMap<Player, Long> cooldowns = new HashMap<>(); // Store cooldowns
     @EventHandler
@@ -27,32 +28,29 @@ public class JerJerShortBow extends CustomItem implements Listener {
         ItemStack item = event.getItem();
         if (item != null && item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
+            if (meta != null && isCustomItem(item)) {
+                CustomItem customItem = new CustomItem(item);
+                if (customItem.getID().equals(CustomItemID.JER_JER_SHORTBOW.getID())) {
+                    event.setCancelled(true);
+                    if (cooldowns.containsKey(player)) {
+                        long lastUsed = cooldowns.get(player);
+                        long currentTime = System.currentTimeMillis();
 
-
-
-
-            if (meta != null && meta.getDisplayName().contains("JerJer ShortBow")) {
-                event.setCancelled(true);
-                if (cooldowns.containsKey(player)) {
-                    long lastUsed = cooldowns.get(player);
-                    long currentTime = System.currentTimeMillis();
-
-                    // If the cooldown is still active
-                    if (currentTime - lastUsed < 500) { // 1000 milliseconds = 1 second
-                        player.sendMessage("You must wait before using this again!");
-                        return; // Exit the method if on cooldown
+                        // If the cooldown is still active
+                        if (currentTime - lastUsed < 250) { // 1000 milliseconds = 1 second
+                            player.sendMessage("You must wait before using this again!");
+                            return; // Exit the method if on cooldown
+                        }
                     }
+
+
+                    Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
+                    arrow.setShooter(player);
+
+
+                    cooldowns.put(player, System.currentTimeMillis());
+
                 }
-
-
-
-                Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
-                arrow.setShooter(player);
-
-
-
-                cooldowns.put(player, System.currentTimeMillis());
-
             }
         }
     }

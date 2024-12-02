@@ -8,3 +8,6 @@ commands:
       - gui
   spawnzombie:
     usage: /<command>
+  ride:
+    description: Ride another player
+    usage: /ride <player>

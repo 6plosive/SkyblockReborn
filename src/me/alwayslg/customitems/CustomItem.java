@@ -1,19 +1,17 @@
 package me.alwayslg.customitems;
 
 import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+
+import static me.alwayslg.customitems.CustomItemID.*;
 
 public class CustomItem extends ItemStack{
 //    private int damage;
@@ -24,13 +22,20 @@ public class CustomItem extends ItemStack{
 //    private Rarity rarity;
 //    private ItemType itemType;
 //    private UUID uuid;
+//    private CustomItemID id;
 
-    public CustomItem(){
+    public CustomItem(CustomItemID id){
         //Initialize dummy itemStack
 //        itemStack=new ItemStack(Material.STONE);
+        super(id.getMaterial());
+//        this.id = id;
+        setID(id);
         setNBTTags("customitem",new NBTTagByte((byte) 1));
 //        setRarity(Rarity.NULL);
 //        setItemType(ItemType.NULL);
+    }
+    public CustomItem(ItemStack itemStack){
+        super(itemStack);
     }
 
 //    public static void getDamage(ItemStack itemStack){
@@ -132,7 +137,7 @@ public class CustomItem extends ItemStack{
                 return compound.getFloat(s);
             }
         }
-        return null;
+        return 0;
     }
     public int[] getIntArrayNBTTags(String s){
         net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(this);
@@ -182,21 +187,24 @@ public class CustomItem extends ItemStack{
     public String getID(){
         return getStringNBTTags("id");
     }
-    public void setID(String id){
-        setNBTTags("id",new NBTTagString(id));
+    private void setID(CustomItemID id){
+        setNBTTags("id",new NBTTagString(id.getID()));
+        setName(id.getName());
+        updateName();
+        updateLore();
     }
 
     public int getDamage(){
         return getDamageByID(getID());
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         ItemMeta tempItemMeta = getItemMeta();
         tempItemMeta.setDisplayName(name);
         setItemMeta(tempItemMeta);
     }
     public String getName() {
-        return getItemMeta().getDisplayName();
+        return getNameByID(getID());
     }
     private void updateName(){
         if(getRarity()!=null) {
@@ -233,54 +241,9 @@ public class CustomItem extends ItemStack{
     public ItemType getItemType(){
         return getItemTypeByID(getID());
     }
-
-//    public void setDamage(int damage){
-//        this.damage=damage;
-//        //Set NBT Tags
-//        setNBTTags("damage", new NBTTagInt(damage));
-//        //Update lore cuz damage is inside lore
-//        updateLore();
-//    }
-    // After running this function, Update player's inventory by setting
-    // player's hold item to getItemStack(). Otherwise material will not change.
-//    public void setMaterial(Material material) {
-//        this.material = material;
-//        itemStack.setType(material);
-//    }
-//    private void setItemMeta(ItemMeta itemMeta){
-//        itemStack.setItemMeta(itemMeta);
-//    }
-
-
-//    public void setRarity(Rarity rarity) {
-//        this.rarity = rarity;
-//        updateLore();
-//        updateName();
-//    }
-//    public void setItemType(ItemType itemType) {
-//        this.itemType = itemType;
-//        updateLore();
-//    }
-
-
-//    public ItemStack getItemStack() {
-//        return itemStack;
-//    }
-//    public ItemMeta getItemMeta(){
-//        return itemStack.getItemMeta();
-//    }
-//    public Material getMaterial() {
-//        return itemStack.getType();
-//    }
-//    public List<String> getLore() {
-//        return lore;
-//    }
-//    public Rarity getRarity() {
-//        return rarity;
-//    }
-//    public ItemType getItemType() {
-//        return itemType;
-//    }
+    public Material getMaterial(){
+        return getMaterialByID(getID());
+    }
 
 
     public static boolean isCustomItem(ItemStack itemStack){
@@ -289,4 +252,7 @@ public class CustomItem extends ItemStack{
         NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
         return nbtTagCompound.getByte("customitem")==1;
     }
+//    public static CustomItem parseCustomItem(ItemStack itemStack){
+//        return this
+//    }
 }

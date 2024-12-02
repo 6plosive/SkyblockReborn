@@ -1,5 +1,6 @@
 package me.alwayslg.custommobs;
 
+import me.alwayslg.customitems.CustomItem;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagInt;
 import org.bukkit.Bukkit;
@@ -31,7 +32,8 @@ public class DamageHandler implements Listener {
                     Player damager = (Player) event.getDamager();
 //                    Bukkit.broadcastMessage("Item in hand:"+damager.getInventory().getItemInHand().getType()+" | is custom?: "+isCustomItem(damager.getInventory().getItemInHand()));
                     if(isCustomItem(damager.getInventory().getItemInHand())) {
-                        double damage = getDoubleNBTTagsFromItemStack("damage", damager.getInventory().getItemInHand());
+                        CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
+                        double damage = itemInHand.getDamage();
                         // This won't work because final damage is different
 //                    event.setDamage(damage);
                         // Workaround for custom damage
@@ -48,7 +50,7 @@ public class DamageHandler implements Listener {
                     healthColor = 'e';
                 }
 //                Bukkit.broadcastMessage("Damage to zombie: "+damage+" | Remaining Health: "+remainingHealth);
-                customMob.getOverheadDisplay().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d",customMob.getLevel(),customMob.getName(),healthColor,remainingHealth,customMob.getFullHealth()));
+                customMob.getOverheadDisplay().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d§c❤",customMob.getLevel(),customMob.getName(),healthColor,remainingHealth,customMob.getFullHealth()));
 
                 // Remove no damage ticks completely making player damage it every tick
 //                customMob.getEntity().setNoDamageTicks(1);

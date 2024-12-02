@@ -16,12 +16,13 @@ import java.util.HashMap;
 public class Terminator extends CustomItem implements Listener {
 
     public Terminator() {
-        setMaterial(Material.BOW);
-        setRarity(Rarity.LEGENDARY);
-        setItemType(ItemType.SHORTBOW);
-
-        setName("Terminator");
-        setDamage(20);
+//        setMaterial(Material.BOW);
+//        setRarity(Rarity.LEGENDARY);
+//        setItemType(ItemType.SHORTBOW);
+//
+//        setName("Terminator");
+//        setDamage(20);
+        super(CustomItemID.TERMINATOR);
     }
 
     public Vector rotateVector(Vector vector, double whatAngle) {

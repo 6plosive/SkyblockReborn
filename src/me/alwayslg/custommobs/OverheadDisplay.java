@@ -22,6 +22,7 @@ public class OverheadDisplay {
         e.setSmall(true);
         e.setGravity(false);
         e.setVisible(false);
+        e.setBasePlate(false);
 
         return e;
     }
