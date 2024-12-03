@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,30 +25,24 @@ import org.bukkit.plugin.Plugin;
 import java.util.List;
 import java.util.UUID;
 
+import static me.alwayslg.custommobs.DamageHandler.damageEntitiesInLocation;
+import static me.alwayslg.custommobs.DamageHandler.damageNearbyEntities;
+import static me.alwayslg.util.Utilities.getItemSlotFromUUID;
+
 public class Boomerang extends CustomItem implements Listener {
     public Boomerang() {
         super(CustomItemID.BOOMERANG);
         setNBTTags("thrown",new NBTTagByte((byte) 0));
-//        setUUID(uuid);
     }
     public Boomerang(CustomItem customItem) {
         super(customItem);
-//        setNBTTags("thrown",new NBTTagByte((byte) 0));
-//        setUUID(uuid);
     }
     private void setThrown(boolean isThrown, PlayerInventory playerInventory, int heldItemSlot){
         CustomItem customItem = new CustomItem(playerInventory.getItem(heldItemSlot));
         customItem.setNBTTags("thrown", new NBTTagByte((byte) (isThrown ? 1 : 0 )));
         if(isThrown){
-//            getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(heldItemSlot))
-//            Bukkit.broadcastMessage("UUID before setitem:"+customItem.getUUID());
-//            setMaterial(Material.GHAST_TEAR);
             customItem.setType(Material.GHAST_TEAR);
-//            Bukkit.broadcastMessage("UUID between setitem:"+customItem.getUUID());
-//            Bukkit.broadcastMessage("UUID between 2 setitem:"+customItem.getUUID());
             playerInventory.setItem(heldItemSlot,customItem);
-
-//            Bukkit.broadcastMessage("UUID after setitem:"+customItem.getUUID());
         }else{
             customItem.setType(Material.BONE);
             playerInventory.setItem(heldItemSlot,customItem);
@@ -56,56 +51,52 @@ public class Boomerang extends CustomItem implements Listener {
     private boolean getThrown(){
         return getByteNBTTags("thrown") == 1;
     }
-    private static int getItemSlotFromUUID(PlayerInventory playerInventory,UUID uuid){
-        for(int i=0;i<playerInventory.getContents().length;i++){
-            CustomItem item = new CustomItem(playerInventory.getItem(i));
-            //getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(i)).equals(uuid.toString())
-            if(item.getType()!=Material.AIR && item.getUUID().equals(uuid)){
-                return i;
-            }
-        }
-        return -1;
-    }
+
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (//event.getAction().toString().contains("RIGHT") &&
-                 item != null && item.hasItemMeta()) {
-            Bukkit.broadcastMessage("Right clicked "+item.getType());
-            ItemMeta meta = item.getItemMeta();
-            if (meta != null && isCustomItem(item)) {
-                CustomItem customItem = new CustomItem(item);
-                if(customItem.getID().equals(CustomItemID.BOOMERANG.getID())) {
-                    event.setCancelled(true);
-                    Boomerang boomerang = new Boomerang(customItem);
-                    if (!boomerang.getThrown()) { //Have not thrown
-                        Bukkit.broadcastMessage("Right clicked my boner");
-                        //event.setCancelled(true);
-                        setThrown(true, player.getInventory(), player.getInventory().getHeldItemSlot());
+
+        if(item==null && !item.hasItemMeta()) return;
+        ItemMeta meta = item.getItemMeta();
+        if(meta==null) return;
+        if(!isCustomItem(item)) return;
+        CustomItem customItem = new CustomItem(item);
+        if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(CustomItemID.BOOMERANG.getID())){
+            event.setCancelled(true);
+            Boomerang boomerang = new Boomerang(customItem);
+            if (!boomerang.getThrown()) { //Have not thrown
+                Bukkit.broadcastMessage("Right clicked my boner");
+                //event.setCancelled(true);
+                setThrown(true, player.getInventory(), player.getInventory().getHeldItemSlot());
 //                        Bukkit.broadcastMessage("bone get material: " + (getMaterial()));
-                        spawnMovingArmorStand(player, customItem.getUUID());
-                    }
-                }
+                spawnMovingArmorStand(player, customItem.getUUID());
             }
         }
     }
     private void spawnMovingArmorStand(Player player, UUID uuid) {
         // Create the armor stand at the player's location
-        Location initialLocation = player.getLocation();
+        Location initialLocation = player.getLocation().add(0,1.6,0);
         ArmorStand damageBox = player.getWorld().spawn(initialLocation, ArmorStand.class);
         //Add correct bone
-        Location flyingBoneLocation = damageBox.getLocation();// .5 .5 0d
-        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+225); //.5 .5 225d
-        flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
-        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-225);
+        Location flyingBoneLocation = damageBox.getLocation();// .5 1.6 .5 0d
+//        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+225); // .5 1.6 .5 225d
+//        flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.565685424949));// 0.9 1.6 .1 225d
+//        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-225); // 0.9 1.6 .1 0d
+//        flyingBoneLocation.add(0,-0.85,0);// .9 .75 .1 0d
+        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+270); // .5 1.6 .5 270d
+        flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.35)); // .15 1.6 .5 270d
+        flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-270); // .15 1.6 .5 0d
+        flyingBoneLocation.add(0,-0.85,0);// .1 .75 .5 0d
 
         ArmorStand flyingBone = damageBox.getWorld().spawn(flyingBoneLocation,ArmorStand.class);
 
         damageBox.setMetadata("owner",new FixedMetadataValue(SkyblockReborn.getInstance(),uuid));
         flyingBone.setMetadata("owner",new FixedMetadataValue(SkyblockReborn.getInstance(),uuid));
+        damageBox.setMetadata("player",new FixedMetadataValue(SkyblockReborn.getInstance(),player.getUniqueId().toString()));
 
         // Set armor stand properties
+        damageBox.setMarker(true);
         damageBox.setVisible(false);
         damageBox.setGravity(false);
         damageBox.setCustomNameVisible(false);
@@ -150,7 +141,8 @@ public class Boomerang extends CustomItem implements Listener {
                 // If returning phase
                 if (returning) {
                     // Update direction to the player's current location
-                    Vector playerDirection = player.getLocation().toVector().subtract(damageBox.getLocation().toVector()).normalize();
+                    Location returnLocation = player.getLocation().add(0,1.6,0);
+                    Vector playerDirection = returnLocation.toVector().subtract(damageBox.getLocation().toVector()).normalize();
                     // Move the armor stand back toward the player
                     damageBox.teleport(damageBox.getLocation().add(playerDirection.multiply(speed))); // Move back
 
@@ -160,15 +152,16 @@ public class Boomerang extends CustomItem implements Listener {
                     damageBox.teleport(prev);
 
                     //Add correct bone
-                    Location flyingBoneLocation = damageBox.getLocation();// .5 .5 0d
-                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+225); //.5 .5 225d
-                    flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
-                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-225);
+                    Location flyingBoneLocation = damageBox.getLocation();// .5 1.6 .5 0d
+                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+270); // .5 1.6 .5 270d
+                    flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.35)); // .15 1.6 .5 270d
+                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-270); // .15 1.6 .5 0d
+                    flyingBoneLocation.add(0,-0.85,0);// .1 .75 .5 0d
 
                     flyingBone.teleport(flyingBoneLocation);
                     distanceTraveled += speed;
                     // Check if the armor stand has reached the player
-                    if (damageBox.getLocation().distance(player.getLocation()) < 0.5) {
+                    if (damageBox.getLocation().distance(returnLocation) < 0.5) {
 //                        damageBox.teleport(player.getLocation()); // Teleport back to the player
                         damageBox.remove(); // Remove the armor stand
                         flyingBone.remove();
@@ -205,10 +198,11 @@ public class Boomerang extends CustomItem implements Listener {
                     damageBox.teleport(prev);
 
                     //Add correct bone
-                    Location flyingBoneLocation = damageBox.getLocation();// .5 .5 0d
-                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+225); //.5 .5 225d
-                    flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.565685424949));//0.9 .1 225d
-                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-225);
+                    Location flyingBoneLocation = damageBox.getLocation();// .5 1.6 .5 0d
+                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()+270); // .5 1.6 .5 270d
+                    flyingBoneLocation.add(flyingBoneLocation.getDirection().normalize().multiply(0.35)); // .15 1.6 .5 270d
+                    flyingBoneLocation.setYaw(flyingBoneLocation.getYaw()-270); // .15 1.6 .5 0d
+                    flyingBoneLocation.add(0,-0.85,0);// .1 .75 .5 0d
 
                     flyingBone.teleport(flyingBoneLocation);
 

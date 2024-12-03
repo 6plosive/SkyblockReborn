@@ -1,21 +1,28 @@
 package me.alwayslg.custommobs;
 
+import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+
+import static me.alwayslg.util.Utilities.getBoundingBox;
 
 public class OverheadDisplay {
     private ArmorStand e;
     private String text;
-    private Entity target;
+    private LivingEntity target;
     private boolean shouldTextUpdate;
     public OverheadDisplay(){
         shouldTextUpdate=false;
     }
-    public Entity spawn(Entity target){
+    public Entity spawn(LivingEntity target){
         this.target = target;
-        e = target.getWorld().spawn(target.getLocation().add(0,2,0), ArmorStand.class);
+        AxisAlignedBB targetBoundingBox = getBoundingBox(target);
+        double targetHeight = targetBoundingBox.e-targetBoundingBox.b;
+        e = target.getWorld().spawn(target.getLocation().add(0,targetHeight,0), ArmorStand.class);
         e.setMarker(true);
         e.setCustomName(text);
         e.setCustomNameVisible(true);
@@ -32,7 +39,9 @@ public class OverheadDisplay {
     public void updatePerTick(){
         Location targetlocation = target.getLocation();
 //        Bukkit.broadcastMessage("Target Y: "+targetlocation.getY());
-        targetlocation.add(0,2,0);
+        AxisAlignedBB targetBoundingBox = getBoundingBox(target);
+        double targetHeight = targetBoundingBox.e-targetBoundingBox.b;
+        targetlocation.add(0,targetHeight,0);
 //        Bukkit.broadcastMessage("TP location Y: "+targetlocation.getY());
         e.teleport(targetlocation);
 //        Bukkit.broadcastMessage("display location Y: "+e.getLocation().getY());

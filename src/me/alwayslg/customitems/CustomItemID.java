@@ -12,7 +12,9 @@ public enum CustomItemID {
     BOOMERANG("BOOMERANG","Bonemerang",Material.BONE,ItemType.DUNGEON_BOW,Rarity.LEGENDARY,69),
     DIAMOND_SWORD("DIAMOND_SWORD","Diamond Sword",Material.DIAMOND_SWORD,ItemType.SWORD,Rarity.UNCOMMON,35),
     JER_JER_SHORTBOW("JER_JER_SHORTBOW","Jer Jer Shortbow",Material.BOW,ItemType.BOW,Rarity.EPIC,20),
-    TERMINATOR("TERMINATOR","Terminator",Material.BOW,ItemType.BOW,Rarity.LEGENDARY,50);
+    TERMINATOR("TERMINATOR","Terminator",Material.BOW,ItemType.BOW,Rarity.LEGENDARY,50),
+    HYPERION("HYPERION","Hyperion",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,260),
+    GIANTS_SWORD("GIANTS_SWORD","Giant's Sword",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,500);
     private final String id;
     private final String name;
     private final Material material;
@@ -64,7 +66,7 @@ public enum CustomItemID {
         return getCustomItemID(id)==null?null:getCustomItemID(id).getRarity();
     }
     public static int getDamageByID(String id) {
-        Bukkit.broadcastMessage("Damage for "+id+":"+getCustomItemID(id));
+//        Bukkit.broadcastMessage("Damage for "+id+":"+getCustomItemID(id));
         return getCustomItemID(id)==null?0:getCustomItemID(id).getDamage();
     }
     public static Material getMaterialByID(String id){

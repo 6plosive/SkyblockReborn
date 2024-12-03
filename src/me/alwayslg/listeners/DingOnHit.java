@@ -33,11 +33,13 @@ public class DingOnHit implements Listener{
 
                 // Play the sound to the player
                 arrow.remove();
-                player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1.0f, 0.8f);
-
+                playDing(player);
                 // Optionally, you can add more logic here (e.g., sending a message)
             }
         }
+    }
+    public static void playDing(Player player){
+        player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1.0f, 0.8f);
     }
 
 }
