@@ -5,9 +5,7 @@ import net.minecraft.server.v1_8_R3.NBTTagByte;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,13 +18,12 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
-import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 import java.util.UUID;
 
-import static me.alwayslg.custommobs.DamageHandler.damageEntitiesInLocation;
-import static me.alwayslg.custommobs.DamageHandler.damageNearbyEntities;
+import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities;
+import static me.alwayslg.custommobs.DamageHandler.dealRealDamageNearbyEntities;
 import static me.alwayslg.util.Utilities.getItemSlotFromUUID;
 
 public class Boomerang extends CustomItem implements Listener {

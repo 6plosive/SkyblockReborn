@@ -244,6 +244,9 @@ public class CustomItem extends ItemStack{
     public Material getMaterial(){
         return getMaterialByID(getID());
     }
+    public int getMagicDamage(){
+        return getMagicDamageByID(getID());
+    }
 
 
     public static boolean isCustomItem(ItemStack itemStack){

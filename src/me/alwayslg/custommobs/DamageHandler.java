@@ -1,11 +1,7 @@
 package me.alwayslg.custommobs;
 
-import javafx.geometry.BoundingBox;
-import javafx.scene.chart.Axis;
 import me.alwayslg.customitems.CustomItem;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
-import net.minecraft.server.v1_8_R3.Vec3D;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -50,26 +46,30 @@ public class DamageHandler implements Listener {
     @EventHandler
     public void onDeath(EntityDeathEvent event){
         Entity deathEntity = event.getEntity();
-        Bukkit.broadcastMessage("Death entity UUID: "+deathEntity.getUniqueId());
-//        for(CustomMob customMob:customMobs.values()){
-//            if(customMob.getEntity().getUniqueId()==deathEntity.getUniqueId()){
+//        Bukkit.broadcastMessage("Death entity UUID: "+deathEntity.getUniqueId());
         removeMob(deathEntity.getUniqueId());
     }
     public static void removeMob(UUID deathEntityUUID){
         if(customMobs.get(deathEntityUUID)!=null){
             CustomMob customMob = customMobs.get(deathEntityUUID);
             //Remove overhead display
-            OverheadDisplayHandler.removeDisplay(customMob.getOverheadDisplay());
+            HealthBarHandler.removeDisplay(customMob.getOverheadDisplay());
             //Remove from map
             customMobs.remove(deathEntityUUID);
         }
     }
-    public static void damageNearbyEntities(Location location, double damageRadius, Player player){
-//        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location,damageRadius,damageRadius,damageRadius);
+    public static void dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
         List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
         for (CustomMob customMob : nearbyCustomMobs) {
 //            livingEntity.damage(1); // Deal damage
             dealCustomDamage(player,customMob);
+        }
+    }
+    public static void dealRealDamageNearbyEntities(Location location, double damageRadius, Player player){
+        List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
+        for (CustomMob customMob : nearbyCustomMobs) {
+            dealCustomDamage(player,customMob);
+//            dealMagicDamage(player,customMob);
         }
     }
     // x,y,z is the radius of the collision box
@@ -100,7 +100,8 @@ public class DamageHandler implements Listener {
     public static void damageEntitiesInLocation(Location location, Player player){
         List<CustomMob> collisions = getCustomMobsAtLocation(location);
         for(CustomMob customMob:collisions){
-            dealCustomDamage(player,customMob);
+//            dealCustomDamage(player,customMob);
+            dealMagicDamage(player,customMob);
         }
     }
     public static List<CustomMob> getCustomMobsAtLocation(Location location){
@@ -130,6 +131,8 @@ public class DamageHandler implements Listener {
             updateHealthBar(target);
             // Play satisfying ding hit sound
             playDing(damager);
+            // Spawn damage indicator
+            DamageIndicator.spawn(target.getEntity(),(int)damage);
         }
     }
 

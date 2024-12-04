@@ -1,21 +1,19 @@
 package me.alwayslg.custommobs;
 
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 import static me.alwayslg.util.Utilities.getBoundingBox;
 
-public class OverheadDisplay {
+public class HealthBar {
     private ArmorStand e;
     private String text;
     private LivingEntity target;
     private boolean shouldTextUpdate;
-    public OverheadDisplay(){
+    public HealthBar(){
         shouldTextUpdate=false;
     }
     public Entity spawn(LivingEntity target){
@@ -38,13 +36,10 @@ public class OverheadDisplay {
     }
     public void updatePerTick(){
         Location targetlocation = target.getLocation();
-//        Bukkit.broadcastMessage("Target Y: "+targetlocation.getY());
         AxisAlignedBB targetBoundingBox = getBoundingBox(target);
         double targetHeight = targetBoundingBox.e-targetBoundingBox.b;
         targetlocation.add(0,targetHeight,0);
-//        Bukkit.broadcastMessage("TP location Y: "+targetlocation.getY());
         e.teleport(targetlocation);
-//        Bukkit.broadcastMessage("display location Y: "+e.getLocation().getY());
         if(shouldTextUpdate){
             e.setCustomName(text);
             shouldTextUpdate=false;

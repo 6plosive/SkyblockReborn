@@ -11,16 +11,17 @@ public enum CustomItemID {
     BONZO_STAFF("BONZO_STAFF","Bonzo's Staff",Material.BLAZE_ROD,ItemType.WAND,Rarity.LEGENDARY,20),
     BOOMERANG("BOOMERANG","Bonemerang",Material.BONE,ItemType.DUNGEON_BOW,Rarity.LEGENDARY,69),
     DIAMOND_SWORD("DIAMOND_SWORD","Diamond Sword",Material.DIAMOND_SWORD,ItemType.SWORD,Rarity.UNCOMMON,35),
-    JER_JER_SHORTBOW("JER_JER_SHORTBOW","Jer Jer Shortbow",Material.BOW,ItemType.BOW,Rarity.EPIC,20),
-    TERMINATOR("TERMINATOR","Terminator",Material.BOW,ItemType.BOW,Rarity.LEGENDARY,50),
-    HYPERION("HYPERION","Hyperion",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,260),
-    GIANTS_SWORD("GIANTS_SWORD","Giant's Sword",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,500);
+    JER_JER_SHORTBOW("JER_JER_SHORTBOW","Jer Jer Shortbow",Material.BOW,ItemType.BOW,Rarity.EPIC,310),
+    TERMINATOR("TERMINATOR","Terminator",Material.BOW,ItemType.BOW,Rarity.LEGENDARY,310),
+    HYPERION("HYPERION","Hyperion",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,260,300),
+    GIANTS_SWORD("GIANTS_SWORD","Giant's Sword",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,500,5000);
     private final String id;
     private final String name;
     private final Material material;
     private final ItemType itemType;
     private final Rarity rarity;
     private final int damage;
+    private final int magicDamage;
     private static final Map<String, CustomItemID> BY_ID = Maps.newHashMap();
     CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage){
         this.id = id;
@@ -29,6 +30,16 @@ public enum CustomItemID {
         this.itemType = itemType;
         this.rarity = rarity;
         this.damage = damage;
+        this.magicDamage=0;
+    }
+    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage,int magicDamage){
+        this.id = id;
+        this.name = name;
+        this.material = material;
+        this.itemType = itemType;
+        this.rarity = rarity;
+        this.damage = damage;
+        this.magicDamage = magicDamage;
     }
     static{
         CustomItemID[] var0;
@@ -55,6 +66,9 @@ public enum CustomItemID {
     public String getName() {
         return name;
     }
+    public int getMagicDamage() {
+        return magicDamage;
+    }
 
     public static CustomItemID getCustomItemID(String id){
         return BY_ID.get(id);
@@ -74,5 +88,8 @@ public enum CustomItemID {
     }
     public static String getNameByID(String id){
         return getCustomItemID(id)==null?null:getCustomItemID(id).getName();
+    }
+    public static int getMagicDamageByID(String id) {
+        return getCustomItemID(id)==null?0:getCustomItemID(id).getMagicDamage();
     }
 }

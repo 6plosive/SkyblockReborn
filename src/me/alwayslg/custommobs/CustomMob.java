@@ -4,34 +4,33 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 
 public class CustomMob {
     private int fullHealth;
     private String name;
     private int level;
-    private OverheadDisplay overheadDisplay;
+    private HealthBar healthBar;
     private LivingEntity entity;
     private Class<? extends Entity> entityClass;
 
     public CustomMob(){
-        overheadDisplay=new OverheadDisplay();
+        healthBar =new HealthBar();
     }
 
     public void spawn(Location location){
         World world = location.getWorld();
         entity = (LivingEntity) world.spawn(location,entityClass);
-        Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
+//        Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
         entity.setMaxHealth(fullHealth);
         setHealth(fullHealth);
         entity.setMaximumNoDamageTicks(10);
 //        entity.setMetadata("Custom", new FixedMetadataValue(SkyblockReborn.getPlugin(SkyblockReborn.class),true));
         DamageHandler.addMob(this);
 
-        overheadDisplay.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d§c❤",getLevel(),getName(),(int)getHealth(),getFullHealth()));
-        overheadDisplay.spawn(entity);
-        OverheadDisplayHandler.addDisplay(overheadDisplay);
+        healthBar.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d§c❤",getLevel(),getName(),(int)getHealth(),getFullHealth()));
+        healthBar.spawn(entity);
+        HealthBarHandler.addDisplay(healthBar);
     }
 
 
@@ -51,8 +50,8 @@ public class CustomMob {
     public LivingEntity getEntity() {
         return entity;
     }
-    public OverheadDisplay getOverheadDisplay() {
-        return overheadDisplay;
+    public HealthBar getOverheadDisplay() {
+        return healthBar;
     }
 
     public void setLevel(int level){
@@ -73,7 +72,7 @@ public class CustomMob {
     public void setEntity(LivingEntity entity) {
         this.entity = entity;
     }
-    public void setOverheadDisplay(OverheadDisplay overheadDisplay) {
-        this.overheadDisplay = overheadDisplay;
+    public void setOverheadDisplay(HealthBar healthBar) {
+        this.healthBar = healthBar;
     }
 }

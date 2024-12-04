@@ -5,13 +5,10 @@ import me.alwayslg.commands.RideCommand;
 import me.alwayslg.commands.SpawnNecron;
 import me.alwayslg.commands.SpawnZombie;
 import me.alwayslg.customitems.*;
-import me.alwayslg.custommobs.CustomMob;
 import me.alwayslg.custommobs.DamageHandler;
-import me.alwayslg.custommobs.OverheadDisplayHandler;
+import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.CustomPlayer;
-import me.alwayslg.customplayers.CustomScoreboard;
 import me.alwayslg.listeners.DingOnHit;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -25,7 +22,7 @@ public class SkyblockReborn extends JavaPlugin {
 
         // Initialize your classes and register events
         new GUI();
-        new OverheadDisplayHandler();
+        new HealthBarHandler();
 
         getCommand("getitems").setExecutor(new GetItems());
         getCommand("spawnzombie").setExecutor(new SpawnZombie());
