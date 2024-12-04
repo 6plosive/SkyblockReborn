@@ -26,7 +26,7 @@ public class Hyperion extends CustomItem implements Listener {
         super(HYPERION);
     }
     @EventHandler
-    public void onPlayerRightClick(PlayerInteractEvent event) {
+    public void onPlayerRightClick(PlayerInteractEvent event) { //This is fucking perfect
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         // Check if the player right-clicked and if they are holding the sword

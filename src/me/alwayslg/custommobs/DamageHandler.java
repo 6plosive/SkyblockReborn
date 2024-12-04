@@ -2,7 +2,9 @@ package me.alwayslg.custommobs;
 
 import me.alwayslg.customitems.CustomItem;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,19 +25,17 @@ public class DamageHandler implements Listener {
         Entity damagedEntity = event.getEntity();
 //        Bukkit.broadcastMessage("Damaged UUID: "+damagedentity.getUniqueId());
         if(customMobs.get(damagedEntity.getUniqueId())!=null){
+            Bukkit.broadcastMessage("Damager type:"+event.getDamager().getType());
+
             CustomMob customMob = customMobs.get(damagedEntity.getUniqueId());
             if(event.getDamager() instanceof Player){
                 Player damager = (Player) event.getDamager();
-//                    Bukkit.broadcastMessage("Item in hand:"+damager.getInventory().getItemInHand().getType()+" | is custom?: "+isCustomItem(damager.getInventory().getItemInHand()));
-//                if(isCustomItem(damager.getInventory().getItemInHand())) {
-//                    CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
-//                    double damage = itemInHand.getDamage();
-//                    // Workaround for custom damage
-//                    event.setDamage(0);
-//                    customMob.setHealth(Math.max(0, (customMob.getHealth() - damage)));
-//                }
                 event.setDamage(0);
                 dealCustomDamage(damager,customMob);
+            }else if(event.getDamager() instanceof Arrow){
+                Arrow arrow = (Arrow) event.getDamager();
+                event.setDamage(0);
+                dealArrowDamage(arrow,customMob);
             }
 
             // Remove no damage ticks completely making player damage it every tick
@@ -134,6 +134,29 @@ public class DamageHandler implements Listener {
             // Spawn damage indicator
             DamageIndicator.spawn(target.getEntity(),(int)damage);
         }
+    }
+    private void dealArrowDamage(Arrow arrow,CustomMob target){
+        // Turn mob to red effect
+        target.getEntity().damage(0);
+        if(arrow.getMetadata("damage").isEmpty()){
+            return;
+        }
+        double damage = arrow.getMetadata("damage").get(0).asInt();
+        Player damager = null;
+        if (arrow.getShooter() instanceof Player) {
+            damager = (Player) arrow.getShooter();
+        }
+        // If damage is final blow, remove mob from map & his overhead display
+        if(target.getHealth() <= damage){
+            removeMob(target.getEntity().getUniqueId());
+        }
+        target.setHealth(Math.max(0, (target.getHealth() - damage)));
+        // Update Health Bar
+        updateHealthBar(target);
+        // Play satisfying ding hit sound
+        if(damager != null) playDing(damager);
+        // Spawn damage indicator
+        DamageIndicator.spawn(target.getEntity(),(int)damage);
     }
 
     private static void updateHealthBar(CustomMob target){

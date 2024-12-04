@@ -1,6 +1,8 @@
 package me.alwayslg.customitems;
 
+import me.alwayslg.SkyblockReborn;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
@@ -9,69 +11,58 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 
+import static me.alwayslg.customitems.CustomItemID.JER_JER_SHORTBOW;
+import static me.alwayslg.customitems.CustomItemID.TERMINATOR;
+import static me.alwayslg.util.Utilities.playerWarn;
+
 public class Terminator extends CustomItem implements Listener {
 
     public Terminator() {
-//        setMaterial(Material.BOW);
-//        setRarity(Rarity.LEGENDARY);
-//        setItemType(ItemType.SHORTBOW);
-//
-//        setName("Terminator");
-//        setDamage(20);
         super(CustomItemID.TERMINATOR);
     }
 
-    public Vector rotateVector(Vector vector, double whatAngle) {
-        double sin = Math.sin(whatAngle);
-        double cos = Math.cos(whatAngle);
-        double x = vector.getX() * cos + vector.getZ() * sin;
-        double z = vector.getX() * -sin + vector.getZ() * cos;
-
-        return vector.setX(x).setZ(z);
-    }
-    private HashMap<Player, Long> cooldowns = new HashMap<>(); // Store cooldowns
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-
-        if (item != null && item.hasItemMeta()) {
-            ItemMeta meta = item.getItemMeta();
-            if (meta != null && meta.getDisplayName().contains("Terminator")) {
-                event.setCancelled(true);
-                if (cooldowns.containsKey(player)) {
-                    long lastUsed = cooldowns.get(player);
-
-                    long currentTime = System.currentTimeMillis();
-
-                    // If the cooldown is still active
-                    if (currentTime - lastUsed < 500) { // 1000 milliseconds = 1 second
-                        player.sendMessage("You must wait before using this again!");
-                        return; // Exit the method if on cooldown
-                    }
-                }
-
-
-
-                // Shoot 3 arrows in a fan pattern
-                // Shoot 3 arrows in a fan pattern
-                Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
-
-                Arrow arrow2 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),0.1), 4.0f, 1.0f);
-                Arrow arrow3 = player.getWorld().spawnArrow(player.getEyeLocation(), rotateVector(player.getLocation().getDirection(),-0.1), 4.0f, 1.0f);
-                arrow.setShooter(player);
-                arrow2.setShooter(player);
-                arrow3.setShooter(player);
-                cooldowns.put(player, System.currentTimeMillis());
+        if(item==null && !item.hasItemMeta()) return;
+        ItemMeta meta = item.getItemMeta();
+        if(meta==null) return;
+        if(!isCustomItem(item)) return;
+        CustomItem customItem = new CustomItem(item);
+        if((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(TERMINATOR.getID())) {
+            event.setCancelled(true);
+            // Check for cooldown
+            if(Cooldown.hasCooldown(customItem.getUUID())){
+                playerWarn(player,"You must wait before using this again!");
+                return;
             }
 
+            // Shoot 3 arrows in a fan pattern
+            Location arrowLocation = player.getEyeLocation();
+            Location arrow2Location = player.getEyeLocation();
+            Location arrow3Location = player.getEyeLocation();
+            arrow2Location.setYaw(arrowLocation.getYaw()-5);
+            arrow3Location.setYaw(arrowLocation.getYaw()+5);
 
-                }
+            Arrow arrow = player.getWorld().spawnArrow(arrowLocation, arrowLocation.getDirection(), 4.0f, 1.0f);
+            Arrow arrow2 = player.getWorld().spawnArrow(arrow2Location, arrow2Location.getDirection(), 4.0f, 1.0f);
+            Arrow arrow3 = player.getWorld().spawnArrow(arrow3Location, arrow3Location.getDirection(), 4.0f, 1.0f);
 
+            arrow.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),customItem.getDamage()));
+            arrow2.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),customItem.getDamage()));
+            arrow3.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),customItem.getDamage()));
+
+            arrow.setShooter(player);
+            arrow2.setShooter(player);
+            arrow3.setShooter(player);
+            Cooldown.addCooldown(customItem.getUUID(),6);
+        }
 
     }
 }
