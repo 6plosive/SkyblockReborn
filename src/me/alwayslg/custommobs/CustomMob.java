@@ -1,30 +1,39 @@
 package me.alwayslg.custommobs;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 public class CustomMob {
-    private int fullHealth;
-    private String name;
-    private int level;
+//    private int fullHealth;
+//    private String name;
+//    private int level;
     private HealthBar healthBar;
     private LivingEntity entity;
-    private Class<? extends Entity> entityClass;
+//    private Class<? extends Entity> entityClass;
+    private double health;
+    private double healthMultiplier;
+    private CustomMobID customMobID;
 
-    public CustomMob(){
-        healthBar =new HealthBar();
+//    public CustomMob(){
+//        healthBar =new HealthBar();
+//    }
+    public CustomMob(CustomMobID customMobID){
+        this.healthBar = new HealthBar();
+        this.customMobID = customMobID;
     }
 
     public void spawn(Location location){
         World world = location.getWorld();
-        entity = (LivingEntity) world.spawn(location,entityClass);
+        entity = (LivingEntity) world.spawn(location,getEntityClass());
+//        entity.getMaxHealth()
 //        Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
-        entity.setMaxHealth(fullHealth);
-        setHealth(fullHealth);
-        entity.setMaximumNoDamageTicks(10);
+//        entity.setMaxHealth(getFullHealth());
+        double realFullHealth = entity.getMaxHealth();
+        healthMultiplier = getFullHealth()/realFullHealth;
+        setHealth(getFullHealth());
+//        entity.setMaximumNoDamageTicks(10);
 //        entity.setMetadata("Custom", new FixedMetadataValue(SkyblockReborn.getPlugin(SkyblockReborn.class),true));
         DamageHandler.addMob(this);
 
@@ -36,43 +45,44 @@ public class CustomMob {
 
 
     public int getLevel(){
-        return level;
+        return customMobID.getLevel();
     }
+//    public double getHealth(){
+//        return entity.getHealth();
+//    }
     public double getHealth(){
-        return entity.getHealth();
+        return health;
     }
     public int getFullHealth() {
-        return fullHealth;
+        return customMobID.getFullHealth();
     }
     public String getName() {
-        return name;
+        return customMobID.getName();
+    }
+    public Class<? extends Entity> getEntityClass(){
+        return customMobID.getEntityClass();
     }
     public LivingEntity getEntity() {
         return entity;
     }
-    public HealthBar getOverheadDisplay() {
+    public HealthBar getHealthBar() {
         return healthBar;
     }
 
-    public void setLevel(int level){
-        this.level=level;
-    }
     public void setHealth(double health){
+        this.health = health;
+    }
+    public void setRealHealth(double health){
         entity.setHealth(health);
-    }
-    public void setFullHealth(int fullHealth) {
-        this.fullHealth = fullHealth;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public <T extends Entity> void setEntityClass(Class<T> entityClass) {
-        this.entityClass = entityClass;
     }
     public void setEntity(LivingEntity entity) {
         this.entity = entity;
     }
-    public void setOverheadDisplay(HealthBar healthBar) {
+    public void setHealthBar(HealthBar healthBar) {
         this.healthBar = healthBar;
+    }
+
+    public double calculateRealHealth(double health){
+        return health/healthMultiplier;
     }
 }

@@ -13,23 +13,24 @@ import org.bukkit.metadata.FixedMetadataValue;
 import java.util.HashMap;
 
 import static me.alwayslg.customitems.CustomItemID.JER_JER_SHORTBOW;
+import static me.alwayslg.customitems.CustomItemID.WITHER_SHORTBOW;
 import static me.alwayslg.util.Utilities.playerWarn;
 
 public class WitherShortBow extends CustomItem implements Listener {
     public WitherShortBow(){
-        super(CustomItemID.JER_JER_SHORTBOW);
+        super(CustomItemID.WITHER_SHORTBOW);
     }
 
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if(item==null && !item.hasItemMeta()) return;
+        if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
         if(!isCustomItem(item)) return;
         CustomItem customItem = new CustomItem(item);
-        if((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(JER_JER_SHORTBOW.getID())) {
+        if((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(WITHER_SHORTBOW.getID())) {
             // Check for cooldown
             if(Cooldown.hasCooldown(customItem.getUUID())){
                 playerWarn(player,"This item is currently on cooldown!");

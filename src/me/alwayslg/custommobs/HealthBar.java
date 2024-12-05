@@ -28,6 +28,7 @@ public class HealthBar {
         e.setGravity(false);
         e.setVisible(false);
         e.setBasePlate(false);
+//        e.setOp(true);
 
         return e;
     }

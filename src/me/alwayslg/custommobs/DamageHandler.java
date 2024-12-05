@@ -2,7 +2,6 @@ package me.alwayslg.custommobs;
 
 import me.alwayslg.customitems.CustomItem;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -25,9 +24,11 @@ public class DamageHandler implements Listener {
         Entity damagedEntity = event.getEntity();
 //        Bukkit.broadcastMessage("Damaged UUID: "+damagedentity.getUniqueId());
         if(customMobs.get(damagedEntity.getUniqueId())!=null){
-            Bukkit.broadcastMessage("Damager type:"+event.getDamager().getType());
-
             CustomMob customMob = customMobs.get(damagedEntity.getUniqueId());
+
+//            Bukkit.broadcastMessage("Damager type:"+event.getDamager().getType());
+//            Bukkit.broadcastMessage("Damaged nodmgtick:"+customMob.getEntity().getNoDamageTicks()+":"+customMob.getEntity().getMaximumNoDamageTicks());
+
             if(event.getDamager() instanceof Player){
                 Player damager = (Player) event.getDamager();
                 event.setDamage(0);
@@ -49,29 +50,7 @@ public class DamageHandler implements Listener {
 //        Bukkit.broadcastMessage("Death entity UUID: "+deathEntity.getUniqueId());
         removeMob(deathEntity.getUniqueId());
     }
-    public static void removeMob(UUID deathEntityUUID){
-        if(customMobs.get(deathEntityUUID)!=null){
-            CustomMob customMob = customMobs.get(deathEntityUUID);
-            //Remove overhead display
-            HealthBarHandler.removeDisplay(customMob.getOverheadDisplay());
-            //Remove from map
-            customMobs.remove(deathEntityUUID);
-        }
-    }
-    public static void dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
-        List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
-        for (CustomMob customMob : nearbyCustomMobs) {
-//            dealCustomDamage(player,customMob);
-            dealMagicDamage(player,customMob);
-        }
-    }
-    public static void dealRealDamageNearbyEntities(Location location, double damageRadius, Player player){
-        List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
-        for (CustomMob customMob : nearbyCustomMobs) {
-            dealCustomDamage(player,customMob);
-//            dealMagicDamage(player,customMob);
-        }
-    }
+
     // x,y,z is the radius of the collision box
     public static List<CustomMob> getNearbyCustomMobs(Location location, double x, double y, double z){
         List<CustomMob> nearbyCustomMobs = new ArrayList<>();
@@ -96,14 +75,22 @@ public class DamageHandler implements Listener {
 
         return nearbyCustomMobs;
     }
-    //
-    public static void damageEntitiesInLocation(Location location, Player player){
-        List<CustomMob> collisions = getCustomMobsAtLocation(location);
-        for(CustomMob customMob:collisions){
+
+    public static void dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
+        List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
+        for (CustomMob customMob : nearbyCustomMobs) {
 //            dealCustomDamage(player,customMob);
             dealMagicDamage(player,customMob);
         }
     }
+    public static void dealRealDamageNearbyEntities(Location location, double damageRadius, Player player){
+        List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
+        for (CustomMob customMob : nearbyCustomMobs) {
+            dealCustomDamage(player,customMob);
+//            dealMagicDamage(player,customMob);
+        }
+    }
+
     public static List<CustomMob> getCustomMobsAtLocation(Location location){
         List<CustomMob> collisions = new ArrayList<>();
         for(CustomMob customMob:customMobs.values()){
@@ -114,6 +101,14 @@ public class DamageHandler implements Listener {
         }
         return collisions;
     }
+    // damage every custom mobs' collision box which is touching 1 3D location
+    public static void damageEntitiesInLocation(Location location, Player player){
+        List<CustomMob> collisions = getCustomMobsAtLocation(location);
+        for(CustomMob customMob:collisions){
+//            dealCustomDamage(player,customMob);
+            dealMagicDamage(player,customMob);
+        }
+    }
 
     private static void dealCustomDamage(Player damager, CustomMob target){
         // Turn mob to red effect
@@ -121,17 +116,26 @@ public class DamageHandler implements Listener {
         if(isCustomItem(damager.getInventory().getItemInHand())) {
             CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
             double damage = itemInHand.getDamage();
+            double health = target.getHealth();
             // If damage is final blow, remove mob from map & his overhead display
-            if(target.getHealth() <= damage){
+            if(health <= damage){
                 removeMob(target.getEntity().getUniqueId());
             }
-            target.setHealth(Math.max(0, (target.getHealth() - damage)));
+            double healthAfterDamage = health - damage;
+            double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
+
+            target.setRealHealth(Math.max(0, realHealthAfterDamage));
+            target.setHealth(Math.max(0, healthAfterDamage));
             // Update Health Bar
             updateHealthBar(target);
             // Play satisfying ding hit sound
             playDing(damager);
             // Spawn damage indicator
             DamageIndicator.spawn(target.getEntity(),(int)damage);
+            // Cancel no tick because arrow has no tick
+            // Add 10 damage ticks completely making player damage it every tick
+            target.getEntity().setNoDamageTicks(0);
+            target.getEntity().setMaximumNoDamageTicks(20); //idk why this makes real no dmg ticks to about 10...
         }
     }
     private static void dealMagicDamage(Player damager, CustomMob target){
@@ -140,11 +144,16 @@ public class DamageHandler implements Listener {
         if(isCustomItem(damager.getInventory().getItemInHand())) {
             CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
             double damage = itemInHand.getMagicDamage();
+            double health = target.getHealth();
             // If damage is final blow, remove mob from map & his overhead display
-            if(target.getHealth() <= damage){
+            if(health <= damage){
                 removeMob(target.getEntity().getUniqueId());
             }
-            target.setHealth(Math.max(0, (target.getHealth() - damage)));
+            double healthAfterDamage = health - damage;
+            double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
+
+            target.setRealHealth(Math.max(0, realHealthAfterDamage));
+            target.setHealth(Math.max(0, healthAfterDamage));
 
             // Update Health Bar
             updateHealthBar(target);
@@ -165,11 +174,17 @@ public class DamageHandler implements Listener {
         if (arrow.getShooter() instanceof Player) {
             damager = (Player) arrow.getShooter();
         }
+        double health = target.getHealth();
+
         // If damage is final blow, remove mob from map & his overhead display
-        if(target.getHealth() <= damage){
+        if(health <= damage){
             removeMob(target.getEntity().getUniqueId());
         }
-        target.setHealth(Math.max(0, (target.getHealth() - damage)));
+        double healthAfterDamage = health - damage;
+        double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
+
+        target.setRealHealth(Math.max(0, realHealthAfterDamage));
+        target.setHealth(Math.max(0, healthAfterDamage));
         // Update Health Bar
         updateHealthBar(target);
         // Play satisfying ding hit sound
@@ -178,7 +193,6 @@ public class DamageHandler implements Listener {
         DamageIndicator.spawn(target.getEntity(),(int)damage);
         // Only no tick for arrow damage cuz terminator shoots 3 arrows simutaneously
         // Remove no damage ticks completely making player damage it every tick
-        damager.sendMessage("Did arrow dmg");
 //        target.getEntity().setNoDamageTicks(0);
         target.getEntity().setMaximumNoDamageTicks(0);
     }
@@ -189,9 +203,19 @@ public class DamageHandler implements Listener {
         if(target.getHealth()*2<target.getFullHealth()){
             healthColor = 'e';
         }
-        target.getOverheadDisplay().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d§c❤",target.getLevel(),target.getName(),healthColor,remainingHealth,target.getFullHealth()));
+        target.getHealthBar().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d§c❤",target.getLevel(),target.getName(),healthColor,remainingHealth,target.getFullHealth()));
     }
+
     public static void addMob(CustomMob mob){
         customMobs.put(mob.getEntity().getUniqueId(), mob);
+    }
+    public static void removeMob(UUID deathEntityUUID){
+        if(customMobs.get(deathEntityUUID)!=null){
+            CustomMob customMob = customMobs.get(deathEntityUUID);
+            //Remove overhead display
+            HealthBarHandler.removeDisplay(customMob.getHealthBar());
+            //Remove from map
+            customMobs.remove(deathEntityUUID);
+        }
     }
 }

@@ -33,7 +33,7 @@ public class Hyperion extends CustomItem implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
         // Check if the player right-clicked and if they are holding the sword
-        if(item==null && !item.hasItemMeta()) return;
+        if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
         if(!isCustomItem(item)) return;
@@ -45,7 +45,14 @@ public class Hyperion extends CustomItem implements Listener {
                 return;
             }
 
-            ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(Material.GRASS,Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER,Material.TORCH,Material.REDSTONE_TORCH_ON,Material.REDSTONE_TORCH_OFF,Material.REDSTONE,Material.REDSTONE_WIRE,Material.RED_MUSHROOM,Material.BROWN_MUSHROOM,Material.VINE,Material.FIRE));
+            ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(
+                    Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,
+                    Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER,Material.RED_ROSE,Material.YELLOW_FLOWER,Material.DEAD_BUSH,
+                    Material.BANNER,Material.SIGN,Material.SIGN_POST,Material.TORCH,Material.SAPLING,Material.DOUBLE_PLANT,Material.STANDING_BANNER,Material.WALL_BANNER,
+                    Material.BROWN_MUSHROOM,Material.RED_MUSHROOM,Material.REDSTONE_TORCH_ON,Material.REDSTONE_TORCH_OFF,Material.REDSTONE_WIRE,Material.WALL_SIGN,
+                    Material.TRIPWIRE,Material.TRIPWIRE_HOOK,Material.WOOD_BUTTON,Material.STONE_BUTTON,Material.LEVER,Material.GOLD_PLATE,Material.IRON_PLATE,
+                    Material.WOOD_PLATE,Material.STONE_PLATE
+            ));
             Location tpLocation = player.getEyeLocation().clone();
             Location previousLocation = tpLocation.clone();
             Vector direction = tpLocation.getDirection().normalize().multiply(0.5);
@@ -93,27 +100,5 @@ public class Hyperion extends CustomItem implements Listener {
             dealMagicDamageNearbyEntities(player.getLocation(),6,player);
         }
     }
-
-
-    @EventHandler
-    public void onEntityDamage(EntityDamageByEntityEvent event) {
-        // Store the player who dealt damage
-        if (event.getDamager() instanceof Player) {
-            Player player = (Player) event.getDamager();
-            Entity entity = event.getEntity();
-            // Store the player in a way that can be accessed later
-            // For example, using a HashMap (see below)
-//            SkyblockReborn.getInstance().setLastDamager(entity.getUniqueId(), player.getUniqueId());
-        }
-    }//This is fucking perfect
-
-
-
-
-
-
-
-
-
 }
 

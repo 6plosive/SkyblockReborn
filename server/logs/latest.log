@@ -1,133 +1,36 @@
-[14:26:35] [Server thread/INFO]: Starting minecraft server version 1.8.8
-[14:26:35] [Server thread/INFO]: Loading properties
-[14:26:35] [Server thread/INFO]: Default game type: SURVIVAL
-[14:26:35] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-21fe707-741a1bd (MC: 1.8.8) (Implementing API version 1.8.8-R0.1-SNAPSHOT)
-[14:26:35] [Server thread/INFO]: Debug logging is disabled
-[14:26:35] [Server thread/INFO]: Server Ping Player Sample Count: 12
-
-[14:26:35] [Server thread/INFO]: Using 4 threads for Netty based IO
-[14:26:35] [Server thread/INFO]: Generating keypair
-[14:26:35] [Server thread/INFO]: Starting Minecraft server on *:25565
-[14:26:35] [Server thread/INFO]: Using default channel type
-[14:26:35] [Server thread/INFO]: Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
-[14:26:36] [Server thread/INFO]: Set PluginClassLoader as parallel capable
-[14:26:36] [Server thread/INFO]: [SkyblockReborn] Loading SkyblockReborn v1.0
-[14:26:36] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
-[14:26:36] [Server thread/INFO]: Preparing level "world"
-[14:26:36] [Server thread/INFO]: -------- World Settings For [world] --------
-[14:26:36] [Server thread/INFO]: Anti X-Ray: true
-[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
-[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
-[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
-[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
-[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
-[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
-[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[14:26:36] [Server thread/INFO]: Structure Info Saving: true
-[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
-[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
-[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
-[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
-[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
-[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
-[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
-[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[14:26:36] [Server thread/INFO]: View Distance: 10
-[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
-[14:26:36] [Server thread/INFO]: Clear tick list: false
-[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
-[14:26:36] [Server thread/INFO]: -------- World Settings For [world_nether] --------
-[14:26:36] [Server thread/INFO]: Anti X-Ray: true
-[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
-[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
-[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
-[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
-[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
-[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
-[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[14:26:36] [Server thread/INFO]: Structure Info Saving: true
-[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
-[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
-[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
-[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
-[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
-[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
-[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
-[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[14:26:36] [Server thread/INFO]: View Distance: 10
-[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
-[14:26:36] [Server thread/INFO]: Clear tick list: false
-[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
-[14:26:36] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
-[14:26:36] [Server thread/INFO]: Anti X-Ray: true
-[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
-[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
-[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
-[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
-[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
-[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
-[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[14:26:36] [Server thread/INFO]: Structure Info Saving: true
-[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
-[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
-[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
-[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
-[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
-[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
-[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
-[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[14:26:36] [Server thread/INFO]: View Distance: 10
-[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
-[14:26:36] [Server thread/INFO]: Clear tick list: false
-[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
-[14:26:36] [Server thread/INFO]: Preparing start region for level 0 (Seed: -5037681229094257373)
-[14:26:36] [Server thread/INFO]: Preparing start region for level 1 (Seed: -5037681229094257373)
-[14:26:37] [Server thread/INFO]: Preparing start region for level 2 (Seed: -5037681229094257373)
-[14:26:37] [Server thread/INFO]: [SkyblockReborn] Enabling SkyblockReborn v1.0
-[14:26:37] [Server thread/INFO]: Skyblock Reborn is ENABLED! Hail Alwayslg!!!
-
-[14:26:37] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
-[14:26:37] [Server thread/INFO]: Done (1.726s)! For help, type "help" or "?"
-[14:26:41] [User Authenticator #1/INFO]: UUID of player Alwayslg is 2824fc6c-a1cb-4050-948f-b6ac58b9be7a
-[14:26:41] [Server thread/INFO]: Alwayslg[/127.0.0.1:17393] logged in with entity id 273 at ([world]-16.628390379891755, 71.0, 115.66858824742195)
-[14:27:06] [Server thread/INFO]: Alwayslg issued server command: /spawnnecrono
-[14:27:08] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron
-[14:27:13] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron
-[14:27:19] [Server thread/INFO]: Alwayslg issued server command: /spawnzombie 100
-[14:27:36] [Server thread/INFO]: Alwayslg issued server command: /spawnzombie 100
+[00:00:02] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 10
+[00:00:08] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 10
+[00:00:17] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 10
+[00:00:35] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 10
+[00:00:49] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 10
+[00:01:09] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron 50
+[00:23:13] [User Authenticator #5/INFO]: UUID of player DiddySweat is 884b0e5d-4551-46ee-8e36-10469c690a8e
+[00:23:13] [Server thread/INFO]: DiddySweat[/119.246.76.135:2125] logged in with entity id 15807 at ([world]37.75927255541664, 64.0, 40.89361433681834)
+[00:23:30] [Server thread/INFO]: DiddySweat issued server command: /spawngolem
+[00:23:48] [Server thread/INFO]: DiddySweat issued server command: /clear
+[00:23:48] [Server thread/INFO]: [DiddySweat: Cleared the inventory of DiddySweat, removing 11 items]
+[00:23:49] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:23:55] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:23:59] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:24:10] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:24:15] [Server thread/INFO]: DiddySweat issued server command: /clear
+[00:24:15] [Server thread/INFO]: [DiddySweat: Cleared the inventory of DiddySweat, removing 9 items]
+[00:24:16] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:24:20] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:24:22] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:24:24] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:24:39] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:24:44] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:24:49] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:24:54] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:25:00] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:25:06] [Server thread/INFO]: DiddySweat issued server command: /clear
+[00:25:06] [Server thread/INFO]: [DiddySweat: Cleared the inventory of DiddySweat, removing 5 items]
+[00:25:07] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:25:15] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:25:32] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:25:44] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:25:52] [Server thread/INFO]: DiddySweat issued server command: /getitems
+[00:25:59] [Server thread/INFO]: DiddySweat issued server command: /spawnnecron
+[00:26:04] [Server thread/INFO]: DiddySweat lost connection: Disconnected
+[00:26:04] [Server thread/INFO]: DiddySweat left the game.

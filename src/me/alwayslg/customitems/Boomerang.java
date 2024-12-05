@@ -54,7 +54,7 @@ public class Boomerang extends CustomItem implements Listener {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
 
-        if(item==null && !item.hasItemMeta()) return;
+        if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
         if(!isCustomItem(item)) return;
@@ -63,7 +63,7 @@ public class Boomerang extends CustomItem implements Listener {
             event.setCancelled(true);
             Boomerang boomerang = new Boomerang(customItem);
             if (!boomerang.getThrown()) { //Have not thrown
-                Bukkit.broadcastMessage("Right clicked my boner");
+//                Bukkit.broadcastMessage("Right clicked my boner");
                 //event.setCancelled(true);
                 setThrown(true, player.getInventory(), player.getInventory().getHeldItemSlot());
 //                        Bukkit.broadcastMessage("bone get material: " + (getMaterial()));
