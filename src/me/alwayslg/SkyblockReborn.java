@@ -6,6 +6,7 @@ import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.listeners.DingOnHit;
+import org.bukkit.entity.Wither;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -37,6 +38,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DingOnHit(), this);
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new GiantsSword(), this);
+        getServer().getPluginManager().registerEvents(new WitherShortBow(), this);
 
 //        CustomPlayer alwayslg = new CustomPlayer(Bukkit.getPlayer("Alwayslg"));
 //        CustomPlayer filipinC5 = new CustomPlayer(Bukkit.getPlayer("FilipinC5"));
