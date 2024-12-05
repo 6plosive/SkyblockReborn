@@ -37,7 +37,6 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BonzoStaff(), this);
         getServer().getPluginManager().registerEvents(new Hyperion(), this);
         getServer().getPluginManager().registerEvents(new DingOnHit(), this);
-        getServer().getPluginManager().registerEvents(new DiamondSword(), this);
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new GiantsSword(), this);
 
