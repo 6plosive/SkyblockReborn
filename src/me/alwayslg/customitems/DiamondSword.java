@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
-public class DiamondSword extends CustomItem implements Listener {
+public class DiamondSword extends CustomItem {
     public DiamondSword() {
         super(CustomItemID.DIAMOND_SWORD);
     }

@@ -1,6 +1,7 @@
 package me.alwayslg.custommobs;
 
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.ItemType;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
@@ -32,7 +33,14 @@ public class DamageHandler implements Listener {
             if(event.getDamager() instanceof Player){
                 Player damager = (Player) event.getDamager();
                 event.setDamage(0);
-                dealCustomDamage(damager,customMob);
+                // Sneakily add a bow check because you will hit mob when using shortbow with left click, causing
+                // shortbow to have damage tick. Instead, we should not do any melee damage at all.
+                CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
+                if(itemInHand.getItemType() == ItemType.SHORTBOW || itemInHand.getItemType() == ItemType.BOW || itemInHand.getItemType() == ItemType.DUNGEON_BOW){
+                    event.setCancelled(true);
+                } else {
+                    dealCustomDamage(damager, customMob);
+                }
             }else if(event.getDamager() instanceof Arrow){
                 Arrow arrow = (Arrow) event.getDamager();
                 event.setDamage(0);
