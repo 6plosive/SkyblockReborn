@@ -122,12 +122,14 @@ public class Boomerang extends CustomItem implements Listener {
 
             @Override
             public void run() {
+                dealRealDamageNearbyEntities(damageBox.getLocation(),1,player);
+//                damageEntitiesInLocation(damageBox.getLocation(),player);
                 if (damageBox.isDead()) {
                     flyingBone.remove();
                     List<MetadataValue> values = damageBox.getMetadata("owner");
                     if (!values.isEmpty()) {
                         UUID ownerUUID = UUID.fromString(values.get(0).asString());
-                        Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+//                        Bukkit.broadcastMessage("P1 killed metadata:"+ownerUUID.toString());
                         int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
                         setThrown(false, player.getInventory(), itemSlot);
                     }
@@ -165,7 +167,7 @@ public class Boomerang extends CustomItem implements Listener {
                         List<MetadataValue> values = damageBox.getMetadata("owner");
                         if (!values.isEmpty()) {
                             UUID ownerUUID = UUID.fromString(values.get(0).asString());
-                            Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+//                            Bukkit.broadcastMessage("P2 killed metadata:"+ownerUUID.toString());
                             int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
                             setThrown(false, player.getInventory(), itemSlot);
                         }
@@ -178,7 +180,7 @@ public class Boomerang extends CustomItem implements Listener {
                         List<MetadataValue> values = damageBox.getMetadata("owner");
                         if (!values.isEmpty()) {
                             UUID ownerUUID = UUID.fromString(values.get(0).asString());
-                            Bukkit.broadcastMessage("killed metadata:"+ownerUUID.toString());
+//                            Bukkit.broadcastMessage("P3 killed metadata:"+ownerUUID.toString());
                             int itemSlot = getItemSlotFromUUID(player.getInventory(),ownerUUID);
                             setThrown(false, player.getInventory(), itemSlot);
                         }

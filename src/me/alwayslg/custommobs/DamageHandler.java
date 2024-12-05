@@ -61,8 +61,8 @@ public class DamageHandler implements Listener {
     public static void dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
         List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
         for (CustomMob customMob : nearbyCustomMobs) {
-//            livingEntity.damage(1); // Deal damage
-            dealCustomDamage(player,customMob);
+//            dealCustomDamage(player,customMob);
+            dealMagicDamage(player,customMob);
         }
     }
     public static void dealRealDamageNearbyEntities(Location location, double damageRadius, Player player){
@@ -121,6 +121,25 @@ public class DamageHandler implements Listener {
         if(isCustomItem(damager.getInventory().getItemInHand())) {
             CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
             double damage = itemInHand.getDamage();
+            // If damage is final blow, remove mob from map & his overhead display
+            if(target.getHealth() <= damage){
+                removeMob(target.getEntity().getUniqueId());
+            }
+            target.setHealth(Math.max(0, (target.getHealth() - damage)));
+            // Update Health Bar
+            updateHealthBar(target);
+            // Play satisfying ding hit sound
+            playDing(damager);
+            // Spawn damage indicator
+            DamageIndicator.spawn(target.getEntity(),(int)damage);
+        }
+    }
+    private static void dealMagicDamage(Player damager, CustomMob target){
+        // Turn mob to red effect
+        target.getEntity().damage(0);
+        if(isCustomItem(damager.getInventory().getItemInHand())) {
+            CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
+            double damage = itemInHand.getMagicDamage();
             // If damage is final blow, remove mob from map & his overhead display
             if(target.getHealth() <= damage){
                 removeMob(target.getEntity().getUniqueId());

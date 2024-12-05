@@ -39,6 +39,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DingOnHit(), this);
         getServer().getPluginManager().registerEvents(new DiamondSword(), this);
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
+        getServer().getPluginManager().registerEvents(new GiantsSword(), this);
 
 //        CustomPlayer alwayslg = new CustomPlayer(Bukkit.getPlayer("Alwayslg"));
 //        CustomPlayer filipinC5 = new CustomPlayer(Bukkit.getPlayer("FilipinC5"));

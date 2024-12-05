@@ -26,7 +26,13 @@ public class Utilities {
             }
         }
     }
-
+    public static void playCustomSoundToNearbyPlayers(Location armorStandLocation, double radius , Sound sound) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (player.getLocation().distance(armorStandLocation) <= radius) {
+                player.playSound(player.getLocation(), sound, 2.0f, 1f); // Play sound
+            }
+        }
+    }
 //    public static Boolean damageNearbyEntities(Location location, double damageRadius, Player player) {
 //        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location,damageRadius,damageRadius,damageRadius);
 //        for (Entity entity : nearbyEntities) {

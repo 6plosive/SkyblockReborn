@@ -1,13 +1,16 @@
 package me.alwayslg.customitems;
 
+import me.alwayslg.SkyblockReborn;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -91,4 +94,26 @@ public class Hyperion extends CustomItem implements Listener {
         }
     }
 
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageByEntityEvent event) {
+        // Store the player who dealt damage
+        if (event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
+            Entity entity = event.getEntity();
+            // Store the player in a way that can be accessed later
+            // For example, using a HashMap (see below)
+//            SkyblockReborn.getInstance().setLastDamager(entity.getUniqueId(), player.getUniqueId());
+        }
+    }//This is fucking perfect
+
+
+
+
+
+
+
+
+
 }
+

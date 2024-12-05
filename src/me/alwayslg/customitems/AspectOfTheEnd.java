@@ -1,52 +1,1 @@
-package me.alwayslg.customitems;
-
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
-
-public class AspectOfTheEnd extends CustomItem implements Listener {
-
-    public AspectOfTheEnd() {
-        super(CustomItemID.ASPECT_OF_THE_END);
-    }
-
-    @EventHandler
-    public void onPlayerRightClick(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-        ItemStack item = event.getItem();
-
-        // Check if the player right-clicked and if they are holding the sword
-        if(item==null && !item.hasItemMeta()) return;
-        ItemMeta meta = item.getItemMeta();
-        if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
-        if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(CustomItemID.ASPECT_OF_THE_END.getID())) {
-            player.sendMessage(player.getLocation().toString());
-            for (int i = 0; i < 8; i++) {
-                Vector nextLocation = origLoc.toVector().add(origDir.multiply(1));
-                origLoc = nextLocation.toLocation(origLoc.getWorld()).setDirection(origDir);
-                Location fuckingCheck = origLoc.clone();
-                if (!checkIfPassable(origLoc)
-                        || !checkIfPassable(fuckingCheck.add(0, 1, 0))
-                        || !checkIfPassable(fuckingCheck.add(0, -1, 0))
-                        || !checkIfPassable(fuckingCheck.add(0, 1.62, 0))
-
-                                //||!origLoc.add(0,1.5,0).getBlock().isEmpty()
-                ){
-                    //if(!checkIfPassable(origLoc.clone().add(0,-1,0))) origLoc.add(0,1,0);
-                    player.sendMessage("BLOCK IN WAY NIGGER");
-                    break;
-                }
-
-                player.teleport(origLoc);
-            }
-        }
-    }
-}
+package me.alwayslg.customitems;import org.bukkit.Location;import org.bukkit.Material;import org.bukkit.block.Block;import org.bukkit.entity.Player;import org.bukkit.event.EventHandler;import org.bukkit.event.Listener;import org.bukkit.event.player.PlayerInteractEvent;import org.bukkit.inventory.ItemStack;import org.bukkit.inventory.meta.ItemMeta;import org.bukkit.util.Vector;import java.util.ArrayList;import java.util.Arrays;import static me.alwayslg.customitems.CustomItemID.ASPECT_OF_THE_END;import static me.alwayslg.util.Utilities.playerWarn;public class AspectOfTheEnd extends CustomItem implements Listener {    public AspectOfTheEnd() {        super(CustomItemID.ASPECT_OF_THE_END);    }    private boolean checkIfPassable(Location location){        Location fuckingCheck = location.clone();        ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(Material.GRASS,Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER));        if(passableBlocks.contains(fuckingCheck.getBlock().getType())){            return true;        }        else return false;    }    @EventHandler    public void onPlayerRightClick(PlayerInteractEvent event) {        Player player = event.getPlayer();        ItemStack item = event.getItem();        // Check if the player right-clicked and if they are holding the sword        if(item==null && !item.hasItemMeta()) return;        ItemMeta meta = item.getItemMeta();        if(meta==null) return;        if(!isCustomItem(item)) return;        CustomItem customItem = new CustomItem(item);        if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(ASPECT_OF_THE_END.getID())) {            // Check for cooldown            if(Cooldown.hasCooldown(customItem.getUUID())){                playerWarn(player,"This item is currently on cooldown!");                return;            }            ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(Material.GRASS,Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER,Material.TORCH,Material.REDSTONE_TORCH_ON,Material.REDSTONE_TORCH_OFF,Material.REDSTONE,Material.REDSTONE_WIRE,Material.RED_MUSHROOM,Material.BROWN_MUSHROOM,Material.VINE,Material.FIRE));            Location tpLocation = player.getEyeLocation().clone();            Location previousLocation = tpLocation.clone();            Vector direction = tpLocation.getDirection().normalize().multiply(0.5);            boolean hittedsomething=false;            // If invalid location from the start, cancel tp entirely            Block feetBlock = tpLocation.getBlock();            Block headBlock = tpLocation.clone().add(0,1,0).getBlock();            if(!passableBlocks.contains(feetBlock.getType())||!passableBlocks.contains(headBlock.getType())){                playerWarn(player,"There are blocks in the way!");                return;            }            // TP 8 Blocks ahead            for(int i=0;i<16;i++){//                player.sendMessage(String.format("%d:{%f,%f,%f}",i,tpLocation.getX(),tpLocation.getY(),tpLocation.getZ()));                feetBlock = tpLocation.getBlock();                headBlock = tpLocation.clone().add(0,1,0).getBlock();//                player.sendMessage(String.format("%d:%s|%s",i,feetBlock.getType(),headBlock.getType()));//                player.sendMessage(String.format("PASS?%b %b %b",passableBlocks.contains(feetBlock.getType()),passableBlocks.contains(headBlock.getType()),passableBlocks.contains(feetBlock.getType())&&passableBlocks.contains(headBlock.getType())));//                if(feetBlock.isEmpty()&&headBlock.isEmpty()){                if(passableBlocks.contains(feetBlock.getType())&&passableBlocks.contains(headBlock.getType())){                    //Not hitting something                    previousLocation = tpLocation.clone();                    tpLocation.add(direction);                }else{                    //Hit something!                    playerWarn(player,"There are blocks in the way!");                    player.teleport(previousLocation.getBlock().getLocation().add(0.5,0,0.5).setDirection(direction));                    hittedsomething=true;                    break;                }            }            if(!hittedsomething){                player.teleport(previousLocation.getBlock().getLocation().add(0.5,0,0.5).setDirection(direction));            }            // Set cooldown to 1 because this event triggers twice when crosshair on block somehow...            Cooldown.addCooldown(customItem.getUUID(),1);        }    }}
