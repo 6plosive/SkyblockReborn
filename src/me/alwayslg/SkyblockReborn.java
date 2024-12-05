@@ -1,9 +1,6 @@
 package me.alwayslg;
 
-import me.alwayslg.commands.GetItems;
-import me.alwayslg.commands.RideCommand;
-import me.alwayslg.commands.SpawnNecron;
-import me.alwayslg.commands.SpawnZombie;
+import me.alwayslg.commands.*;
 import me.alwayslg.customitems.*;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
@@ -27,6 +24,7 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("getitems").setExecutor(new GetItems());
         getCommand("spawnzombie").setExecutor(new SpawnZombie());
         getCommand("spawnnecron").setExecutor(new SpawnNecron());
+        getCommand("spawngolem").setExecutor(new SpawnGolem());
         getCommand("ride").setExecutor(new RideCommand());
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);

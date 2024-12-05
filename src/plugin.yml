@@ -10,6 +10,8 @@ commands:
     usage: /<command>
   spawnnecron:
     usage: /<command>
+  spawngolem:
+    usage: /<command>
   ride:
     description: Ride another player
     usage: /ride <player>

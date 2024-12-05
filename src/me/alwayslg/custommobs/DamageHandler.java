@@ -176,6 +176,11 @@ public class DamageHandler implements Listener {
         if(damager != null) playDing(damager);
         // Spawn damage indicator
         DamageIndicator.spawn(target.getEntity(),(int)damage);
+        // Only no tick for arrow damage cuz terminator shoots 3 arrows simutaneously
+        // Remove no damage ticks completely making player damage it every tick
+        damager.sendMessage("Did arrow dmg");
+//        target.getEntity().setNoDamageTicks(0);
+        target.getEntity().setMaximumNoDamageTicks(0);
     }
 
     private static void updateHealthBar(CustomMob target){
