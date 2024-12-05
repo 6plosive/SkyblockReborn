@@ -1,948 +1,133 @@
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.AspectOfTheEnd.onPlayerRightClick(AspectOfTheEnd.java:39) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor486.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.JerJerShortBow.onPlayerRightClick(JerJerShortBow.java:29) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor487.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Terminator.onPlayerRightClick(Terminator.java:41) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor488.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Boomerang.onPlayerRightClick(Boomerang.java:57) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor489.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Hyperion.onPlayerRightClick(Hyperion.java:36) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor490.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.DiamondSword.onPlayerRightClick(DiamondSword.java:40) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor491.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.AspectOfTheEnd.onPlayerRightClick(AspectOfTheEnd.java:39) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor486.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.JerJerShortBow.onPlayerRightClick(JerJerShortBow.java:29) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor487.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Terminator.onPlayerRightClick(Terminator.java:41) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor488.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Boomerang.onPlayerRightClick(Boomerang.java:57) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor489.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Hyperion.onPlayerRightClick(Hyperion.java:36) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor490.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:13] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPositionLook.a(SourceFile:18) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.DiamondSword.onPlayerRightClick(DiamondSword.java:40) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor491.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.AspectOfTheEnd.onPlayerRightClick(AspectOfTheEnd.java:39) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor486.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.JerJerShortBow.onPlayerRightClick(JerJerShortBow.java:29) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor487.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Terminator.onPlayerRightClick(Terminator.java:41) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor488.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Boomerang.onPlayerRightClick(Boomerang.java:57) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor489.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Hyperion.onPlayerRightClick(Hyperion.java:36) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor490.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.DiamondSword.onPlayerRightClick(DiamondSword.java:40) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor491.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.AspectOfTheEnd.onPlayerRightClick(AspectOfTheEnd.java:39) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor486.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.JerJerShortBow.onPlayerRightClick(JerJerShortBow.java:29) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor487.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Terminator.onPlayerRightClick(Terminator.java:41) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor488.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Boomerang.onPlayerRightClick(Boomerang.java:57) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor489.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.Hyperion.onPlayerRightClick(Hyperion.java:36) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor490.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:14] [Server thread/ERROR]: Could not pass event PlayerInteractEvent to SkyblockReborn v1.0
-org.bukkit.event.EventException: null
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:310) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:228) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callPlayerInteractEvent(CraftEventFactory.java:195) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateWeighted.f(BlockPressurePlateWeighted.java:32) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:100) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.BlockPressurePlateAbstract.a(BlockPressurePlateAbstract.java:93) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.checkBlockCollisions(Entity.java:761) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.Entity.move(Entity.java:407) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.g(EntityLiving.java:1395) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.g(EntityHuman.java:1355) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.m(EntityLiving.java:1652) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.m(EntityHuman.java:393) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityLiving.t_(EntityLiving.java:1487) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityHuman.t_(EntityHuman.java:173) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.EntityPlayer.l(EntityPlayer.java:285) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnection.a(PlayerConnection.java:382) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying.a(SourceFile:126) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PacketPlayInFlying$PacketPlayInPosition.a(SourceFile:57) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.PlayerConnectionUtils$1.run(SourceFile:13) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
-	at net.minecraft.server.v1_8_R3.SystemUtils.a(SourceFile:44) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.B(MinecraftServer.java:715) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.DedicatedServer.B(DedicatedServer.java:374) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.A(MinecraftServer.java:654) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at net.minecraft.server.v1_8_R3.MinecraftServer.run(MinecraftServer.java:557) [spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	at java.lang.Thread.run(Thread.java:842) [?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "org.bukkit.inventory.ItemStack.hasItemMeta()" because "item" is null
-	at me.alwayslg.customitems.DiamondSword.onPlayerRightClick(DiamondSword.java:40) ~[?:?]
-	at jdk.internal.reflect.GeneratedMethodAccessor491.invoke(Unknown Source) ~[?:?]
-	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
-	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
-	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[spigot-1.8.8.jar:git-Spigot-21fe707-741a1bd]
-	... 29 more
-[01:18:23] [Server thread/INFO]: Alwayslg lost connection: Disconnected
-[01:18:23] [Server thread/INFO]: Alwayslg left the game.
-[01:18:36] [Server thread/INFO]: Stopping the server
-[01:18:36] [Server thread/INFO]: Stopping server
-[01:18:36] [Server thread/INFO]: [SkyblockReborn] Disabling SkyblockReborn v1.0
-[01:18:36] [Server thread/INFO]: Skyblock Reborn is DISABLED! Hail Alwayslg!!!!!
+[14:26:35] [Server thread/INFO]: Starting minecraft server version 1.8.8
+[14:26:35] [Server thread/INFO]: Loading properties
+[14:26:35] [Server thread/INFO]: Default game type: SURVIVAL
+[14:26:35] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-21fe707-741a1bd (MC: 1.8.8) (Implementing API version 1.8.8-R0.1-SNAPSHOT)
+[14:26:35] [Server thread/INFO]: Debug logging is disabled
+[14:26:35] [Server thread/INFO]: Server Ping Player Sample Count: 12
 
-[01:18:36] [Server thread/INFO]: Saving players
-[01:18:36] [Server thread/INFO]: Saving worlds
-[01:18:36] [Server thread/INFO]: Saving chunks for level 'world'/Overworld
-[01:18:36] [Server thread/INFO]: Saving chunks for level 'world_nether'/Nether
-[01:18:36] [Server thread/INFO]: Saving chunks for level 'world_the_end'/The End
+[14:26:35] [Server thread/INFO]: Using 4 threads for Netty based IO
+[14:26:35] [Server thread/INFO]: Generating keypair
+[14:26:35] [Server thread/INFO]: Starting Minecraft server on *:25565
+[14:26:35] [Server thread/INFO]: Using default channel type
+[14:26:35] [Server thread/INFO]: Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system unstability.
+[14:26:36] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[14:26:36] [Server thread/INFO]: [SkyblockReborn] Loading SkyblockReborn v1.0
+[14:26:36] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[14:26:36] [Server thread/INFO]: Preparing level "world"
+[14:26:36] [Server thread/INFO]: -------- World Settings For [world] --------
+[14:26:36] [Server thread/INFO]: Anti X-Ray: true
+[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
+[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
+[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[14:26:36] [Server thread/INFO]: Structure Info Saving: true
+[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
+[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
+[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
+[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
+[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
+[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
+[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[14:26:36] [Server thread/INFO]: View Distance: 10
+[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[14:26:36] [Server thread/INFO]: Clear tick list: false
+[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
+[14:26:36] [Server thread/INFO]: -------- World Settings For [world_nether] --------
+[14:26:36] [Server thread/INFO]: Anti X-Ray: true
+[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
+[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
+[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[14:26:36] [Server thread/INFO]: Structure Info Saving: true
+[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
+[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
+[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
+[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
+[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
+[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
+[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[14:26:36] [Server thread/INFO]: View Distance: 10
+[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[14:26:36] [Server thread/INFO]: Clear tick list: false
+[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
+[14:26:36] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
+[14:26:36] [Server thread/INFO]: Anti X-Ray: true
+[14:26:36] [Server thread/INFO]: 	Engine Mode: 1
+[14:26:36] [Server thread/INFO]: 	Hidden Blocks: [14, 15, 16, 21, 48, 49, 54, 56, 73, 74, 82, 129, 130]
+[14:26:36] [Server thread/INFO]: 	Replace Blocks: [1, 5]
+[14:26:36] [Server thread/INFO]: Mob Spawn Range: 4
+[14:26:36] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[14:26:36] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Cane Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Melon Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[14:26:36] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 8 Hopper Amount: 1
+[14:26:36] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16
+[14:26:36] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[14:26:36] [Server thread/INFO]: Structure Info Saving: true
+[14:26:36] [Server thread/INFO]: Sending up to 10 chunks per packet
+[14:26:36] [Server thread/INFO]: Max Entity Collisions: 8
+[14:26:36] [Server thread/INFO]: Random Lighting Updates: false
+[14:26:36] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617
+[14:26:36] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[14:26:36] [Server thread/INFO]: Max TNT Explosions: 100
+[14:26:36] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[14:26:36] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[14:26:36] [Server thread/INFO]: Item Merge Radius: 2.5
+[14:26:36] [Server thread/INFO]: Item Despawn Rate: 6000
+[14:26:36] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[14:26:36] [Server thread/INFO]: View Distance: 10
+[14:26:36] [Server thread/INFO]: Chunks to Grow per Tick: 650
+[14:26:36] [Server thread/INFO]: Clear tick list: false
+[14:26:36] [Server thread/INFO]: Experience Merge Radius: 3.0
+[14:26:36] [Server thread/INFO]: Preparing start region for level 0 (Seed: -5037681229094257373)
+[14:26:36] [Server thread/INFO]: Preparing start region for level 1 (Seed: -5037681229094257373)
+[14:26:37] [Server thread/INFO]: Preparing start region for level 2 (Seed: -5037681229094257373)
+[14:26:37] [Server thread/INFO]: [SkyblockReborn] Enabling SkyblockReborn v1.0
+[14:26:37] [Server thread/INFO]: Skyblock Reborn is ENABLED! Hail Alwayslg!!!
+
+[14:26:37] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[14:26:37] [Server thread/INFO]: Done (1.726s)! For help, type "help" or "?"
+[14:26:41] [User Authenticator #1/INFO]: UUID of player Alwayslg is 2824fc6c-a1cb-4050-948f-b6ac58b9be7a
+[14:26:41] [Server thread/INFO]: Alwayslg[/127.0.0.1:17393] logged in with entity id 273 at ([world]-16.628390379891755, 71.0, 115.66858824742195)
+[14:27:06] [Server thread/INFO]: Alwayslg issued server command: /spawnnecrono
+[14:27:08] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron
+[14:27:13] [Server thread/INFO]: Alwayslg issued server command: /spawnnecron
+[14:27:19] [Server thread/INFO]: Alwayslg issued server command: /spawnzombie 100
+[14:27:36] [Server thread/INFO]: Alwayslg issued server command: /spawnzombie 100

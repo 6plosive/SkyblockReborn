@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="SkyblockReborn:jar">
-    <output-path>$PROJECT_DIR$/../SpigotServer/plugins</output-path>
+    <output-path>$PROJECT_DIR$/server/plugins</output-path>
     <root id="archive" name="SkyblockReborn.jar">
       <element id="module-output" name="SkyblockReborn" />
       <element id="extracted-dir" path="$PROJECT_DIR$/spigot-1.8.8.jar" path-in-jar="/" />
