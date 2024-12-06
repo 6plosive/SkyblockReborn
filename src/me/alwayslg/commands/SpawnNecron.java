@@ -26,7 +26,7 @@ public class SpawnNecron implements CommandExecutor {
             }
             for(int i=0;i<amount;i++) {
                 BabyNecron babyNecron = new BabyNecron();
-                babyNecron.spawn(p.getLocation());
+                babyNecron.spawn(p.getLocation(),true);
             }
         }
         return true;

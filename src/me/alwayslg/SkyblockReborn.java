@@ -2,6 +2,7 @@ package me.alwayslg;
 
 import me.alwayslg.commands.*;
 import me.alwayslg.customitems.*;
+import me.alwayslg.custommobs.BabyNecron;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.CustomPlayer;
@@ -26,6 +27,7 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("spawnzombie").setExecutor(new SpawnZombie());
         getCommand("spawnnecron").setExecutor(new SpawnNecron());
         getCommand("spawngolem").setExecutor(new SpawnGolem());
+        getCommand("test").setExecutor(new testCommand());
         getCommand("ride").setExecutor(new RideCommand());
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);
@@ -36,9 +38,11 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BonzoStaff(), this);
         getServer().getPluginManager().registerEvents(new Hyperion(), this);
         getServer().getPluginManager().registerEvents(new DingOnHit(), this);
-        getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new GiantsSword(), this);
         getServer().getPluginManager().registerEvents(new WitherShortBow(), this);
+
+        getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
+
 
 //        CustomPlayer alwayslg = new CustomPlayer(Bukkit.getPlayer("Alwayslg"));
 //        CustomPlayer filipinC5 = new CustomPlayer(Bukkit.getPlayer("FilipinC5"));

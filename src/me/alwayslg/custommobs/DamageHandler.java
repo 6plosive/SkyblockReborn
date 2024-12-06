@@ -130,9 +130,6 @@ public class DamageHandler implements Listener {
                 removeMob(target.getEntity().getUniqueId());
             }
             double healthAfterDamage = health - damage;
-            double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
-
-            target.setRealHealth(Math.max(0, realHealthAfterDamage));
             target.setHealth(Math.max(0, healthAfterDamage));
             // Update Health Bar
             updateHealthBar(target);
@@ -158,9 +155,6 @@ public class DamageHandler implements Listener {
                 removeMob(target.getEntity().getUniqueId());
             }
             double healthAfterDamage = health - damage;
-            double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
-
-            target.setRealHealth(Math.max(0, realHealthAfterDamage));
             target.setHealth(Math.max(0, healthAfterDamage));
 
             // Update Health Bar
@@ -189,9 +183,6 @@ public class DamageHandler implements Listener {
             removeMob(target.getEntity().getUniqueId());
         }
         double healthAfterDamage = health - damage;
-        double realHealthAfterDamage = target.calculateRealHealth(healthAfterDamage);
-
-        target.setRealHealth(Math.max(0, realHealthAfterDamage));
         target.setHealth(Math.max(0, healthAfterDamage));
         // Update Health Bar
         updateHealthBar(target);

@@ -24,7 +24,7 @@ public class SpawnZombie implements CommandExecutor {
             }
             for(int i=0;i<amount;i++) {
                 Zombie zombie = new Zombie();
-                zombie.spawn(p.getLocation());
+                zombie.spawn(p.getLocation(),false);
             }
         }
         return true;

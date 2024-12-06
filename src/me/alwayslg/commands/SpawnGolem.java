@@ -24,7 +24,7 @@ public class SpawnGolem implements CommandExecutor {
             }
             for(int i=0;i<amount;i++) {
                 Golem golem = new Golem();
-                golem.spawn(p.getLocation());
+                golem.spawn(p.getLocation(),false);
             }
         }
         return true;
