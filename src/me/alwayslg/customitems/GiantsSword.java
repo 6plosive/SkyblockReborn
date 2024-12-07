@@ -11,7 +11,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 
+import static me.alwayslg.customitems.CustomItemID.ASPECT_OF_THE_END;
+import static me.alwayslg.customitems.CustomItemID.GIANTS_SWORD;
 import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities;
+import static me.alwayslg.util.Utilities.playerWarn;
 
 public class GiantsSword extends CustomItem implements Listener{
     public GiantsSword(){
@@ -23,39 +26,27 @@ public class GiantsSword extends CustomItem implements Listener{
 //        setDamage(10);
         super(CustomItemID.GIANTS_SWORD);
     }
-    private HashMap<Player, Long> cooldowns = new HashMap<>(); // Store cooldowns
     @EventHandler
     public void onPlayerRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = event.getItem();
-        if (item != null && item.hasItemMeta()) {
-            ItemMeta meta = item.getItemMeta();
-            if (meta != null && isCustomItem(item)) {
-                CustomItem customItem = new CustomItem(item);
-                if (customItem.getID().equals(CustomItemID.GIANTS_SWORD.getID()) && event.getAction().toString().contains("RIGHT")) {
-                    event.setCancelled(true);
-                    if (cooldowns.containsKey(player)) {
-                        long lastUsed = cooldowns.get(player);
-                        long currentTime = System.currentTimeMillis();
-
-                        // If the cooldown is still active
-                        long cooldown = 1;
-                        if (currentTime - lastUsed < cooldown) { // 1000 milliseconds = 1 second
-                            player.sendMessage("You must wait " + ((currentTime - lastUsed) -cooldown)/-1000 +" seconds before using this again!");
-                            return; // Exit the method if on cooldown
-                        }
-
-                    }
-
-
-
-
-                    dealMagicDamageNearbyEntities(player.getLocation(),8,player);
-                    Utilities.playCustomSoundToNearbyPlayers(player.getLocation(),20, Sound.ANVIL_USE);
-                    cooldowns.put(player, System.currentTimeMillis());
-
-                }
+        if(item==null || !item.hasItemMeta()) return;
+        ItemMeta meta = item.getItemMeta();
+        if(meta==null) return;
+        if(!isCustomItem(item)) return;
+        CustomItem customItem = new CustomItem(item);
+        if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(GIANTS_SWORD.getID())) {
+//            event.setCancelled(true);
+            //z` Check for cooldown
+            if(Cooldown.hasCooldown(customItem.getUUID())){
+                playerWarn(player,"This item is currently on cooldown!");
+                return;
             }
+
+            dealMagicDamageNearbyEntities(player.getLocation(),8,player);
+            Utilities.playCustomSoundToNearbyPlayers(player.getLocation(),20, Sound.ANVIL_USE);
+            // Set cooldown to 1 because this event triggers twice when crosshair on block somehow...
+            Cooldown.addCooldown(customItem.getUUID(),30*20);
         }
     }
 }

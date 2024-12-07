@@ -80,8 +80,8 @@ public class WitherShortBow extends CustomItem implements Listener {
             dealRealDamageNearbyEntities(event.getEntity().getLocation(), 3, p);
 
 
+            p.sendMessage("hello this is test -- " +explosionLevel);
         }
-        p.sendMessage("hello this is test -- " +explosionLevel);
 
     }
 }

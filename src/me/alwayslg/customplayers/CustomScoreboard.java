@@ -14,28 +14,41 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static me.alwayslg.util.Utilities.numberFormatComma;
+
 public class CustomScoreboard {
 
     private final ScoreboardManager manager;
     private final Scoreboard scoreboard;
-    private final Objective objective;
     private Collection<String> entries;
+    private Objective objective;
+    private Player player;
+    private int purse;
 
     public CustomScoreboard(Player player) {
         manager = Bukkit.getScoreboardManager();
         scoreboard = manager.getNewScoreboard();
+        entries=new ArrayList<>();
         objective = scoreboard.registerNewObjective("SkyblockReborn", player.getDisplayName());
 //        objective.setDisplayName(ChatColor.GOLD + "Custom Scoreboard");
+        setDisplayName("§e§lSKYBLOCK §b§lREBORN");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+        purse = 0;
+        this.player = player;
 
         player.setScoreboard(scoreboard);
     }
 
-    public Collection<String> getEntries() {
+    private Collection<String> getEntries() {
         return entries;
     }
-    public void setEntries(Collection<String> entries) {
+    private void setEntries(Collection<String> entries) {
         this.entries = entries;
+    }
+
+    public void setPurse(int purse){
+        this.purse = purse;
+        updateScore();
     }
 
     public void updateScore() {
@@ -57,7 +70,7 @@ public class CustomScoreboard {
         //Gap
         tempEntries.add("  ");
         //Purse
-        tempEntries.add("§fPurse: §68,412,415,131");
+        tempEntries.add("§fPurse: §6"+numberFormatComma(purse));
         //Bits
         tempEntries.add("§fBits: §b941,520");
         //Gap
@@ -66,7 +79,7 @@ public class CustomScoreboard {
         tempEntries.add("§emc.alwayslg.com");
 
         setEntries(tempEntries);
-
+        resetObjective(player);
         // Set scoreboard with entries
         int i = getEntries().size();
         for(String entry:getEntries()){
@@ -80,6 +93,18 @@ public class CustomScoreboard {
     }
     public void setDisplayName(String s){
         objective.setDisplayName(s);
+    }
+    private void resetObjective(Player player){
+//        if(entries != null && !entries.isEmpty()) {
+//            for (String entry : entries) {
+//                scoreboard.resetScores(entry);
+//            }
+//        }
+        objective.unregister();
+        objective = scoreboard.registerNewObjective("SkyblockReborn", player.getDisplayName());
+        setDisplayName("§e§lSKYBLOCK §b§lREBORN");
+//        objective.setDisplayName(ChatColor.GOLD + "Custom Scoreboard");
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
     }
 
 }

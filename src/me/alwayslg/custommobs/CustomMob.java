@@ -1,5 +1,7 @@
 package me.alwayslg.custommobs;
 
+import me.alwayslg.custommobs.customentities.CustomEntityWither;
+import me.alwayslg.custommobs.customentities.EntityTypes;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -9,6 +11,8 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Wither;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class CustomMob {
 //    private int fullHealth;
@@ -21,6 +25,7 @@ public class CustomMob {
     private double healthMultiplier;
     private CustomMobID customMobID;
     private boolean noAI;
+    private net.minecraft.server.v1_8_R3.Entity customEntity;
 
 //    public CustomMob(){
 //        healthBar =new HealthBar();
@@ -32,7 +37,6 @@ public class CustomMob {
 
     public void spawn(Location location, boolean noAI){
         World world = location.getWorld();
-        entity = (LivingEntity) world.spawn(location,getEntityClass());
 //        entity.getMaxHealth()
 //        Bukkit.broadcastMessage("Spawned mob UUID: "+entity.getUniqueId());
 //        entity.setMaxHealth(getFullHealth());
@@ -49,6 +53,23 @@ public class CustomMob {
 //            entity = (LivingEntity) nmsEntity.getBukkitEntity();
 ////            entity = (LivingEntity) ((CraftLivingEntity) ((CraftEntity) nmsEntity.getBukkitEntity()).getHandle()).getBukkitEntity();        }
 //        }
+        if(customMobID.getCustomEntityClass()!=null){
+            try {
+                net.minecraft.server.v1_8_R3.Entity nmsEntity = customMobID.getCustomEntityClass().getDeclaredConstructor(World.class).newInstance(world);
+                EntityTypes.spawnEntity(nmsEntity, location);
+                entity = (LivingEntity) nmsEntity.getBukkitEntity();
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            entity = (LivingEntity) world.spawn(location,getEntityClass());
+        }
         double realFullHealth = entity.getMaxHealth();
         healthMultiplier = getFullHealth()/realFullHealth;
         setHealth(getFullHealth());

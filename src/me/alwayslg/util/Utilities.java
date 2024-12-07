@@ -14,7 +14,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.PlayerInventory;
 
 import java.lang.reflect.Modifier;
+import java.text.NumberFormat;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.UUID;
 
 
@@ -78,6 +80,9 @@ public class Utilities {
     }
     public static void playerSuccess(Player player, String message){
         player.sendMessage(ChatColor.GREEN.toString()+message);
+    }
+    public static String numberFormatComma(int number){
+        return NumberFormat.getNumberInstance(Locale.US).format(number);
     }
 
 }

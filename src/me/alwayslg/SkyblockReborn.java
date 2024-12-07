@@ -5,6 +5,7 @@ import me.alwayslg.customitems.*;
 import me.alwayslg.custommobs.BabyNecron;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
+import me.alwayslg.customplayers.ChatListener;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.listeners.DingOnHit;
 import org.bukkit.entity.Wither;
@@ -13,6 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SkyblockReborn extends JavaPlugin {
     private static SkyblockReborn instance; // Singleton instance
+    public static final String DB_URL = "jdbc:sqlite:F:/Projects/Java/SkyblockReborn/db.db"; // SQLite file in project root
+
 
     @Override
     public void onEnable() {
@@ -42,6 +45,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new WitherShortBow(), this);
 
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
+        getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
 
 //        CustomPlayer alwayslg = new CustomPlayer(Bukkit.getPlayer("Alwayslg"));

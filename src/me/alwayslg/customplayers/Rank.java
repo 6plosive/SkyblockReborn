@@ -5,12 +5,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public enum Rank {
-    NON("",ChatColor.GRAY),
+    NON("§7",ChatColor.GRAY),
     VIP("§a[VIP] ",ChatColor.WHITE),
-    VIPPLUS("§a[VIP§e+] ",ChatColor.WHITE),
+    VIPPLUS("§a[VIP§e+§a] ",ChatColor.WHITE),
     MVP("§b[MVP] ",ChatColor.WHITE),
-    MVPPLUS("§b[MVP§c+] ",ChatColor.WHITE),
-    MVPPLUSPLUS("§b[MVP§c++] ",ChatColor.WHITE),
+    MVPPLUS("§b[MVP§c+§b] ",ChatColor.WHITE),
+    MVPPLUSPLUS("§6[MVP§c++§6] ",ChatColor.WHITE),
     YOUTUBE("§c[§fYOUTUBE§c] ",ChatColor.WHITE),
     ADMIN("§c[ADMIN] ",ChatColor.WHITE),
     OWNER("§c[OWNER] ",ChatColor.WHITE);

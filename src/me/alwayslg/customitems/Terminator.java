@@ -71,12 +71,6 @@ public class Terminator extends CustomItem implements Listener {
             arrow2.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), customItem.getDamage()));
             arrow3.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), customItem.getDamage()));
 
-
-
-
-
-
-
             arrow.setShooter(player);
             arrow2.setShooter(player);
             arrow3.setShooter(player);
