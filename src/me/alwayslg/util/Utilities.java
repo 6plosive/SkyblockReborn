@@ -1,18 +1,23 @@
 package me.alwayslg.util;
 
+import com.mojang.authlib.GameProfile;
 import me.alwayslg.customitems.CustomItem;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import net.minecraft.server.v1_8_R3.Vec3D;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.SkullMeta;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.text.NumberFormat;
 import java.util.Collection;
@@ -81,8 +86,25 @@ public class Utilities {
     public static void playerSuccess(Player player, String message){
         player.sendMessage(ChatColor.GREEN.toString()+message);
     }
-    public static String numberFormatComma(int number){
+    public static String numberFormatComma(long number){
         return NumberFormat.getNumberInstance(Locale.US).format(number);
+    }
+    public static ItemStack getPlayerHead(Player player) { // Thank you claude!
+        GameProfile profile = ((CraftPlayer)player).getProfile();
+        ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
+        SkullMeta meta = (SkullMeta) head.getItemMeta();
+
+        Field profileField;
+        try {
+            profileField = meta.getClass().getDeclaredField("profile");
+            profileField.setAccessible(true);
+            profileField.set(meta, profile);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        head.setItemMeta(meta);
+        return head;
     }
 
 }

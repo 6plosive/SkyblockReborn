@@ -126,6 +126,7 @@ public class Boomerang extends CustomItem implements Listener {
 //                damageEntitiesInLocation(damageBox.getLocation(),player);
                 if (damageBox.isDead()) {
                     flyingBone.remove();
+                    // TODO: damagebox cant get owner of its dead
                     List<MetadataValue> values = damageBox.getMetadata("owner");
                     if (!values.isEmpty()) {
                         UUID ownerUUID = UUID.fromString(values.get(0).asString());

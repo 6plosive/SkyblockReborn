@@ -25,8 +25,7 @@ public class CustomItem extends ItemStack{
 //    private CustomItemID id;
 
     public CustomItem(CustomItemID id){
-        //Initialize dummy itemStack
-//        itemStack=new ItemStack(Material.STONE);
+        //Initialize itemStack
         super(id.getMaterial());
 //        this.id = id;
         setID(id);
@@ -194,21 +193,17 @@ public class CustomItem extends ItemStack{
         updateLore();
     }
 
-    public int getDamage(){
-        return getDamageByID(getID());
-    }
-
     private void setName(String name) {
         ItemMeta tempItemMeta = getItemMeta();
-        tempItemMeta.setDisplayName(name);
+        tempItemMeta.setDisplayName(ChatColor.RESET.toString() + name);
         setItemMeta(tempItemMeta);
     }
-    public String getName() {
-        return getNameByID(getID());
-    }
+
     private void updateName(){
         if(getRarity()!=null) {
-            setName(ChatColor.RESET.toString() + getRarity().getColor().toString() + getName());
+            setName(getRarity().getColor().toString() + getName());
+        }else{ //Some item have no rarity i.e skyblock menu
+            setName(getName());
         }
     }
     private void setLore(List<String> lore) {
@@ -222,14 +217,14 @@ public class CustomItem extends ItemStack{
         if(getDamage() != 0){
             tempLore.add(String.format("§7Damage: §c+%d",getDamage()));
         }
-        tempLore.add(" ");
+        if(getDescription() != null){
+            tempLore.addAll(getDescription());
+        }
         if(getRarity()!=null&&getItemType()!=null){
+            tempLore.add(" ");
             tempLore.add(String.format("%s%s%s %s",getRarity().getColor().toString(),ChatColor.BOLD.toString(),getRarity().toString(),getItemType().toString()));
         }
         setLore(tempLore);
-    }
-    public Rarity getRarity(){
-        return getRarityByID(getID());
     }
     public void setUUID(UUID uuid){
 //        this.uuid = uuid;
@@ -237,6 +232,15 @@ public class CustomItem extends ItemStack{
     }
     public UUID getUUID(){
         return UUID.fromString(getStringNBTTags("uuid"));
+    }
+    public int getDamage(){
+        return getDamageByID(getID());
+    }
+    public Rarity getRarity(){
+        return getRarityByID(getID());
+    }
+    public String getName() {
+        return getNameByID(getID());
     }
     public ItemType getItemType(){
         return getItemTypeByID(getID());
@@ -246,6 +250,9 @@ public class CustomItem extends ItemStack{
     }
     public int getMagicDamage(){
         return getMagicDamageByID(getID());
+    }
+    public List<String> getDescription(){
+        return getDescriptionByID(getID());
     }
 
 

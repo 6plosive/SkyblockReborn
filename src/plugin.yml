@@ -17,3 +17,7 @@ commands:
     usage: /ride <player>
   test:
     usage: /<command>
+  setpurse:
+    usage: /<command> <player> <amount>
+  setrank:
+    usage: /<command> <player> <rank>

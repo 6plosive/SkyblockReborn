@@ -23,17 +23,16 @@ public class CustomScoreboard {
     private Collection<String> entries;
     private Objective objective;
     private Player player;
-    private int purse;
 
     public CustomScoreboard(Player player) {
         manager = Bukkit.getScoreboardManager();
         scoreboard = manager.getNewScoreboard();
         entries=new ArrayList<>();
+
         objective = scoreboard.registerNewObjective("SkyblockReborn", player.getDisplayName());
-//        objective.setDisplayName(ChatColor.GOLD + "Custom Scoreboard");
         setDisplayName("§e§lSKYBLOCK §b§lREBORN");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        purse = 0;
+
         this.player = player;
 
         player.setScoreboard(scoreboard);
@@ -46,10 +45,10 @@ public class CustomScoreboard {
         this.entries = entries;
     }
 
-    public void setPurse(int purse){
-        this.purse = purse;
-        updateScore();
-    }
+//    public void setPurse(long purse){
+//        this.purse = purse;
+//        updateScore();
+//    }
 
     public void updateScore() {
         Collection<String> tempEntries = new ArrayList<>();
@@ -70,7 +69,7 @@ public class CustomScoreboard {
         //Gap
         tempEntries.add("  ");
         //Purse
-        tempEntries.add("§fPurse: §6"+numberFormatComma(purse));
+        tempEntries.add("§fPurse: §6"+numberFormatComma(CustomPlayerManager.getCustomPlayer(player.getUniqueId()).getPurse()));
         //Bits
         tempEntries.add("§fBits: §b941,520");
         //Gap
@@ -103,7 +102,6 @@ public class CustomScoreboard {
         objective.unregister();
         objective = scoreboard.registerNewObjective("SkyblockReborn", player.getDisplayName());
         setDisplayName("§e§lSKYBLOCK §b§lREBORN");
-//        objective.setDisplayName(ChatColor.GOLD + "Custom Scoreboard");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
     }
 

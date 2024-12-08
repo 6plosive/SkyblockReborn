@@ -7,6 +7,7 @@ import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.ChatListener;
 import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.customplayers.CustomPlayerManager;
 import me.alwayslg.listeners.DingOnHit;
 import org.bukkit.entity.Wither;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,7 @@ public class SkyblockReborn extends JavaPlugin {
         // Initialize your classes and register events
         new GUI();
         new HealthBarHandler();
+        new CustomPlayerManager();
 
         getCommand("getitems").setExecutor(new GetItems());
         getCommand("spawnzombie").setExecutor(new SpawnZombie());
@@ -32,6 +34,8 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("spawngolem").setExecutor(new SpawnGolem());
         getCommand("test").setExecutor(new testCommand());
         getCommand("ride").setExecutor(new RideCommand());
+        getCommand("setpurse").setExecutor(new SetPurse());
+        getCommand("setrank").setExecutor(new SetRank());
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);
         getServer().getPluginManager().registerEvents(new DamageHandler(), this);
@@ -43,6 +47,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DingOnHit(), this);
         getServer().getPluginManager().registerEvents(new GiantsSword(), this);
         getServer().getPluginManager().registerEvents(new WitherShortBow(), this);
+        getServer().getPluginManager().registerEvents(new SkyblockMenu(), this);
 
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);

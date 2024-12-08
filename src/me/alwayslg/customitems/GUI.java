@@ -22,6 +22,7 @@ public class GUI implements Listener {
         CustomItem hyperion = new Hyperion();
         CustomItem giantsword = new GiantsSword();
         CustomItem witherbow = new WitherShortBow();
+        CustomItem skyblockMenu = new SkyblockMenu();
         inventory = Bukkit.getServer().createInventory(null,54,"Alwayslg's Skyblock Items");
         inventory.addItem(aspectOfTheEnd);
         inventory.addItem(diamondSword);
@@ -32,6 +33,7 @@ public class GUI implements Listener {
         inventory.addItem(hyperion);
         inventory.addItem(giantsword);
         inventory.addItem(witherbow);
+        inventory.addItem(skyblockMenu);
     }
 
     public static Inventory getInventory(){
