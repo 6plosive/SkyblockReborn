@@ -35,6 +35,8 @@ public class DamageHandler implements Listener {
             if(event.getDamager() instanceof Player){
                 Player damager = (Player) event.getDamager();
                 event.setDamage(0);
+                if(!isCustomItem(damager.getInventory().getItemInHand())) return;
+                assert isCustomItem(damager.getInventory().getItemInHand());
                 // Sneakily add a bow check because you will hit mob when using shortbow with left click, causing
                 // shortbow to have damage tick. Instead, we should not do any melee damage at all.
                 CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());

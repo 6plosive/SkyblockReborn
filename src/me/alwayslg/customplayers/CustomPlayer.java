@@ -1,5 +1,6 @@
 package me.alwayslg.customplayers;
 
+import me.alwayslg.customitems.SkyblockMenu;
 import me.alwayslg.customplayers.stats.StatsManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -48,7 +49,8 @@ public class CustomPlayer implements Listener {
 
         // Get Stats
         this.statsManager = new StatsManager(this);
-
+        // Set Skyblock Menu on slot 9
+        player.getInventory().setItem(8,new SkyblockMenu());
     }
 
     public Player getPlayer() {

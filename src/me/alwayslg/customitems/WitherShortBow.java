@@ -15,12 +15,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 
-import java.util.HashMap;
-
-import static me.alwayslg.customitems.CustomItemID.JER_JER_SHORTBOW;
 import static me.alwayslg.customitems.CustomItemID.WITHER_SHORTBOW;
 import static me.alwayslg.custommobs.DamageHandler.dealRealDamageNearbyEntities;
-import static me.alwayslg.util.Utilities.playCustomSoundToNearbyPlayers;
+import static me.alwayslg.util.Utilities.playSoundAtLocation;
 import static me.alwayslg.util.Utilities.playerWarn;
 
 public class WitherShortBow extends CustomItem implements Listener {
@@ -76,7 +73,7 @@ public class WitherShortBow extends CustomItem implements Listener {
                     0, 0, 0, 1, 1
             );
             ((CraftPlayer)p).getHandle().playerConnection.sendPacket(packet);
-            playCustomSoundToNearbyPlayers(event.getEntity().getLocation(),20, Sound.EXPLODE);
+            playSoundAtLocation(event.getEntity().getLocation(),20, Sound.EXPLODE);
             dealRealDamageNearbyEntities(event.getEntity().getLocation(), 3, p);
 
 

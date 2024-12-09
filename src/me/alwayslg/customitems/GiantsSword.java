@@ -9,9 +9,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.HashMap;
-
-import static me.alwayslg.customitems.CustomItemID.ASPECT_OF_THE_END;
 import static me.alwayslg.customitems.CustomItemID.GIANTS_SWORD;
 import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities;
 import static me.alwayslg.util.Utilities.playerWarn;
@@ -44,7 +41,7 @@ public class GiantsSword extends CustomItem implements Listener{
             }
 
             dealMagicDamageNearbyEntities(player.getLocation(),8,player);
-            Utilities.playCustomSoundToNearbyPlayers(player.getLocation(),20, Sound.ANVIL_USE);
+            Utilities.playSoundAtLocation(player.getLocation(),20, Sound.ANVIL_USE);
             // Set cooldown to 1 because this event triggers twice when crosshair on block somehow...
             Cooldown.addCooldown(customItem.getUUID(),30*20);
         }

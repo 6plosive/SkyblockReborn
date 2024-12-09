@@ -2,25 +2,20 @@ package me.alwayslg.util;
 
 import com.mojang.authlib.GameProfile;
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.CustomItemID;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import net.minecraft.server.v1_8_R3.Vec3D;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.text.NumberFormat;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -35,12 +30,13 @@ public class Utilities {
             }
         }
     }
-    public static void playCustomSoundToNearbyPlayers(Location armorStandLocation, double radius , Sound sound) {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (player.getLocation().distance(armorStandLocation) <= radius) {
-                player.playSound(player.getLocation(), sound, 2.0f, 1f); // Play sound
-            }
-        }
+    public static void playSoundAtLocation(Location location, double radius , Sound sound) {
+//        for (Player player : Bukkit.getOnlinePlayers()) {
+//            if (player.getLocation().distance(location) <= radius) {
+//                player.playSound(player.getLocation(), sound, 2.0f, 1f); // Play sound
+//            }
+//        }
+        location.getWorld().playSound(location, sound, 2.0f, 1f);
     }
 //    public static Boolean damageNearbyEntities(Location location, double damageRadius, Player player) {
 //        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location,damageRadius,damageRadius,damageRadius);
@@ -70,12 +66,13 @@ public class Utilities {
         return bb1.b(bb2);
     }
 
-    public static int getItemSlotFromUUID(PlayerInventory playerInventory, UUID uuid){
+    public static int getItemSlotFromUUID(PlayerInventory playerInventory, CustomItemID customItemID, UUID uuid){
         for(int i=0;i<playerInventory.getContents().length;i++){
 //            ItemStack item = playerInventory.getItem(i);
             if(playerInventory.getItem(i) == null) continue;
             if(!isCustomItem(playerInventory.getItem(i))) continue; //not custom item
             CustomItem customItem = new CustomItem(playerInventory.getItem(i));
+            if(customItem.getID() != customItemID.getID()) continue;
             //getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(i)).equals(uuid.toString())
             if(customItem.getType()!= Material.AIR && customItem.getUUID().equals(uuid)){
                 return i;

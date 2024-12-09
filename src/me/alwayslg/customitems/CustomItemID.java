@@ -18,8 +18,10 @@ public enum CustomItemID {
     JER_JER_SHORTBOW("JER_JER_SHORTBOW","Jer Jer Shortbow",Material.BOW,ItemType.BOW,Rarity.EPIC,310,0,null),
     TERMINATOR("TERMINATOR","Terminator",Material.BOW,ItemType.BOW,Rarity.LEGENDARY,310,0,null),
     WITHER_SHORTBOW("WITHER_SHORTBOW","Wither Shortbow",Material.BOW,ItemType.BOW,Rarity.RARE,50,0,null),
-    HYPERION("HYPERION","Hyperion",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,260,300,null),
+    HYPERION("HYPERION","Hyperion",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,260,300,Arrays.asList( "§7Deals §c+50% §7damage to Withers.", "§7Grants §c+1 §c❁ Damage §7and §a+2 §b✎", "§bIntelligence §7per §cCatacombs §7level.")),
     GIANTS_SWORD("GIANTS_SWORD","Giant's Sword",Material.IRON_SWORD,ItemType.DUNGEON_SWORD,Rarity.LEGENDARY,500,5000,null),
+    SIGMA_SKIBIDI_SWORD("SIGMA_SKIBIDI_SWORD","Sigma Skibidi Sword",Material.GOLD_SWORD,ItemType.SWORD,Rarity.ULTIMATE,99999999,0,null),
+
     SKYBLOCK_MENU("SKYBLOCK_MENU","§aSkyBlock Menu §7(Click)",Material.NETHER_STAR,null,null,0,0, Arrays.asList("§7View all of your SkyBlock progress,", "§7including your Skills, Collections,", "§7Recipes, and more!", "", "§eClick to open!"));
 
     private final String id;

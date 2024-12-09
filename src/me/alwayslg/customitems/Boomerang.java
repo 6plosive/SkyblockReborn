@@ -108,7 +108,7 @@ public class Boomerang extends CustomItem implements Listener {
 //                damageEntitiesInLocation(damageLocation,player);
                 if (flyingBone.isDead()) {// for IDK what reason
                     flyingBone.remove();
-                    int itemSlot = getItemSlotFromUUID(player.getInventory(),uuid);
+                    int itemSlot = getItemSlotFromUUID(player.getInventory(),CustomItemID.BOOMERANG,uuid);
                     setThrown(false, player.getInventory(), itemSlot);
                     cancel(); // Stop the task if the armor stand is dead
                     return;
@@ -139,7 +139,7 @@ public class Boomerang extends CustomItem implements Listener {
 
                         flyingBone.remove();
 
-                        int itemSlot = getItemSlotFromUUID(player.getInventory(),uuid);
+                        int itemSlot = getItemSlotFromUUID(player.getInventory(),CustomItemID.BOOMERANG,uuid);
                         setThrown(false, player.getInventory(), itemSlot);
 
                         cancel(); // Stop the task
@@ -149,7 +149,7 @@ public class Boomerang extends CustomItem implements Listener {
 
                         flyingBone.remove();
 
-                        int itemSlot = getItemSlotFromUUID(player.getInventory(),uuid);
+                        int itemSlot = getItemSlotFromUUID(player.getInventory(),CustomItemID.BOOMERANG,uuid);
                         setThrown(false, player.getInventory(), itemSlot);
 
                         cancel();

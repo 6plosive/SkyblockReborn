@@ -231,7 +231,9 @@ public class CustomItem extends ItemStack{
         setNBTTags("uuid",new NBTTagString(uuid.toString()));
     }
     public UUID getUUID(){
-        return UUID.fromString(getStringNBTTags("uuid"));
+        String uuidString = getStringNBTTags("uuid");
+        if(uuidString==null)return null;
+        return UUID.fromString(uuidString);
     }
     public int getDamage(){
         return getDamageByID(getID());
