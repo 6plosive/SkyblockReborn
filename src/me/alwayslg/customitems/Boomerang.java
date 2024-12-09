@@ -97,7 +97,6 @@ public class Boomerang extends CustomItem implements Listener {
         final double travelDistance = 10.0; // Distance to travel
         final double speed = 0.5; // Movement speed
         Vector direction = player.getEyeLocation().getDirection().normalize(); // Get the direction the player is looking
-        player.sendMessage(direction.toString());
         // Move the armor stand forward in a repeating task
         new BukkitRunnable() {
             private double distanceTraveled = 0.0; // Track distance traveled
@@ -107,7 +106,7 @@ public class Boomerang extends CustomItem implements Listener {
              public void run() {
                 dealRealDamageNearbyEntities(damageLocation,1,player);
 //                damageEntitiesInLocation(damageLocation,player);
-                if (flyingBone.isDead()) {// for idk what reason
+                if (flyingBone.isDead()) {// for IDK what reason
                     flyingBone.remove();
                     int itemSlot = getItemSlotFromUUID(player.getInventory(),uuid);
                     setThrown(false, player.getInventory(), itemSlot);
@@ -156,7 +155,6 @@ public class Boomerang extends CustomItem implements Listener {
                         cancel();
                         return;
                     }
-                    player.sendMessage("2:"+damageLocation.getY());
                 } else {
                     // Move the armor stand forward
                     damageLocation.add(direction.clone().multiply(speed)); // Move forward
@@ -181,8 +179,6 @@ public class Boomerang extends CustomItem implements Listener {
                         returning = true; // Start returning
                         distanceTraveled = 0.0; // Reset distance for return trip
                     }
-
-                    player.sendMessage("1:"+damageLocation.getY());
                 }
             }
         }.runTaskTimer(SkyblockReborn.getInstance(), 0, 1); // Run every tick

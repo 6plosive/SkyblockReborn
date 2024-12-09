@@ -2,6 +2,8 @@ package me.alwayslg.custommobs;
 
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.ItemType;
+import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.customplayers.CustomPlayerManager;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
 import org.bukkit.Location;
 import org.bukkit.entity.Arrow;
@@ -123,20 +125,24 @@ public class DamageHandler implements Listener {
         target.getEntity().damage(0);
         if(isCustomItem(damager.getInventory().getItemInHand())) {
             CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
-            double damage = itemInHand.getDamage();
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(damager.getUniqueId());
+
+            double itemDamage = itemInHand.getDamage();
+            Damage damage = calculateDamage(itemDamage, customPlayer.getStatsManager().getCritChance(), customPlayer.getStatsManager().getCritDamage());
             double health = target.getHealth();
+            damager.sendMessage("crit??"+damage.isCrit);
             // If damage is final blow, remove mob from map & his overhead display
-            if(health <= damage){
+            if(health <= damage.finalDamage){
                 removeMob(target.getEntity().getUniqueId());
             }
-            double healthAfterDamage = health - damage;
+            double healthAfterDamage = health - damage.finalDamage;
             target.setHealth(Math.max(0, healthAfterDamage));
             // Update Health Bar
             updateHealthBar(target);
             // Play satisfying ding hit sound
             playDing(damager);
             // Spawn damage indicator
-            DamageIndicator.spawn(target.getEntity(),(int)damage);
+            DamageIndicator.spawn(target.getEntity(),(int)damage.finalDamage, damage.isCrit);
             // Cancel no tick because arrow has no tick
             // Add 10 damage ticks completely making player damage it every tick
             target.getEntity().setNoDamageTicks(0);
@@ -194,6 +200,16 @@ public class DamageHandler implements Listener {
         // Remove no damage ticks completely making player damage it every tick
 //        target.getEntity().setNoDamageTicks(0);
         target.getEntity().setMaximumNoDamageTicks(0);
+    }
+
+    private static Damage calculateDamage(double itemDamage, double critChance, double critDamage){
+        SplittableRandom random = new SplittableRandom();
+        int randomNumber = random.nextInt(100); // Upper bound is exclusive which means 0-99
+        boolean isCrit = randomNumber<critChance; //if cc=70, 0-69=crit, 70-99=normal
+        if(isCrit){
+            itemDamage += itemDamage * critDamage / 100;
+        }
+        return new Damage(itemDamage, isCrit);
     }
 
     private static void updateHealthBar(CustomMob target){

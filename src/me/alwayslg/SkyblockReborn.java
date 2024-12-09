@@ -9,6 +9,7 @@ import me.alwayslg.customplayers.ChatListener;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
 import me.alwayslg.listeners.DingOnHit;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Wither;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -52,7 +53,10 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
-
+        // Prevent function broken because CustomPlayer / CustomPlayerManager couldn't fetch user after /reload
+        for(Player onlinePlayer:getServer().getOnlinePlayers()){
+            new CustomPlayer(onlinePlayer);
+        }
 //        CustomPlayer alwayslg = new CustomPlayer(Bukkit.getPlayer("Alwayslg"));
 //        CustomPlayer filipinC5 = new CustomPlayer(Bukkit.getPlayer("FilipinC5"));
 

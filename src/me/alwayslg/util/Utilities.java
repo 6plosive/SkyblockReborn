@@ -24,6 +24,8 @@ import java.util.Collection;
 import java.util.Locale;
 import java.util.UUID;
 
+import static me.alwayslg.customitems.CustomItem.isCustomItem;
+
 
 public class Utilities {
     public static void playSoundToNearbyPlayers(Location armorStandLocation, double radius) {
@@ -72,6 +74,7 @@ public class Utilities {
         for(int i=0;i<playerInventory.getContents().length;i++){
 //            ItemStack item = playerInventory.getItem(i);
             if(playerInventory.getItem(i) == null) continue;
+            if(!isCustomItem(playerInventory.getItem(i))) continue; //not custom item
             CustomItem customItem = new CustomItem(playerInventory.getItem(i));
             //getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(i)).equals(uuid.toString())
             if(customItem.getType()!= Material.AIR && customItem.getUUID().equals(uuid)){

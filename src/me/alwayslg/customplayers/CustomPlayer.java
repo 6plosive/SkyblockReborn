@@ -1,5 +1,6 @@
 package me.alwayslg.customplayers;
 
+import me.alwayslg.customplayers.stats.StatsManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,9 +19,8 @@ public class CustomPlayer implements Listener {
     private CustomScoreboard customScoreboard;
     private Rank rank;
     private long purse;
-    public CustomPlayer(){
-
-    };
+    private StatsManager statsManager;
+    public CustomPlayer(){}
     public CustomPlayer(Player player) {
         this.player = player;
 
@@ -46,27 +46,19 @@ public class CustomPlayer implements Listener {
             throw new RuntimeException(e);
         }
 
-
-        // Init Custom scoreboard and Update purse amount
-//        this.customScoreboard = new CustomScoreboard(player);
-//        this.customScoreboard.setPurse(purse);
-//        this.customScoreboard.updateScore();
+        // Get Stats
+        this.statsManager = new StatsManager(this);
 
     }
 
     public Player getPlayer() {
         return player;
     }
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 
     public CustomScoreboard getCustomScoreboard() {
         return customScoreboard;
     }
-    public void setCustomScoreboard(CustomScoreboard customScoreboard) {
-        this.customScoreboard = customScoreboard;
-    }
+
     public Rank getRank(){
         return this.rank;
     }
@@ -89,6 +81,10 @@ public class CustomPlayer implements Listener {
 //        this.customScoreboard.setPurse(purse);
         customScoreboard.updateScore();
     }
+    public StatsManager getStatsManager() {
+        return statsManager;
+    }
+
     private void createUserInDBIfNotExists(Connection connection, UUID playerUUID, String username) throws SQLException {
         try (PreparedStatement select = connection.prepareStatement("SELECT * FROM users WHERE uuid = ?");
              PreparedStatement insert = connection.prepareStatement("INSERT INTO users (uuid, username) values (?,?)")) {
