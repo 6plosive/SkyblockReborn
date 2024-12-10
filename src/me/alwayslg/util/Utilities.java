@@ -4,10 +4,13 @@ import com.mojang.authlib.GameProfile;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
+import net.minecraft.server.v1_8_R3.NBTBase;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.Vec3D;
 import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -105,6 +108,15 @@ public class Utilities {
 
         head.setItemMeta(meta);
         return head;
+    }
+    public static ItemStack setNBTTags(ItemStack item, String s, NBTBase nbtBase){
+        net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
+        nbtTagCompound.set(s,nbtBase);
+        nmsItemStack.setTag(nbtTagCompound);
+        ItemStack updatedItemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
+        item.setItemMeta(updatedItemStack.getItemMeta()); // Update the meta
+        return item;
     }
 
 }

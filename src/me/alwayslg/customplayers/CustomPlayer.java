@@ -1,6 +1,6 @@
 package me.alwayslg.customplayers;
 
-import me.alwayslg.customitems.SkyblockMenu;
+import me.alwayslg.customitems.unique.SkyblockMenu;
 import me.alwayslg.customplayers.stats.StatsManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,8 +13,6 @@ import java.sql.*;
 import java.util.UUID;
 
 import static me.alwayslg.SkyblockReborn.DB_URL;
-import static me.alwayslg.customplayers.CustomPlayerManager.setPurseToDB;
-import static me.alwayslg.customplayers.CustomPlayerManager.setRankToDB;
 
 public class CustomPlayer implements Listener {
     private Player player;

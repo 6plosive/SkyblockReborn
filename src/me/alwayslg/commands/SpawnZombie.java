@@ -1,6 +1,5 @@
 package me.alwayslg.commands;
 
-import me.alwayslg.customitems.GUI;
 import me.alwayslg.custommobs.Zombie;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

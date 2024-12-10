@@ -34,6 +34,10 @@ public class CustomItem extends ItemStack{
         // Default hideflags and unbreakable
         setNBTTags("Unbreakable",new NBTTagByte((byte) 1));
         setNBTTags("HideFlags",new NBTTagInt(254));
+        // inherent flashy enchanted effect depends on item id
+        if(getIsEnchanted()){
+            setNBTTags("ench", new NBTTagList());
+        }
     }
     public CustomItem(ItemStack itemStack){
         super(itemStack);
@@ -216,16 +220,30 @@ public class CustomItem extends ItemStack{
     }
     private void updateLore(){
         List<String> tempLore = new ArrayList<>();
+        if(getIsCombinableAnvil()){
+            tempLore.add("§7§8Combinable in Anvil");
+            tempLore.add(" ");
+        }
         if(getDamage() != 0){
             tempLore.add(String.format("§7Damage: §c+%d",getDamage()));
+            tempLore.add(" ");
         }
         if(getDescription() != null){
-            tempLore.add(" ");
             tempLore.addAll(getDescription());
-        }
-        if(getRarity()!=null&&getItemType()!=null){
             tempLore.add(" ");
-            tempLore.add(String.format("%s%s%s %s",getRarity().getColor().toString(),ChatColor.BOLD.toString(),getRarity().toString(),getItemType().toString()));
+        }
+        if(getRarity()!=null){
+//            tempLore.add(" ");
+            String rarityString = String.format("%s%s%s",getRarity().getColor().toString(),ChatColor.BOLD.toString(),getRarity().toString());
+            if(getItemType()!=null) rarityString+=' '+getItemType().toString();
+            tempLore.add(rarityString);
+        }
+        // Remove empty gap at last of list if its present
+        if(!tempLore.isEmpty()){
+            assert(tempLore.size()>=1);
+            if(tempLore.get(tempLore.size() - 1)==" "){
+                tempLore.remove(tempLore.size()-1);
+            }
         }
         setLore(tempLore);
     }
@@ -255,6 +273,12 @@ public class CustomItem extends ItemStack{
     }
     public int getMagicDamage(){
         return getMagicDamageByID(getID());
+    }
+    public boolean getIsEnchanted(){
+        return getIsEnchantedByID(getID());
+    }
+    public boolean getIsCombinableAnvil(){
+        return getIsCombinableAnvilByID(getID());
     }
     public List<String> getDescription(){
         return getDescriptionByID(getID());

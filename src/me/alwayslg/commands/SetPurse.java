@@ -1,16 +1,12 @@
 package me.alwayslg.commands;
 
-import me.alwayslg.customitems.GUI;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
-import me.alwayslg.customplayers.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
 
 import static me.alwayslg.util.Utilities.playerSuccess;
 import static me.alwayslg.util.Utilities.playerWarn;

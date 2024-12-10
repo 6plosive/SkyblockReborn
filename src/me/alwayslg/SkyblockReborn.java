@@ -1,16 +1,17 @@
 package me.alwayslg;
 
 import me.alwayslg.commands.*;
-import me.alwayslg.customitems.*;
-import me.alwayslg.custommobs.BabyNecron;
+import me.alwayslg.customitems.unique.SkyblockMenu;
+import me.alwayslg.customitems.weapons.*;
 import me.alwayslg.custommobs.DamageHandler;
 import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.ChatListener;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
 import me.alwayslg.listeners.DingOnHit;
+import me.alwayslg.ui.AnvilUI;
+import me.alwayslg.ui.AdminItemUI;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Wither;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -25,7 +26,7 @@ public class SkyblockReborn extends JavaPlugin {
         System.out.println("Skyblock Reborn is ENABLED! Hail Alwayslg!!!");
 
         // Initialize your classes and register events
-        new GUI();
+        new AdminItemUI();
         new HealthBarHandler();
         new CustomPlayerManager();
 
@@ -38,8 +39,9 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("setpurse").setExecutor(new SetPurse());
         getCommand("setrank").setExecutor(new SetRank());
         getCommand("fly").setExecutor(new Fly());
+        getCommand("anvil").setExecutor(new Anvil());
 
-        getServer().getPluginManager().registerEvents(new GUI(), this);
+        getServer().getPluginManager().registerEvents(new AdminItemUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);
         getServer().getPluginManager().registerEvents(new DamageHandler(), this);
         getServer().getPluginManager().registerEvents(new JerJerShortBow(), this);
@@ -54,6 +56,9 @@ public class SkyblockReborn extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new AnvilUI(), this);
+
+
 
         // Prevent function broken because CustomPlayer / CustomPlayerManager couldn't fetch user after /reload
         for(Player onlinePlayer:getServer().getOnlinePlayers()){

@@ -22,4 +22,8 @@ commands:
   setrank:
     usage: /<command> <player> <rank>
   fly:
-    usage: /<command
+    usage: /<command>
+  anvil:
+    usage: /<command>
+    aliases:
+      - av
