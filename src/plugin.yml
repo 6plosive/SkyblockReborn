@@ -21,3 +21,5 @@ commands:
     usage: /<command> <player> <amount>
   setrank:
     usage: /<command> <player> <rank>
+  fly:
+    usage: /<command

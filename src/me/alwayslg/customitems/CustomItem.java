@@ -27,11 +27,13 @@ public class CustomItem extends ItemStack{
     public CustomItem(CustomItemID id){
         //Initialize itemStack
         super(id.getMaterial());
-//        this.id = id;
+        // ID contains all lore, dmg, everything base weapon have
         setID(id);
+
         setNBTTags("customitem",new NBTTagByte((byte) 1));
-//        setRarity(Rarity.NULL);
-//        setItemType(ItemType.NULL);
+        // Default hideflags and unbreakable
+        setNBTTags("Unbreakable",new NBTTagByte((byte) 1));
+        setNBTTags("HideFlags",new NBTTagInt(254));
     }
     public CustomItem(ItemStack itemStack){
         super(itemStack);
@@ -218,6 +220,7 @@ public class CustomItem extends ItemStack{
             tempLore.add(String.format("§7Damage: §c+%d",getDamage()));
         }
         if(getDescription() != null){
+            tempLore.add(" ");
             tempLore.addAll(getDescription());
         }
         if(getRarity()!=null&&getItemType()!=null){

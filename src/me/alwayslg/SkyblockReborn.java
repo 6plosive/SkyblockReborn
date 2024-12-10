@@ -37,6 +37,8 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("ride").setExecutor(new RideCommand());
         getCommand("setpurse").setExecutor(new SetPurse());
         getCommand("setrank").setExecutor(new SetRank());
+        getCommand("fly").setExecutor(new Fly());
+
         getServer().getPluginManager().registerEvents(new GUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);
         getServer().getPluginManager().registerEvents(new DamageHandler(), this);

@@ -5,6 +5,7 @@ import me.alwayslg.customplayers.stats.StatsManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -51,6 +52,8 @@ public class CustomPlayer implements Listener {
         this.statsManager = new StatsManager(this);
         // Set Skyblock Menu on slot 9
         player.getInventory().setItem(8,new SkyblockMenu());
+        // Set saturation to max
+        player.setSaturation(20);
     }
 
     public Player getPlayer() {
@@ -122,6 +125,10 @@ public class CustomPlayer implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event){
         CustomPlayerManager.removePlayer(event.getPlayer().getUniqueId());
+    }
+    @EventHandler
+    public void onHungerDeplete(FoodLevelChangeEvent e) {
+        e.setCancelled(true);
     }
 
 }

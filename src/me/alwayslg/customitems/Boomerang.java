@@ -35,6 +35,8 @@ public class Boomerang extends CustomItem implements Listener {
         super(customItem);
     }
     private void setThrown(boolean isThrown, PlayerInventory playerInventory, int heldItemSlot){
+        if(heldItemSlot==-1)return;
+
         CustomItem customItem = new CustomItem(playerInventory.getItem(heldItemSlot));
         customItem.setNBTTags("thrown", new NBTTagByte((byte) (isThrown ? 1 : 0 )));
         if(isThrown){
@@ -66,8 +68,16 @@ public class Boomerang extends CustomItem implements Listener {
 //                Bukkit.broadcastMessage("Right clicked my boner");
                 //event.setCancelled(true);
                 setThrown(true, player.getInventory(), player.getInventory().getHeldItemSlot());
-//                        Bukkit.broadcastMessage("bone get material: " + (getMaterial()));
                 spawnMovingArmorStand(player, customItem.getUUID());
+                // Set cooldown which acts as a timer. Just for the event if the armorstand returned and the bone isn't in player's inventory.
+                // In which it will set thrown to false if after 5 seconds if the bone still haven't returned to player's inventory.
+                // Cooldown does NOT apply when boomerang is not thrown. Since its usage is just a timer, not a real cooldown.
+                Cooldown.addCooldown(boomerang.getUUID(),100); // 5 second timer
+            }else{ //Thrown
+                if(!Cooldown.hasCooldown(boomerang.getUUID())){
+                    //Boomerang that is thrown, but 5 seconds passed.
+                    setThrown(false,player.getInventory(),player.getInventory().getHeldItemSlot());
+                }
             }
         }
     }
