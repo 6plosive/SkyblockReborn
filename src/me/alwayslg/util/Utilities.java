@@ -75,7 +75,16 @@ public class Utilities {
             if(playerInventory.getItem(i) == null) continue;
             if(!isCustomItem(playerInventory.getItem(i))) continue; //not custom item
             CustomItem customItem = new CustomItem(playerInventory.getItem(i));
-            if(customItem.getID() != customItemID.getID()) continue;
+            //say customitem name, custom item slot, custom item uuid, uuid searching for
+//            Bukkit.broadcastMessage((customItem.getID().equals(customItemID.getID()))+" "+i+" "+(customItem.getUUID().equals(uuid)));
+//            if(i==0){
+//                //debug info
+//                Bukkit.broadcastMessage("'"+customItem.getID()+"'");
+//                Bukkit.broadcastMessage("'"+customItemID.getID()+"'");
+//                Bukkit.broadcastMessage("'"+customItem.getUUID().toString()+"'");
+//                Bukkit.broadcastMessage("'"+uuid.toString()+"'");
+//            }
+            if(!customItem.getID().equals(customItemID.getID())) continue;
             //getStringNBTTagsFromItemStack("uuid",playerInventory.getItem(i)).equals(uuid.toString())
             if(customItem.getType()!= Material.AIR && customItem.getUUID().equals(uuid)){
                 return i;
