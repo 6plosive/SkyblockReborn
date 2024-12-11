@@ -1,6 +1,7 @@
 package me.alwayslg.customitems;
 
 import net.minecraft.server.v1_8_R3.*;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -224,8 +225,14 @@ public class CustomItem extends ItemStack{
             tempLore.add("§7§8Combinable in Anvil");
             tempLore.add(" ");
         }
-        if(getDamage() != 0){
-            tempLore.add(String.format("§7Damage: §c+%d",getDamage()));
+        if(getDamage() != 0 || getHotPotatoCount() != 0){
+            int hotPotatoDamage = getHotPotatoCount()*2;
+            if(hotPotatoDamage!=0){
+                int totalDamage = getDamage();
+                tempLore.add(String.format("§7Damage: §c+%d §e(+%d)",totalDamage, hotPotatoDamage));
+            }else {
+                tempLore.add(String.format("§7Damage: §c+%d", getDamage()));
+            }
             tempLore.add(" ");
         }
         if(getDescription() != null){
@@ -256,8 +263,16 @@ public class CustomItem extends ItemStack{
         if(uuidString==null)return null;
         return UUID.fromString(uuidString);
     }
+    public int getHotPotatoCount(){
+        return getIntNBTTags("hot_potato_count");
+    }
+    public void setHotPotatoCount(int hotPotatoCount){
+        setNBTTags("hot_potato_count",new NBTTagInt(hotPotatoCount));
+        updateLore();
+    }
     public int getDamage(){
-        return getDamageByID(getID());
+//        return getDamageByID(getID());
+        return getDamageByID(getID()) + getHotPotatoCount()*2;
     }
     public Rarity getRarity(){
         return getRarityByID(getID());

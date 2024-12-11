@@ -22,4 +22,13 @@ public enum ItemType {
     public String toString(){
         return name;
     }
+    public static boolean isWeapon(ItemType type){
+        return type==SWORD ||
+                type==BOW ||
+                type==WAND ||
+                type==DUNGEON_SWORD ||
+                type==DUNGEON_BOW ||
+                type==LONGSWORD ||
+                type==SHORTBOW;
+    }
 }

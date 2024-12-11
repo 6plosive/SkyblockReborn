@@ -127,4 +127,9 @@ public enum CustomItemID {
     public static List<String> getDescriptionByID(String id) {
         return getCustomItemID(id)==null?null:getCustomItemID(id).getDescription();
     }
+
+
+    public static boolean isWeapon(String id){
+        return ItemType.isWeapon(getItemTypeByID(id));
+    }
 }

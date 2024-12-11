@@ -11,6 +11,7 @@ import me.alwayslg.customplayers.CustomPlayerManager;
 import me.alwayslg.listeners.DingOnHit;
 import me.alwayslg.ui.AnvilUI;
 import me.alwayslg.ui.AdminItemUI;
+import me.alwayslg.ui.GUIListeners;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,12 +35,12 @@ public class SkyblockReborn extends JavaPlugin {
         getCommand("spawnzombie").setExecutor(new SpawnZombie());
         getCommand("spawnnecron").setExecutor(new SpawnNecron());
         getCommand("spawngolem").setExecutor(new SpawnGolem());
-        getCommand("test").setExecutor(new testCommand());
+        getCommand("test").setExecutor(new TestCommand());
         getCommand("ride").setExecutor(new RideCommand());
         getCommand("setpurse").setExecutor(new SetPurse());
         getCommand("setrank").setExecutor(new SetRank());
-        getCommand("fly").setExecutor(new Fly());
-        getCommand("anvil").setExecutor(new Anvil());
+        getCommand("fly").setExecutor(new FlyCommand());
+        getCommand("anvil").setExecutor(new AnvilCommand());
 
         getServer().getPluginManager().registerEvents(new AdminItemUI(), this);
         getServer().getPluginManager().registerEvents(new AspectOfTheEnd(), this);
@@ -57,6 +58,8 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new AnvilUI(), this);
+        getServer().getPluginManager().registerEvents(new GUIListeners(), this);
+
 
 
 

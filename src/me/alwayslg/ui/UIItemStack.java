@@ -2,6 +2,7 @@ package me.alwayslg.ui;
 
 import me.alwayslg.util.Utilities;
 import net.minecraft.server.v1_8_R3.NBTTagByte;
+import net.minecraft.server.v1_8_R3.NBTTagList;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -19,10 +20,12 @@ public enum UIItemStack {
     ANVIL_LEFT_GREEN(Material.STAINED_GLASS_PANE, (short) 5, "§6Item to Upgrade", (byte) 0,Arrays.asList("§7The item you want to upgrade should", "§7be placed in the slot on this side.")),
     ANVIL_RIGHT_GREEN(Material.STAINED_GLASS_PANE, (short) 5,"§6Item to Sacrifice", (byte) 0,Arrays.asList("§7The item you are sacrificing in order", "§7to upgrade the item on the left", "§7should be placed in the slot on this", "§7side.")),
     ANVIL_RESULT_BARRIER(Material.BARRIER, (short) 0, "§cAnvil", (byte) 0, Arrays.asList("§7Place a target item in the left slot", "§7and a sacrifice item in the right slot", "§7to combine them!")),
-    ANVIL_BUTTON(Material.ANVIL, (short) 0, "§aCombine Items", (byte) 0,Arrays.asList("§7Combine the items in the slots to the", "§7left and right below."));
+    ANVIL_BUTTON_OFF(Material.ANVIL, (short) 0, "§aCombine Items", (byte) 0,Arrays.asList("§7Combine the items in the slots to the", "§7left and right below.")),
+    ANVIL_BUTTON_ON(Material.ANVIL, (short) 0, "§aCombine Items", (byte) 0,Arrays.asList("§7Combine the items in the slots to the", "§7left and right below.","", "§eClick to combine!"), true),
+    ANVIL_BUTTON_CLAIM(Material.SIGN, (short) 0, "§aAnvil", (byte) 0,Arrays.asList("§7Claim the result item above!"));
 
     private ItemStack item;
-    private UIItemStack(Material material, short damage, String name, byte hideTooltip, List<String> lore){
+    private UIItemStack(Material material, short damage, String name, byte hideTooltip, List<String> lore, boolean enchanted){
         item = new ItemStack(material, 1, damage);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(name);
@@ -31,6 +34,12 @@ public enum UIItemStack {
         if(hideTooltip==1){
             item = Utilities.setNBTTags(item, "HideTooltip", new NBTTagByte(hideTooltip));
         }
+        if(enchanted){
+            item = Utilities.setNBTTags(item, "ench", new NBTTagList());
+        }
+    }
+    private UIItemStack(Material material, short damage, String name, byte hideTooltip, List<String> lore){
+        this(material, damage, name, hideTooltip, lore, false);
     }
     private UIItemStack(Material material, short damage, String name, byte hideTooltip){
         this(material, damage, name, hideTooltip, null);
