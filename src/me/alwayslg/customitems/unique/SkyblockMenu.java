@@ -4,6 +4,7 @@ import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
+import me.alwayslg.ui.SkyblockMenuUI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,13 +24,6 @@ public class SkyblockMenu extends CustomItem implements Listener {
         super(CustomItemID.SKYBLOCK_MENU);
     }
 
-    private static Inventory createSkyblockMenuUI(CustomPlayer customPlayer){
-        Inventory inventory = Bukkit.getServer().createInventory(null,54,"Skyblock Menu");
-
-        ItemStack profileItem = getPlayerHead(customPlayer.getPlayer());
-        inventory.setItem(13,profileItem);
-        return inventory;
-    }
     @EventHandler
     public void onPlayerClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -42,8 +36,8 @@ public class SkyblockMenu extends CustomItem implements Listener {
         CustomItem customItem = new CustomItem(item);
         if(customItem.getID().equals(SKYBLOCK_MENU.getID())) {
             event.setCancelled(true);
-            Inventory inventory = createSkyblockMenuUI(CustomPlayerManager.getCustomPlayer(player.getUniqueId()));
-            player.openInventory(inventory);
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
+            SkyblockMenuUI.open(customPlayer);
         }
     }
     @EventHandler
@@ -51,8 +45,8 @@ public class SkyblockMenu extends CustomItem implements Listener {
         Player player = (Player) event.getWhoClicked();
         if(event.getSlotType() == InventoryType.SlotType.QUICKBAR &&(event.getSlot() == 8 || event.getHotbarButton() == 8)){
             event.setCancelled(true);
-            Inventory inventory = createSkyblockMenuUI(CustomPlayerManager.getCustomPlayer(player.getUniqueId()));
-            player.openInventory(inventory);
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
+            SkyblockMenuUI.open(customPlayer);
         }
     }
     @EventHandler
@@ -67,8 +61,8 @@ public class SkyblockMenu extends CustomItem implements Listener {
         CustomItem customItem = new CustomItem(item);
         if(customItem.getID().equals(SKYBLOCK_MENU.getID())) {
             event.setCancelled(true);
-            Inventory inventory = createSkyblockMenuUI(CustomPlayerManager.getCustomPlayer(player.getUniqueId()));
-            player.openInventory(inventory);
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
+            SkyblockMenuUI.open(customPlayer);
         }
     }
 }

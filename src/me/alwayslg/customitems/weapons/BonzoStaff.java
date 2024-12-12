@@ -45,7 +45,7 @@ public class BonzoStaff extends CustomItem implements Listener { //hi alwayslg i
         if(meta==null) return;
         if(!isCustomItem(event.getItem()))return;
         CustomItem customItem = new CustomItem(event.getItem());
-        player.sendMessage(event.getAction().toString());
+//        player.sendMessage(event.getAction().toString());
         if (event.getAction().toString().contains("RIGHT") && Objects.equals(customItem.getID(), CustomItemID.BONZO_STAFF.getID())) {
             event.setCancelled(true);
 //            player.sendMessage("You used the item!");
