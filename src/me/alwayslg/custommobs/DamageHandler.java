@@ -88,12 +88,13 @@ public class DamageHandler implements Listener {
         return nearbyCustomMobs;
     }
 
-    public static void dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
+    public static boolean dealMagicDamageNearbyEntities(Location location, double damageRadius, Player player){
         List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
         for (CustomMob customMob : nearbyCustomMobs) {
 //            dealCustomDamage(player,customMob);
             dealMagicDamage(player,customMob);
         }
+        return !nearbyCustomMobs.isEmpty(); //return true if there are mobs nearby
     }
     public static void dealRealDamageNearbyEntities(Location location, double damageRadius, Player player){
         List<CustomMob> nearbyCustomMobs = getNearbyCustomMobs(location,damageRadius,damageRadius,damageRadius);
@@ -132,7 +133,7 @@ public class DamageHandler implements Listener {
             double itemDamage = itemInHand.getDamage();
             Damage damage = calculateDamage(itemDamage, customPlayer.getStatsManager().getCritChance(), customPlayer.getStatsManager().getCritDamage());
             double health = target.getHealth();
-            damager.sendMessage("crit??"+damage.isCrit);
+
             // If damage is final blow, remove mob from map & his overhead display
             if(health <= damage.finalDamage){
                 removeMob(target.getEntity().getUniqueId());

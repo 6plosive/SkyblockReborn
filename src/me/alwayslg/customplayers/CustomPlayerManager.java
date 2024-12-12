@@ -21,7 +21,7 @@ public class CustomPlayerManager {
     private static HashMap<UUID, CustomPlayer> customPlayers = new HashMap<>();
     public CustomPlayerManager(){
         BukkitScheduler scheduler = Bukkit.getScheduler();
-        scheduler.runTaskTimer(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
+        scheduler.runTaskTimerAsynchronously(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
             try{
                 Class.forName("org.sqlite.JDBC");
                 Connection conn = DriverManager.getConnection(DB_URL);
@@ -59,18 +59,23 @@ public class CustomPlayerManager {
         return customPlayer.getPurse();
     }
 
-    public static void setRankToDB(Connection connection, UUID playerUUID, Rank rank) throws SQLException{
-        try(PreparedStatement stmt = connection.prepareStatement("UPDATE users SET rank = ? where uuid = ?")) {
+    public static void setRankToDB(Connection connection, UUID playerUUID, Rank rank){
+        try (PreparedStatement stmt = connection.prepareStatement("UPDATE users SET rank = ? where uuid = ?")) {
             stmt.setString(1, rank.toString());
             stmt.setString(2, playerUUID.toString());
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    public static void setPurseToDB(Connection connection, UUID playerUUID, long purse) throws SQLException{
-        try(PreparedStatement stmt = connection.prepareStatement("UPDATE users SET purse = ? where uuid = ?")) {
+    public static void setPurseToDB(Connection conn, UUID playerUUID, long purse){
+        try (PreparedStatement stmt = conn.prepareStatement("UPDATE users SET purse = ? where uuid = ?")) {
             stmt.setLong(1, purse);
             stmt.setString(2, playerUUID.toString());
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 }

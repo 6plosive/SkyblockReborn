@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static me.alwayslg.customitems.CustomItem.isCustomItem;
 import static me.alwayslg.customitems.CustomItemID.isWeapon;
@@ -90,7 +92,7 @@ public class AnvilUI implements Listener {
                 assert rightCustomItem.getIsCombinableAnvil();
 
                 // Check what item is on the right slot
-                if(rightCustomItem.getID() == CustomItemID.HOT_POTATO_BOOK.getID()){
+                if(Objects.equals(rightCustomItem.getID(), CustomItemID.HOT_POTATO_BOOK.getID())){
                     //Hot potato book
                     if(isWeapon(leftCustomItem.getID())){
                         //if left item has under 10 hot potato count
@@ -145,7 +147,7 @@ public class AnvilUI implements Listener {
             assert rightCustomItem.getIsCombinableAnvil();
 
             // if right item is hot potato book
-            if(rightCustomItem.getID() == CustomItemID.HOT_POTATO_BOOK.getID()){
+            if(Objects.equals(rightCustomItem.getID(), CustomItemID.HOT_POTATO_BOOK.getID())){
                 if(isWeapon(leftCustomItem.getID())){
                     //if left item has under 10 hot potato count
                     if(leftCustomItem.getHotPotatoCount()<10){
@@ -160,6 +162,9 @@ public class AnvilUI implements Listener {
                         inventory.setItem(13, resultItem);
                         //set anvil to claim mode
                         inventory.setItem(22, ANVIL_BUTTON_CLAIM.getItem());
+                        //play anvil sound
+                        player.playSound(player.getLocation(), Sound.ANVIL_USE, 1, 1);
+
                         //set bottom bar, left and right to red
                         for(int anvilBottomBarSlot:anvilBottomBarSlots){
                             inventory.setItem(anvilBottomBarSlot, RED_BACKGROUND.getItem());
@@ -191,9 +196,9 @@ public class AnvilUI implements Listener {
         Bukkit.getScheduler().runTaskLater(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
             boolean shouldClose = true;
             // check if result item is claimable
-            if(inventory.getItem(13)!=null && inventory.getItem(13).getType() != ANVIL_RESULT_BARRIER.getItem().getType()){
+            if(inventory.getItem(13)!=null && Objects.equals(inventory.getItem(13), ANVIL_RESULT_BARRIER.getItem())){
                 // check if anvil is in claim mode
-                if(inventory.getItem(22).getType() == ANVIL_BUTTON_CLAIM.getItem().getType()){
+                if(Objects.equals(inventory.getItem(22), ANVIL_BUTTON_CLAIM.getItem())){
                     // check if player has empty slot
                     if(player.getInventory().firstEmpty() != -1){
                         // give item to player
@@ -249,7 +254,7 @@ public class AnvilUI implements Listener {
 //        Bukkit.broadcastMessage("clicked title"+event.getClickedInventory().getTitle());
         if(event.getWhoClicked() instanceof Player) {
             //Inventory view (Whole inventory UI including top and bottom's) title (top title usually) is anvil UI
-            if(event.getView().getTitle() != "Anvil")return;
+            if(!Objects.equals(event.getView().getTitle(), "Anvil"))return;
             if(event.getSlotType() == InventoryType.SlotType.OUTSIDE) return;
             if (event.getCurrentItem() == null)
                 return;
@@ -267,7 +272,7 @@ public class AnvilUI implements Listener {
             }
 
             //If clicked is top UI (anvil)
-            if (event.getClickedInventory().getTitle() == "Anvil") {
+            if (Objects.equals(event.getClickedInventory().getTitle(), "Anvil")) {
                 if (clickedSlot == 13) {
                     //Anvil result
                     if (clickedItem.getType() == ANVIL_RESULT_BARRIER.getItem().getType()) {
@@ -309,7 +314,7 @@ public class AnvilUI implements Listener {
     public void onUIClose(InventoryCloseEvent event){
         if(event.getPlayer() instanceof Player){
             Player player = (Player) event.getPlayer();
-            if(event.getInventory().getTitle() == "Anvil"){
+            if(Objects.equals(event.getInventory().getTitle(), "Anvil")){
                 safeClose(player);
             }
         }

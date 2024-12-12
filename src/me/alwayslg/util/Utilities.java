@@ -3,11 +3,9 @@ package me.alwayslg.util;
 import com.mojang.authlib.GameProfile;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
-import net.minecraft.server.v1_8_R3.AxisAlignedBB;
-import net.minecraft.server.v1_8_R3.NBTBase;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.Vec3D;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.*;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
@@ -19,6 +17,8 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.lang.reflect.Field;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -26,6 +26,14 @@ import static me.alwayslg.customitems.CustomItem.isCustomItem;
 
 
 public class Utilities {
+    public static ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(
+            Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,
+            Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER,Material.RED_ROSE,Material.YELLOW_FLOWER,Material.DEAD_BUSH,
+            Material.BANNER,Material.SIGN,Material.SIGN_POST,Material.TORCH,Material.SAPLING,Material.DOUBLE_PLANT,Material.STANDING_BANNER,Material.WALL_BANNER,
+            Material.BROWN_MUSHROOM,Material.RED_MUSHROOM,Material.REDSTONE_TORCH_ON,Material.REDSTONE_TORCH_OFF,Material.REDSTONE_WIRE,Material.WALL_SIGN,
+            Material.TRIPWIRE,Material.TRIPWIRE_HOOK,Material.WOOD_BUTTON,Material.STONE_BUTTON,Material.LEVER,Material.GOLD_PLATE,Material.IRON_PLATE,
+            Material.WOOD_PLATE,Material.STONE_PLATE
+    ));
     public static void playSoundToNearbyPlayers(Location armorStandLocation, double radius) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getLocation().distance(armorStandLocation) <= radius) {
@@ -39,7 +47,7 @@ public class Utilities {
 //                player.playSound(player.getLocation(), sound, 2.0f, 1f); // Play sound
 //            }
 //        }
-        location.getWorld().playSound(location, sound, 2.0f, 1f);
+        location.getWorld().playSound(location, sound, 1.0f, 1f);
     }
 //    public static Boolean damageNearbyEntities(Location location, double damageRadius, Player player) {
 //        Collection<Entity> nearbyEntities = location.getWorld().getNearbyEntities(location,damageRadius,damageRadius,damageRadius);
@@ -117,6 +125,52 @@ public class Utilities {
 
         head.setItemMeta(meta);
         return head;
+    }
+    /**
+     * Creates a skull item stack that uses the given base64-encoded texture
+     *
+     * @param texture The texture value. Can be found on e.g. https://minecraft-heads.com/custom-heads/
+     *                in the "Value" field.
+     * @return an ItemStack with this texture.
+     */
+    public static ItemStack getPlayerHead(String texture) {
+        // for non-legacy api versions, use PLAYER_HEAD or LEGACY_SKULL_ITEM instead of SKULL_ITEM.
+        ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+    /* This code is compiled against version 1.8.8, but works on any version if you use
+       the correct package name. */
+        net.minecraft.server.v1_8_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+        try {
+            String nbtString = String.format(
+                    "{SkullOwner:{Id:%s,Properties:{textures:[{Value:\"%s\"}]}}}",
+                    serializeUuid(UUID.randomUUID()), texture
+            );
+            NBTTagCompound nbt = MojangsonParser.parse(nbtString);
+            nmsItem.setTag(nbt);
+        } catch (Exception e) { // Not catching a more specific exception here because that exception changes across versions
+            throw new AssertionError("NBT Tag parsing failed - This should never happen.", e);
+        }
+        return CraftItemStack.asBukkitCopy(nmsItem);
+    }
+
+    private static String serializeUuid(UUID uuid) {
+        return '"' + uuid.toString() + '"';
+//        if (newStorageSystem) {
+//            StringBuilder result = new StringBuilder();
+//            long msb = uuid.getMostSignificantBits();
+//            long lsb = uuid.getLeastSignificantBits();
+//            return result.append("[I;")
+//                    .append(msb >> 32)
+//                    .append(',')
+//                    .append(msb & Integer.MAX_VALUE)
+//                    .append(',')
+//                    .append(lsb >> 32)
+//                    .append(',')
+//                    .append(lsb & Integer.MAX_VALUE)
+//                    .append(']')
+//                    .toString();
+//        } else {
+//            return '"' + uuid.toString() + '"';
+//        }
     }
     public static ItemStack setNBTTags(ItemStack item, String s, NBTBase nbtBase){
         net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(item);
