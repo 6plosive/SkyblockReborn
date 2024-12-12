@@ -12,7 +12,7 @@ import java.util.Map;
 
 public enum CustomItemID {
     ASPECT_OF_THE_END("ASPECT_OF_THE_END","Aspect Of The End",Material.DIAMOND_SWORD,ItemType.SWORD,Rarity.RARE,100, 0,false,false,null),
-    BONZO_STAFF("BONZO_STAFF","Bonzo's Staff",Material.BLAZE_ROD,ItemType.WAND,Rarity.LEGENDARY,20,0,false,false,null),
+    BONZO_STAFF("BONZO_STAFF","Bonzo's Staff",Material.BLAZE_ROD,ItemType.WAND,Rarity.LEGENDARY,160,1000,false,false,null),
     BOOMERANG("BOOMERANG","Bonemerang",Material.BONE,ItemType.DUNGEON_BOW,Rarity.LEGENDARY,270,0,false,false,null),
     DIAMOND_SWORD("DIAMOND_SWORD","Diamond Sword",Material.DIAMOND_SWORD,ItemType.SWORD,Rarity.UNCOMMON,35,0,false,false,null),
     JER_JER_SHORTBOW("JER_JER_SHORTBOW","Jer Jer Shortbow",Material.BOW,ItemType.BOW,Rarity.EPIC,310,0,false,false,null),

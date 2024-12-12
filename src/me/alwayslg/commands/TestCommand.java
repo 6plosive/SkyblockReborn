@@ -1,11 +1,9 @@
 package me.alwayslg.commands;
 
 import me.alwayslg.customitems.CustomItem;
-import me.alwayslg.customitems.weapons.DiamondSword;
 import me.alwayslg.custommobs.customentities.CustomEntityWither;
 import me.alwayslg.custommobs.customentities.CustomEntityZombie;
 import me.alwayslg.custommobs.customentities.EntityTypes;
-import me.alwayslg.ui.GUI;
 import net.minecraft.server.v1_8_R3.Entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -43,11 +41,7 @@ public class TestCommand implements CommandExecutor {
             }else if(mode==3){
 //                sender.sendMessage(customEntityWither.getGoalTarget().getBukkitEntity().getName());
             }else if(mode==4){
-                GUI gui = new GUI("Sample");
-                for(int i=0;i<50;i++)
 
-                    gui.addItem(new DiamondSword());
-                gui.open(p);
             }else if(mode==5){
                 ItemStack item = p.getItemInHand();
                 CustomItem customItem = new CustomItem(item);

@@ -20,6 +20,7 @@ import java.util.Arrays;
 
 import static me.alwayslg.customitems.CustomItemID.HYPERION;
 import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities;
+import static me.alwayslg.util.Utilities.passableBlocks;
 import static me.alwayslg.util.Utilities.playerWarn;
 
 public class Hyperion extends CustomItem implements Listener {
@@ -43,14 +44,6 @@ public class Hyperion extends CustomItem implements Listener {
                 return;
             }
 
-            ArrayList<Material> passableBlocks = new ArrayList<>(Arrays.asList(
-                    Material.LONG_GRASS,Material.RAILS,Material.ACTIVATOR_RAIL,Material.POWERED_RAIL,Material.DETECTOR_RAIL,Material.AIR,Material.LADDER,
-                    Material.LAVA,Material.STATIONARY_LAVA,Material.WATER,Material.STATIONARY_WATER,Material.RED_ROSE,Material.YELLOW_FLOWER,Material.DEAD_BUSH,
-                    Material.BANNER,Material.SIGN,Material.SIGN_POST,Material.TORCH,Material.SAPLING,Material.DOUBLE_PLANT,Material.STANDING_BANNER,Material.WALL_BANNER,
-                    Material.BROWN_MUSHROOM,Material.RED_MUSHROOM,Material.REDSTONE_TORCH_ON,Material.REDSTONE_TORCH_OFF,Material.REDSTONE_WIRE,Material.WALL_SIGN,
-                    Material.TRIPWIRE,Material.TRIPWIRE_HOOK,Material.WOOD_BUTTON,Material.STONE_BUTTON,Material.LEVER,Material.GOLD_PLATE,Material.IRON_PLATE,
-                    Material.WOOD_PLATE,Material.STONE_PLATE
-            ));
             Location tpLocation = player.getEyeLocation().clone();
             Location previousLocation = tpLocation.clone();
             Vector direction = tpLocation.getDirection().normalize().multiply(0.5);

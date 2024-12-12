@@ -10,7 +10,7 @@ import org.bukkit.entity.Zombie;
 
 public enum CustomMobID {
     ZOMBIE("ZOMBIE","Graveyard Zombie",1,100, Zombie.class),
-    BABY_NECRON("BABY_NECRON","Baby Necron",69,1000000000, Wither.class, CustomEntityWither.class),
+    BABY_NECRON("BABY_NECRON","Baby Necron",69,1000000, Wither.class, CustomEntityWither.class),
     GOLEM("GOLEM","Whigger",200,200000, IronGolem.class);
     final String id;
     final String name;

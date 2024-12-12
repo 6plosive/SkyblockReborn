@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public class Cooldown {
     static ArrayList<UUID> cooldownItems = new ArrayList<>();
-    public static boolean hasCooldown(UUID uuid){
-        return cooldownItems.contains(uuid);
+    public static boolean hasCooldown(UUID itemUUID){
+        return cooldownItems.contains(itemUUID);
     }
     public static void addCooldown(UUID itemUUID, int ticks){
         cooldownItems.add(itemUUID);
