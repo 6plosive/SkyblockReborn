@@ -11,6 +11,7 @@ import me.alwayslg.customplayers.CustomPlayerManager;
 import me.alwayslg.listeners.DingOnHit;
 import me.alwayslg.ui.AnvilUI;
 import me.alwayslg.ui.AdminItemUI;
+import me.alwayslg.ui.SkyblockMenuUI;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -57,6 +58,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new AnvilUI(), this);
+        getServer().getPluginManager().registerEvents(new SkyblockMenuUI(), this);
 
 
 

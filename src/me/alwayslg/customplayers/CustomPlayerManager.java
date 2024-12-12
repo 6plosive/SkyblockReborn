@@ -35,7 +35,7 @@ public class CustomPlayerManager {
             } catch (ClassNotFoundException | SQLException e) {
                 throw new RuntimeException(e);
             }
-        }, 20L*1L /*<-- the initial delay */, 30L * 20L /*<-- the interval */);
+        }, 20L*1L /*<-- the initial delay */, 60L * 20L /*<-- the interval */);
     }
     public static void addPlayer(CustomPlayer player){
         customPlayers.put(player.getPlayer().getUniqueId(), player);
