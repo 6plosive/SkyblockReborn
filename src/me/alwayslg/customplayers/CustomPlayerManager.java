@@ -21,7 +21,7 @@ public class CustomPlayerManager {
     private static HashMap<UUID, CustomPlayer> customPlayers = new HashMap<>();
     public CustomPlayerManager(){
         BukkitScheduler scheduler = Bukkit.getScheduler();
-        scheduler.runTaskTimerAsynchronously(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
+        scheduler.runTaskTimerAsynchronously(SkyblockReborn.getInstance(), () -> {
             try{
                 Class.forName("org.sqlite.JDBC");
                 Connection conn = DriverManager.getConnection(DB_URL);
@@ -76,6 +76,5 @@ public class CustomPlayerManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

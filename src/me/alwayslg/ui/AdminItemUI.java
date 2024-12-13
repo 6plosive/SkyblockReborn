@@ -1,6 +1,7 @@
 package me.alwayslg.ui;
 
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.armors.LapisArmorHelmet;
 import me.alwayslg.customitems.consumable.HotPotatoBook;
 import me.alwayslg.customitems.unique.SkyblockMenu;
 import me.alwayslg.customitems.weapons.*;
@@ -41,6 +42,7 @@ public class AdminItemUI implements Listener {
         inventory.addItem(skyblockMenu);
         inventory.addItem(sigmaSkibidiSword);
         inventory.addItem(hotPotatoBook);
+        inventory.addItem(new LapisArmorHelmet());
     }
 
     public static Inventory getInventory(){

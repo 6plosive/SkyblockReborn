@@ -1,6 +1,7 @@
 name: SkyblockReborn
 main: me.alwayslg.SkyblockReborn
 version: 1.0
+depend: [ActionBarAPI]
 commands:
   getitems:
     usage: /<command>

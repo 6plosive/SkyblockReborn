@@ -2,6 +2,7 @@ package me.alwayslg.customitems.weapons;
 
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.CustomWeapon;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,7 +24,7 @@ import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities
 import static me.alwayslg.util.Utilities.passableBlocks;
 import static me.alwayslg.util.Utilities.playerWarn;
 
-public class Hyperion extends CustomItem implements Listener {
+public class Hyperion extends CustomWeapon implements Listener {
     public Hyperion(){
         super(HYPERION);
     }
@@ -35,8 +36,8 @@ public class Hyperion extends CustomItem implements Listener {
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if(!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(HYPERION.getID())) {
             // Check for cooldown
             if(Cooldown.hasCooldown(customItem.getUUID())){

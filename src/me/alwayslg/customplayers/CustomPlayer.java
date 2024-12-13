@@ -20,6 +20,7 @@ public class CustomPlayer implements Listener {
     private Rank rank;
     private long purse;
     private StatsManager statsManager;
+    private CustomActionBar customActionBar;
     public CustomPlayer(){}
     public CustomPlayer(Player player) {
         this.player = player;
@@ -48,6 +49,8 @@ public class CustomPlayer implements Listener {
 
         // Get Stats
         this.statsManager = new StatsManager(this);
+        // Set Action bar
+        this.customActionBar =  new CustomActionBar(this);
         // Set Skyblock Menu on slot 9
         player.getInventory().setItem(8,new SkyblockMenu());
         // Set saturation to max
@@ -86,6 +89,9 @@ public class CustomPlayer implements Listener {
     }
     public StatsManager getStatsManager() {
         return statsManager;
+    }
+    public CustomActionBar getCustomActionBar() {
+        return customActionBar;
     }
 
     private void createUserInDBIfNotExists(Connection connection, UUID playerUUID, String username) throws SQLException {

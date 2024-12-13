@@ -1,6 +1,8 @@
 package me.alwayslg;
 
+import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import me.alwayslg.commands.*;
+import me.alwayslg.customitems.armors.HelmetBlockEquip;
 import me.alwayslg.customitems.unique.SkyblockMenu;
 import me.alwayslg.customitems.weapons.*;
 import me.alwayslg.custommobs.DamageHandler;
@@ -57,6 +59,7 @@ public class SkyblockReborn extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
+        getServer().getPluginManager().registerEvents(new HelmetBlockEquip(), this);
         getServer().getPluginManager().registerEvents(new AnvilUI(), this);
         getServer().getPluginManager().registerEvents(new SkyblockMenuUI(), this);
 

@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +19,7 @@ import java.util.HashMap;
 import static me.alwayslg.customitems.CustomItemID.JER_JER_SHORTBOW;
 import static me.alwayslg.util.Utilities.playerWarn;
 
-public class JerJerShortBow extends CustomItem implements Listener {
+public class JerJerShortBow extends CustomWeapon implements Listener {
     public JerJerShortBow(){
         super(CustomItemID.JER_JER_SHORTBOW);
     }
@@ -30,8 +31,8 @@ public class JerJerShortBow extends CustomItem implements Listener {
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if(!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(JER_JER_SHORTBOW.getID())) {
             // Check for cooldown
             if(Cooldown.hasCooldown(customItem.getUUID())){

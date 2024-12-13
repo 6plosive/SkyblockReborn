@@ -1,6 +1,7 @@
 package me.alwayslg.custommobs;
 
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.CustomWeapon;
 import me.alwayslg.customitems.ItemType;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
@@ -17,6 +18,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import java.util.*;
 
 import static me.alwayslg.customitems.CustomItem.*;
+import static me.alwayslg.customitems.CustomWeapon.isCustomWeapon;
 import static me.alwayslg.listeners.DingOnHit.playDing;
 import static me.alwayslg.util.Utilities.*;
 
@@ -126,8 +128,8 @@ public class DamageHandler implements Listener {
     private static void dealCustomDamage(Player damager, CustomMob target){
         // Turn mob to red effect
         target.getEntity().damage(0);
-        if(isCustomItem(damager.getInventory().getItemInHand())) {
-            CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
+        if(isCustomWeapon(damager.getInventory().getItemInHand())) {
+            CustomWeapon itemInHand = new CustomWeapon(damager.getInventory().getItemInHand());
             CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(damager.getUniqueId());
 
             double itemDamage = itemInHand.getDamage();
@@ -155,8 +157,8 @@ public class DamageHandler implements Listener {
     private static void dealMagicDamage(Player damager, CustomMob target){
         // Turn mob to red effect
         target.getEntity().damage(0);
-        if(isCustomItem(damager.getInventory().getItemInHand())) {
-            CustomItem itemInHand = new CustomItem(damager.getInventory().getItemInHand());
+        if(isCustomWeapon(damager.getInventory().getItemInHand())) {
+            CustomWeapon itemInHand = new CustomWeapon(damager.getInventory().getItemInHand());
             double damage = itemInHand.getMagicDamage();
             double health = target.getHealth();
             // If damage is final blow, remove mob from map & his overhead display

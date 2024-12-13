@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import me.alwayslg.util.CustomHeads;
 import me.alwayslg.util.InstantFirework;
 import me.alwayslg.util.Utilities;
@@ -29,7 +30,7 @@ import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities
 import static me.alwayslg.util.CustomHeads.*;
 import static me.alwayslg.util.Utilities.*;
 
-public class BonzoStaff extends CustomItem implements Listener { //hi alwayslg is gay im not UR RR R URU RU UR OGMMGMGM u stupid niggerfuck u
+public class BonzoStaff extends CustomWeapon implements Listener { //hi alwayslg is gay im not UR RR R URU RU UR OGMMGMGM u stupid niggerfuck u
 //    private int damage = 69;
     public BonzoStaff() {
         super(CustomItemID.BONZO_STAFF);
@@ -43,8 +44,8 @@ public class BonzoStaff extends CustomItem implements Listener { //hi alwayslg i
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(event.getItem()))return;
-        CustomItem customItem = new CustomItem(event.getItem());
+        if(!isCustomWeapon(item))return;
+        CustomWeapon customItem = new CustomWeapon(event.getItem());
 //        player.sendMessage(event.getAction().toString());
         if (event.getAction().toString().contains("RIGHT") && Objects.equals(customItem.getID(), CustomItemID.BONZO_STAFF.getID())) {
             event.setCancelled(true);

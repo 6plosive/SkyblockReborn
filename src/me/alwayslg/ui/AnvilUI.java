@@ -320,26 +320,29 @@ public class AnvilUI implements Listener {
         }
     }
 
-//    @EventHandler
-//    public void onUIDEBUGClick(InventoryClickEvent event){
-//        if (event.getCurrentItem() == null)
-//            return;
-//
-//        Player player = (Player) event.getWhoClicked();
-//        player.sendMessage("---------DBG START----------");
-//        player.sendMessage("event.getSlotType():"+event.getSlotType());
-//        player.sendMessage("event.getSlot():"+event.getSlot());
-//        player.sendMessage("event.getRawSlot():"+event.getRawSlot());
-//        player.sendMessage("event.getClickedInventory().getTitle():"+event.getClickedInventory().getTitle());
-//        player.sendMessage("event.getHotbarButton():"+event.getHotbarButton());
-//        player.sendMessage("event.getAction():"+event.getAction());
-//        if(event.getCurrentItem().hasItemMeta()) {
-//            player.sendMessage("event.getCurrentItem().getItemMeta().getDisplayName():"+event.getCurrentItem().getItemMeta().getDisplayName());
-//        }else player.sendMessage("NO ITEM META");
-//        player.sendMessage("event.getView().getTitle();"+event.getView().getTitle());
-//        player.sendMessage("event.getView().getTopInventory().getTitle();"+event.getView().getTopInventory().getTitle());
-//        player.sendMessage("---------DBG END----------");
+    @EventHandler
+    public void onUIDEBUGClick(InventoryClickEvent event){
+        if (event.getCurrentItem() == null)
+            return;
 
-//    }
+        Player player = (Player) event.getWhoClicked();
+        player.sendMessage("---------DBG START----------");
+        player.sendMessage("event.getSlotType():"+event.getSlotType());
+        player.sendMessage("event.getSlot():"+event.getSlot());
+        player.sendMessage("event.getRawSlot():"+event.getRawSlot());
+        player.sendMessage("event.getClickedInventory().getTitle():"+event.getClickedInventory().getTitle());
+        player.sendMessage("event.getHotbarButton():"+event.getHotbarButton());
+        player.sendMessage("event.getAction():"+event.getAction());
+        if(event.getCursor().hasItemMeta()) {
+            player.sendMessage("event.getCursor().getItemMeta().getDisplayName():" + event.getCursor().getItemMeta().getDisplayName());
+        }else player.sendMessage("NO CURSOR ITEM META");
+        if(event.getCurrentItem().hasItemMeta()) {
+            player.sendMessage("event.getCurrentItem().getItemMeta().getDisplayName():"+event.getCurrentItem().getItemMeta().getDisplayName());
+        }else player.sendMessage("NO ITEM META");
+        player.sendMessage("event.getView().getTitle();"+event.getView().getTitle());
+        player.sendMessage("event.getView().getTopInventory().getTitle();"+event.getView().getTopInventory().getTitle());
+        player.sendMessage("---------DBG END----------");
+
+    }
 
 }

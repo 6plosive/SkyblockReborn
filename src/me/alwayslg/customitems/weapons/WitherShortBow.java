@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import net.minecraft.server.v1_8_R3.EnumParticle;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -23,7 +24,7 @@ import static me.alwayslg.custommobs.DamageHandler.dealRealDamageNearbyEntities;
 import static me.alwayslg.util.Utilities.playSoundAtLocation;
 import static me.alwayslg.util.Utilities.playerWarn;
 
-public class WitherShortBow extends CustomItem implements Listener {
+public class WitherShortBow extends CustomWeapon implements Listener {
     public WitherShortBow(){
         super(CustomItemID.WITHER_SHORTBOW);
     }
@@ -35,8 +36,8 @@ public class WitherShortBow extends CustomItem implements Listener {
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if(!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(WITHER_SHORTBOW.getID())) {
             // Check for cooldown
             event.setCancelled(true);

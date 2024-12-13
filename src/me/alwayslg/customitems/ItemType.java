@@ -31,4 +31,10 @@ public enum ItemType {
                 type==LONGSWORD ||
                 type==SHORTBOW;
     }
+    public static boolean isArmor(ItemType type){
+        return type==HELMET ||
+                type==CHESTPLATE ||
+                type==LEGGINGS ||
+                type==BOOTS;
+    }
 }

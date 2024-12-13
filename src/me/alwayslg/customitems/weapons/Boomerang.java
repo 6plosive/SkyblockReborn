@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import net.minecraft.server.v1_8_R3.NBTTagByte;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -24,12 +25,12 @@ import java.util.UUID;
 import static me.alwayslg.custommobs.DamageHandler.dealRealDamageNearbyEntities;
 import static me.alwayslg.util.Utilities.getItemSlotFromUUID;
 
-public class Boomerang extends CustomItem implements Listener {
+public class Boomerang extends CustomWeapon implements Listener {
     public Boomerang() {
         super(CustomItemID.BOOMERANG);
         setNBTTags("thrown",new NBTTagByte((byte) 0));
     }
-    public Boomerang(CustomItem customItem) {
+    public Boomerang(CustomWeapon customItem) {
         super(customItem);
     }
     private void setThrown(boolean isThrown, PlayerInventory playerInventory, int heldItemSlot){
@@ -57,8 +58,8 @@ public class Boomerang extends CustomItem implements Listener {
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if(!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(CustomItemID.BOOMERANG.getID())){
             event.setCancelled(true);
             Boomerang boomerang = new Boomerang(customItem);

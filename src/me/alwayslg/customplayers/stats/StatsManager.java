@@ -13,5 +13,11 @@ public class StatsManager {
     public int getCritDamage(){
         return 50;
     }
+    public int getHealth(){
+        return 100;
+    }
+    public int getMaxHealth(){
+        return 100;
+    }
 
 }

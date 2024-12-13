@@ -2,6 +2,7 @@ package me.alwayslg.customitems;
 
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Material;
 
 import java.lang.reflect.Array;
@@ -23,6 +24,8 @@ public enum CustomItemID {
     SIGMA_SKIBIDI_SWORD("SIGMA_SKIBIDI_SWORD","Sigma Skibidi Sword",Material.GOLD_SWORD,ItemType.SWORD,Rarity.ULTIMATE,99999999,0,false,false,null),
     HOT_POTATO_BOOK("HOT_POTATO_BOOK","Hot Potato Book", Material.BOOK, null, Rarity.EPIC, 0,0,true,true,Arrays.asList("§7When applied to armor, grants §a+2❈", "§aDefense §7and §c+4❤ Health§7.", "", "§7When applied to weapons, grants", "§7§c+2❁ Strength §7and §c+2❁ Damage§7.", "", "§7This can be applied to an item up to", "§7§a10 §7times!")),
 
+    LAPIS_ARMOR_HELMET("LAPIS_ARMOR_HELMET","Lapis Armor Helmet",Material.SEA_LANTERN,ItemType.HELMET,Rarity.UNCOMMON,0,0,100,100,null,false,false,null),
+
     SKYBLOCK_MENU("SKYBLOCK_MENU","§aSkyBlock Menu §7(Click)",Material.NETHER_STAR,null,null,0,0,false,false,Arrays.asList("§7View all of your SkyBlock progress,", "§7including your Skills, Collections,", "§7Recipes, and more!", "", "§eClick to open!"));
 
     private final String id;
@@ -32,10 +35,30 @@ public enum CustomItemID {
     private final Rarity rarity;
     private final int damage;
     private final int magicDamage;
+    private final int health;
+    private final int defense;
+    private final Color color;
     private final boolean isEnchanted;
     private final boolean isCombinableAnvil;
     private final List<String> description;
     private static final Map<String, CustomItemID> BY_ID = Maps.newHashMap();
+    //Armor
+    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage, int magicDamage, int health, int defense, Color color, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
+        this.id = id;
+        this.name = name;
+        this.material = material;
+        this.itemType = itemType;
+        this.rarity = rarity;
+        this.damage = damage;
+        this.magicDamage = magicDamage;
+        this.health = health;
+        this.defense = defense;
+        this.color = color;
+        this.isEnchanted = isEnchanted;
+        this.isCombinableAnvil = isCombinableAnvil;
+        this.description = description;
+    }
+    //Weapons
     CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage, int magicDamage, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
         this.id = id;
         this.name = name;
@@ -44,19 +67,14 @@ public enum CustomItemID {
         this.rarity = rarity;
         this.damage = damage;
         this.magicDamage = magicDamage;
+        this.health = 0;
+        this.defense = 0;
+        this.color = null;
         this.isEnchanted = isEnchanted;
         this.isCombinableAnvil = isCombinableAnvil;
         this.description = description;
     }
-//    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage, int magicDamage){
-//        this.id = id;
-//        this.name = name;
-//        this.material = material;
-//        this.itemType = itemType;
-//        this.rarity = rarity;
-//        this.damage = damage;
-//        this.magicDamage = magicDamage;
-//    }
+
     static{
         CustomItemID[] var0;
         for(CustomItemID customItemID : var0 = values()) {
@@ -84,6 +102,15 @@ public enum CustomItemID {
     }
     public int getMagicDamage() {
         return magicDamage;
+    }
+    public int getHealth() {
+        return health;
+    }
+    public int getDefense() {
+        return defense;
+    }
+    public Color getColor() {
+        return color;
     }
     public boolean getIsEnchanted() {
         return isEnchanted;
@@ -117,6 +144,15 @@ public enum CustomItemID {
     }
     public static int getMagicDamageByID(String id) {
         return getCustomItemID(id)==null?0:getCustomItemID(id).getMagicDamage();
+    }
+    public static int getHealthByID(String id) {
+        return getCustomItemID(id)==null?0:getCustomItemID(id).getHealth();
+    }
+    public static int getDefenseByID(String id) {
+        return getCustomItemID(id)==null?0:getCustomItemID(id).getDefense();
+    }
+    public static Color getColorByID(String id) {
+        return getCustomItemID(id)==null?null:getCustomItemID(id).getColor();
     }
     public static boolean getIsEnchantedByID(String id) {
         return getCustomItemID(id)==null?false:getCustomItemID(id).getIsEnchanted();

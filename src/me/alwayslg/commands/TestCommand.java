@@ -1,9 +1,12 @@
 package me.alwayslg.commands;
 
+import com.connorlinfoot.actionbarapi.ActionBarAPI;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.custommobs.customentities.CustomEntityWither;
 import me.alwayslg.custommobs.customentities.CustomEntityZombie;
 import me.alwayslg.custommobs.customentities.EntityTypes;
+import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.customplayers.CustomPlayerManager;
 import net.minecraft.server.v1_8_R3.Entity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -20,6 +23,7 @@ public class TestCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(p.getUniqueId());
             Location loc = p.getLocation();
             World world = loc.getWorld();
             int mode = 1;
@@ -41,12 +45,16 @@ public class TestCommand implements CommandExecutor {
             }else if(mode==3){
 //                sender.sendMessage(customEntityWither.getGoalTarget().getBukkitEntity().getName());
             }else if(mode==4){
-
+                ActionBarAPI.sendActionBar(p, "Hello World!");
             }else if(mode==5){
                 ItemStack item = p.getItemInHand();
                 CustomItem customItem = new CustomItem(item);
                 customItem.setHotPotatoCount(customItem.getHotPotatoCount()+1);
                 p.setItemInHand(customItem);
+            }else if(mode==6){
+                ActionBarAPI.sendActionBar(p, "I hate niggerWorld!", 10000);
+            }else if(mode==7){
+                customPlayer.getCustomActionBar().addInterrupt("Hello World! I hate niggers for 1 seonc", 1);
             }
         }
         return true;

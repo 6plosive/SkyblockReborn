@@ -213,26 +213,17 @@ public class CustomItem extends ItemStack{
             setName(getName());
         }
     }
-    private void setLore(List<String> lore) {
+    void setLore(List<String> lore) {
     //        this.lore = lore;
         ItemMeta tempItemMeta = getItemMeta();
         tempItemMeta.setLore(lore);
         setItemMeta(tempItemMeta);
     }
-    private void updateLore(){
+
+    void updateLore() {
         List<String> tempLore = new ArrayList<>();
         if(getIsCombinableAnvil()){
             tempLore.add("§7§8Combinable in Anvil");
-            tempLore.add(" ");
-        }
-        if(getDamage() != 0 || getHotPotatoCount() != 0){
-            int hotPotatoDamage = getHotPotatoCount()*2;
-            if(hotPotatoDamage!=0){
-                int totalDamage = getDamage();
-                tempLore.add(String.format("§7Damage: §c+%d §e(+%d)",totalDamage, hotPotatoDamage));
-            }else {
-                tempLore.add(String.format("§7Damage: §c+%d", getDamage()));
-            }
             tempLore.add(" ");
         }
         if(getDescription() != null){
@@ -254,6 +245,7 @@ public class CustomItem extends ItemStack{
         }
         setLore(tempLore);
     }
+
     public void setUUID(UUID uuid){
 //        this.uuid = uuid;
         setNBTTags("uuid",new NBTTagString(uuid.toString()));
@@ -270,10 +262,9 @@ public class CustomItem extends ItemStack{
         setNBTTags("hot_potato_count",new NBTTagInt(hotPotatoCount));
         updateLore();
     }
-    public int getDamage(){
-//        return getDamageByID(getID());
-        return getDamageByID(getID()) + getHotPotatoCount()*2;
-    }
+//    public int getDamage(){
+//        return getDamageByID(getID()) + getHotPotatoCount()*2;
+//    }
     public Rarity getRarity(){
         return getRarityByID(getID());
     }
@@ -286,9 +277,9 @@ public class CustomItem extends ItemStack{
     public Material getMaterial(){
         return getMaterialByID(getID());
     }
-    public int getMagicDamage(){
-        return getMagicDamageByID(getID());
-    }
+//    public int getMagicDamage(){
+//        return getMagicDamageByID(getID());
+//    }
     public boolean getIsEnchanted(){
         return getIsEnchantedByID(getID());
     }

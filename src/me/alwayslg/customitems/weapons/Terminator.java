@@ -4,6 +4,7 @@ import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +18,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import static me.alwayslg.customitems.CustomItemID.TERMINATOR;
 import static me.alwayslg.util.Utilities.playerWarn;
 
-public class Terminator extends CustomItem implements Listener {
+public class Terminator extends CustomWeapon implements Listener {
 
     public Terminator() {
         super(CustomItemID.TERMINATOR);
@@ -30,8 +31,8 @@ public class Terminator extends CustomItem implements Listener {
         if (item == null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
-        if (!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if (!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if ((event.getAction().toString().contains("RIGHT") || event.getAction().toString().contains("LEFT")) && customItem.getID().equals(TERMINATOR.getID())) {
             event.setCancelled(true);
             // Check for cooldown

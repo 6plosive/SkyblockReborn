@@ -3,6 +3,7 @@ package me.alwayslg.customitems.weapons;
 import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import me.alwayslg.util.Utilities;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -16,7 +17,7 @@ import static me.alwayslg.customitems.CustomItemID.GIANTS_SWORD;
 import static me.alwayslg.custommobs.DamageHandler.dealMagicDamageNearbyEntities;
 import static me.alwayslg.util.Utilities.playerWarn;
 
-public class GiantsSword extends CustomItem implements Listener{
+public class GiantsSword extends CustomWeapon implements Listener{
     public GiantsSword(){
 //        setMaterial(Material.BOW);
 //        setRarity(Rarity.EPIC);
@@ -33,8 +34,8 @@ public class GiantsSword extends CustomItem implements Listener{
         if(item==null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
         if(meta==null) return;
-        if(!isCustomItem(item)) return;
-        CustomItem customItem = new CustomItem(item);
+        if(!isCustomWeapon(item)) return;
+        CustomWeapon customItem = new CustomWeapon(item);
         if(event.getAction().toString().contains("RIGHT") && customItem.getID().equals(GIANTS_SWORD.getID())) {
 //            event.setCancelled(true);
             //z` Check for cooldown
