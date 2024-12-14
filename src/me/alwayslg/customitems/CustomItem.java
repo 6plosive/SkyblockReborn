@@ -193,7 +193,7 @@ public class CustomItem extends ItemStack{
     public String getID(){
         return getStringNBTTags("id");
     }
-    private void setID(CustomItemID id){
+    void setID(CustomItemID id){
         setNBTTags("id",new NBTTagString(id.getID()));
         setName(id.getName());
         updateName();

@@ -9,15 +9,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class CustomActionBar {
-    private static CustomPlayer customPlayer;
-    private static InterruptMessage interruptMessage;
+    private final CustomPlayer customPlayer;
+    private InterruptMessage interruptMessage;
     public CustomActionBar(CustomPlayer customPlayer) {
-        CustomActionBar.customPlayer = customPlayer;
+        this.customPlayer = customPlayer;
 //        customPlayer.getStatsManager().getHealth();
 //        customPlayer.getStatsManager().getMaxHealth();
         // main bukkit scheduler loop
         Bukkit.getScheduler().runTaskTimer(SkyblockReborn.getInstance(), () -> {
 //            sendActionBar("");
+            customPlayer.getStatsManager().updateMaxHealth();
             if(interruptMessage==null){
                 String message = String.format("§c%s/%s❤", Utilities.numberFormatComma(customPlayer.getStatsManager().getHealth()), Utilities.numberFormatComma(customPlayer.getStatsManager().getMaxHealth()));
                 sendActionBar(message);

@@ -24,7 +24,10 @@ public enum CustomItemID {
     SIGMA_SKIBIDI_SWORD("SIGMA_SKIBIDI_SWORD","Sigma Skibidi Sword",Material.GOLD_SWORD,ItemType.SWORD,Rarity.ULTIMATE,99999999,0,false,false,null),
     HOT_POTATO_BOOK("HOT_POTATO_BOOK","Hot Potato Book", Material.BOOK, null, Rarity.EPIC, 0,0,true,true,Arrays.asList("§7When applied to armor, grants §a+2❈", "§aDefense §7and §c+4❤ Health§7.", "", "§7When applied to weapons, grants", "§7§c+2❁ Strength §7and §c+2❁ Damage§7.", "", "§7This can be applied to an item up to", "§7§a10 §7times!")),
 
-    LAPIS_ARMOR_HELMET("LAPIS_ARMOR_HELMET","Lapis Armor Helmet",Material.SEA_LANTERN,ItemType.HELMET,Rarity.UNCOMMON,0,0,100,100,null,false,false,null),
+    LAPIS_ARMOR_HELMET("LAPIS_ARMOR_HELMET","Lapis Armor Helmet",Material.SEA_LANTERN,ItemType.HELMET,Rarity.UNCOMMON,100,100,null,false,false,null),
+    LAPIS_ARMOR_CHESTPLATE("LAPIS_ARMOR_CHESTPLATE","Lapis Armor Chestplate",Material.LEATHER_CHESTPLATE,ItemType.CHESTPLATE,Rarity.UNCOMMON,100,100,Color.fromRGB(255),false,false,null),
+    LAPIS_ARMOR_LEGGINGS("LAPIS_ARMOR_LEGGINGS","Lapis Armor Leggings",Material.LEATHER_LEGGINGS,ItemType.LEGGINGS,Rarity.UNCOMMON,100,100,Color.fromRGB(255),false,false,null),
+    LAPIS_ARMOR_BOOTS("LAPIS_ARMOR_BOOTS","Lapis Armor Boots",Material.LEATHER_BOOTS,ItemType.BOOTS,Rarity.UNCOMMON,100,100,Color.fromRGB(255),false,false,null),
 
     SKYBLOCK_MENU("SKYBLOCK_MENU","§aSkyBlock Menu §7(Click)",Material.NETHER_STAR,null,null,0,0,false,false,Arrays.asList("§7View all of your SkyBlock progress,", "§7including your Skills, Collections,", "§7Recipes, and more!", "", "§eClick to open!"));
 
@@ -43,14 +46,14 @@ public enum CustomItemID {
     private final List<String> description;
     private static final Map<String, CustomItemID> BY_ID = Maps.newHashMap();
     //Armor
-    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int damage, int magicDamage, int health, int defense, Color color, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
+    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int health, int defense, Color color, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
         this.id = id;
         this.name = name;
         this.material = material;
         this.itemType = itemType;
         this.rarity = rarity;
-        this.damage = damage;
-        this.magicDamage = magicDamage;
+        this.damage = 0;
+        this.magicDamage = 0;
         this.health = health;
         this.defense = defense;
         this.color = color;

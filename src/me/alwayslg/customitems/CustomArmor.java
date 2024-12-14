@@ -1,7 +1,10 @@
 package me.alwayslg.customitems;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,7 @@ import static me.alwayslg.customitems.CustomItemID.*;
 public class CustomArmor extends CustomItem {
     public CustomArmor(CustomItemID id) {
         super(id);
+        setColor(getColor());
     }
     public CustomArmor(ItemStack customItem) {
         super(customItem);
@@ -54,6 +58,16 @@ public class CustomArmor extends CustomItem {
     }
     public int getHealth() {
         return getHealthByID(getID()) + getHotPotatoCount() * 4;
+    }
+    public Color getColor(){
+        return getColorByID(getID());
+    }
+    void setColor(Color color){
+        if(color==null)return;
+        ItemMeta meta = getItemMeta();
+        LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) meta;
+        leatherArmorMeta.setColor(color);
+        setItemMeta(leatherArmorMeta);
     }
 
     public static boolean isArmor(ItemStack item) {
