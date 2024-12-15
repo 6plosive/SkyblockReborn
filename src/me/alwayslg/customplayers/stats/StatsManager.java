@@ -7,10 +7,6 @@ import static me.alwayslg.customitems.CustomArmor.*;
 
 public class StatsManager {
     CustomPlayer customPlayer;
-    private static final int defaultCritChance = 30;
-    private static final int defaultCritDamage = 50;
-    private static final int defaultHealth = 100;
-    private static final int defaultMaxHealth = 100;
 
     private int critChance;
     private int critDamage;
@@ -40,25 +36,20 @@ public class StatsManager {
 
     public void updateMaxHealth(){
         // get player's armor health
-        int armorHealth = 0;
-        if(isHelmet(customPlayer.getPlayer().getInventory().getHelmet())){
-            CustomArmor helmet = new CustomArmor(customPlayer.getPlayer().getInventory().getHelmet());
-            armorHealth += helmet.getHealth();
-        }
-        if(isChestplate(customPlayer.getPlayer().getInventory().getChestplate())){
-            CustomArmor chestplate = new CustomArmor(customPlayer.getPlayer().getInventory().getChestplate());
-            armorHealth += chestplate.getHealth();
-        }
-        if(isLeggings(customPlayer.getPlayer().getInventory().getLeggings())){
-            CustomArmor leggings = new CustomArmor(customPlayer.getPlayer().getInventory().getLeggings());
-            armorHealth += leggings.getHealth();
-        }
-        if(isBoots(customPlayer.getPlayer().getInventory().getBoots())){
-            CustomArmor boots = new CustomArmor(customPlayer.getPlayer().getInventory().getBoots());
-            armorHealth += boots.getHealth();
-        }
+        int armorHealth = Health.getArmorHealth(customPlayer);
         // update max health
-        maxHealth = defaultMaxHealth + armorHealth;
+        maxHealth = Health.getDefaultMaxHealth() + armorHealth;
+    }
+
+    // Run the below method to heal the player
+    // Should only be run once per 2 seconds
+    public void healPlayer(){
+        int healthGained = Health.calculateHeal(maxHealth);
+        if(health + healthGained > maxHealth){
+            health = maxHealth;
+        }else {
+            health += healthGained;
+        }
     }
 
 }

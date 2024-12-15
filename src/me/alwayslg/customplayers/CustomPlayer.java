@@ -132,6 +132,7 @@ public class CustomPlayer implements Listener {
     }
     @EventHandler
     public void onHungerDeplete(FoodLevelChangeEvent e) {
+        e.setFoodLevel(20);
         e.setCancelled(true);
     }
 

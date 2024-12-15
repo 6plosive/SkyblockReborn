@@ -21,6 +21,7 @@ public class CustomPlayerManager {
     private static HashMap<UUID, CustomPlayer> customPlayers = new HashMap<>();
     public CustomPlayerManager(){
         BukkitScheduler scheduler = Bukkit.getScheduler();
+        //Upload players purse to db every 1 minute
         scheduler.runTaskTimerAsynchronously(SkyblockReborn.getInstance(), () -> {
             try{
                 Class.forName("org.sqlite.JDBC");
@@ -36,6 +37,12 @@ public class CustomPlayerManager {
                 throw new RuntimeException(e);
             }
         }, 20L*1L /*<-- the initial delay */, 60L * 20L /*<-- the interval */);
+        //Heal players every 2 seconds
+        scheduler.runTaskTimer(SkyblockReborn.getInstance(), () -> {
+            for(CustomPlayer customPlayer : customPlayers.values()){
+                customPlayer.getStatsManager().healPlayer();
+            }
+        }, 20L*1L /*<-- the initial delay */, 2L * 20L /*<-- the interval */);
     }
     public static void addPlayer(CustomPlayer player){
         customPlayers.put(player.getPlayer().getUniqueId(), player);

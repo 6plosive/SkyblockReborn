@@ -3,6 +3,7 @@ package me.alwayslg.ui;
 import me.alwayslg.SkyblockReborn;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
+import me.alwayslg.customitems.CustomWeapon;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -16,9 +17,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static me.alwayslg.customitems.CustomItem.isCustomItem;
 import static me.alwayslg.customitems.CustomItemID.isWeapon;
@@ -30,9 +29,11 @@ public class AnvilUI implements Listener {
     private static final List<Integer> anvilRightSlots = Arrays.asList(14,15,24);
     private static final List<Integer> anvilBackgroundSlots = Arrays.asList(0,1,2,3,4,5,6,7,8,9,10,16,17,18,19,21,23,25,26,27,28,30,31,32,34,35,36,37,38,39,40,41,42,43,44);
     private static final List<Integer> anvilBottomBarSlots = Arrays.asList(45,46,47,48,50,51,52,53);
-    private static Inventory inventory;
+//    private static Inventory inventory;
+    private static final Map<UUID, Inventory> playerInventories = new HashMap<>();
+
     public static void open(Player player){
-        inventory = Bukkit.createInventory(null,54,"Anvil");
+        Inventory inventory = Bukkit.createInventory(null,54,"Anvil");
 
         for(int anvilLeftSlot:anvilLeftSlots){
             inventory.setItem(anvilLeftSlot, ANVIL_LEFT_RED.getItem());
@@ -50,10 +51,12 @@ public class AnvilUI implements Listener {
         inventory.setItem(22, ANVIL_BUTTON_OFF.getItem());
         inventory.setItem(49,CLOSE_BARRIER.getItem());
 
+        playerInventories.put(player.getUniqueId(), inventory);
         player.openInventory(inventory);
     }
 
     private void updateUI(Player player){
+        Inventory inventory = playerInventories.get(player.getUniqueId());
         Bukkit.getScheduler().runTaskLater(SkyblockReborn.getPlugin(SkyblockReborn.class), ()->{
             boolean leftReady = false;
             if(inventory.getItem(29)!=null){
@@ -98,7 +101,7 @@ public class AnvilUI implements Listener {
                         //if left item has under 10 hot potato count
                         if(leftCustomItem.getHotPotatoCount()<10){
                             //Show preview on result slot
-                            CustomItem resultItemPreview = new CustomItem(leftCustomItem);
+                            CustomWeapon resultItemPreview = new CustomWeapon(leftCustomItem);
                             resultItemPreview.setHotPotatoCount(resultItemPreview.getHotPotatoCount()+1);
                             ItemMeta tempItemMeta = resultItemPreview.getItemMeta();
                             List<String> tempLore = tempItemMeta.getLore();
@@ -136,6 +139,7 @@ public class AnvilUI implements Listener {
     }
 
     private void attemptCombineItems(Player player){
+        Inventory inventory = playerInventories.get(player.getUniqueId());
         Bukkit.getScheduler().runTaskLater(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
             //Check if left & right input is custom item
             if(!isCustomItem(inventory.getItem(29)) || !isCustomItem(inventory.getItem(33)))return;
@@ -152,7 +156,7 @@ public class AnvilUI implements Listener {
                     //if left item has under 10 hot potato count
                     if(leftCustomItem.getHotPotatoCount()<10){
                         //add hot potato count
-                        CustomItem resultItem = new CustomItem(leftCustomItem);
+                        CustomWeapon resultItem = new CustomWeapon(leftCustomItem);
                         resultItem.setHotPotatoCount(resultItem.getHotPotatoCount()+1);
                         //remove left and right and preview item
                         inventory.setItem(29, null);
@@ -183,6 +187,7 @@ public class AnvilUI implements Listener {
         }, 1L);
     }
     private void safeReset(Player player){
+        Inventory inventory = playerInventories.get(player.getUniqueId());
         Bukkit.getScheduler().runTaskLater(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
             if(inventory.getItem(13)==null) {
                 inventory.setItem(13, ANVIL_RESULT_BARRIER.getItem());
@@ -193,10 +198,11 @@ public class AnvilUI implements Listener {
     }
 
     private void safeClose(Player player){
+        Inventory inventory = playerInventories.get(player.getUniqueId());
         Bukkit.getScheduler().runTaskLater(SkyblockReborn.getPlugin(SkyblockReborn.class), () -> {
             boolean shouldClose = true;
             // check if result item is claimable
-            if(inventory.getItem(13)!=null && Objects.equals(inventory.getItem(13), ANVIL_RESULT_BARRIER.getItem())){
+            if(inventory.getItem(13)!=null && !Objects.equals(inventory.getItem(13), ANVIL_RESULT_BARRIER.getItem())){
                 // check if anvil is in claim mode
                 if(Objects.equals(inventory.getItem(22), ANVIL_BUTTON_CLAIM.getItem())){
                     // check if player has empty slot
@@ -241,6 +247,7 @@ public class AnvilUI implements Listener {
 
             if(shouldClose){
                 player.closeInventory();
+                playerInventories.remove(player.getUniqueId());
             }else{
                 //make player reopen the UI
                 player.openInventory(inventory);
