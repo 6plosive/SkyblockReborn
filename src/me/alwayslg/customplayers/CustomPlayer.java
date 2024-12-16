@@ -5,6 +5,7 @@ import me.alwayslg.customplayers.stats.StatsManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -134,6 +135,12 @@ public class CustomPlayer implements Listener {
     public void onHungerDeplete(FoodLevelChangeEvent e) {
         e.setFoodLevel(20);
         e.setCancelled(true);
+    }
+    @EventHandler
+    public void noRegen(EntityRegainHealthEvent e) {
+        if (e.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED)) {
+            e.setCancelled(true);
+        }
     }
 
 }

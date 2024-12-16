@@ -1,9 +1,6 @@
 package me.alwayslg.customplayers.stats;
 
-import me.alwayslg.customitems.CustomArmor;
 import me.alwayslg.customplayers.CustomPlayer;
-
-import static me.alwayslg.customitems.CustomArmor.*;
 
 public class StatsManager {
     CustomPlayer customPlayer;
@@ -18,7 +15,7 @@ public class StatsManager {
         // Default stats
         this.critChance = 30;
         this.critDamage = 50;
-        this.health = 100;
+        this.health = 500;
         this.maxHealth = 100;
     }
     public int getCritChance(){
@@ -34,16 +31,27 @@ public class StatsManager {
         return maxHealth;
     }
 
+    public void updateHeart(){
+        // Update real health bar (heart) display
+        Health.updateHeart(customPlayer, health, maxHealth);
+    }
+
     public void updateMaxHealth(){
         // get player's armor health
         int armorHealth = Health.getArmorHealth(customPlayer);
         // update max health
         maxHealth = Health.getDefaultMaxHealth() + armorHealth;
+        // check if health is greater than max health
+        if(health > maxHealth){
+            health = maxHealth;
+        }
+        // Update real health bar display
+        customPlayer.getPlayer().setMaxHealth(Health.translateHpToHearts(maxHealth));
     }
 
     // Run the below method to heal the player
     // Should only be run once per 2 seconds
-    public void healPlayer(){
+    public void healPlayerNaturally(){
         int healthGained = Health.calculateHeal(maxHealth);
         if(health + healthGained > maxHealth){
             health = maxHealth;
@@ -51,5 +59,6 @@ public class StatsManager {
             health += healthGained;
         }
     }
+
 
 }

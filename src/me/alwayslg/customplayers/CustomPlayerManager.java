@@ -1,11 +1,7 @@
 package me.alwayslg.customplayers;
 
 import me.alwayslg.SkyblockReborn;
-import me.alwayslg.custommobs.CustomMob;
-import me.alwayslg.custommobs.HealthBar;
-import me.alwayslg.custommobs.HealthBarHandler;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import java.sql.Connection;
@@ -40,7 +36,7 @@ public class CustomPlayerManager {
         //Heal players every 2 seconds
         scheduler.runTaskTimer(SkyblockReborn.getInstance(), () -> {
             for(CustomPlayer customPlayer : customPlayers.values()){
-                customPlayer.getStatsManager().healPlayer();
+                customPlayer.getStatsManager().healPlayerNaturally();
             }
         }, 20L*1L /*<-- the initial delay */, 2L * 20L /*<-- the interval */);
     }

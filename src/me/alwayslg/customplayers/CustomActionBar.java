@@ -18,6 +18,7 @@ public class CustomActionBar {
         // main bukkit scheduler loop
         Bukkit.getScheduler().runTaskTimer(SkyblockReborn.getInstance(), () -> {
 //            sendActionBar("");
+            customPlayer.getStatsManager().updateHeart();
             customPlayer.getStatsManager().updateMaxHealth();
             if(interruptMessage==null){
                 String message = String.format("§c%s/%s❤", Utilities.numberFormatComma(customPlayer.getStatsManager().getHealth()), Utilities.numberFormatComma(customPlayer.getStatsManager().getMaxHealth()));
