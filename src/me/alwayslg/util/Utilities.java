@@ -172,6 +172,13 @@ public class Utilities {
 //            return '"' + uuid.toString() + '"';
 //        }
     }
+    public static void broadcastMessageExcept(String message, Player player){
+        for(Player p : Bukkit.getOnlinePlayers()){
+            if(p!=player){
+                p.sendMessage(message);
+            }
+        }
+    }
     public static ItemStack setNBTTags(ItemStack item, String s, NBTBase nbtBase){
         net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(item);
         NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();

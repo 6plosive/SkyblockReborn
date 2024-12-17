@@ -10,6 +10,7 @@ import me.alwayslg.custommobs.HealthBarHandler;
 import me.alwayslg.customplayers.ChatListener;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
+import me.alwayslg.customplayers.PlayerDamageHandler;
 import me.alwayslg.listeners.DingOnHit;
 import me.alwayslg.ui.AnvilUI;
 import me.alwayslg.ui.AdminItemUI;
@@ -60,6 +61,7 @@ public class SkyblockReborn extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CustomPlayer(), this);
         getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new HelmetBlockEquip(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDamageHandler(), this);
         getServer().getPluginManager().registerEvents(new AnvilUI(), this);
         getServer().getPluginManager().registerEvents(new SkyblockMenuUI(), this);
 

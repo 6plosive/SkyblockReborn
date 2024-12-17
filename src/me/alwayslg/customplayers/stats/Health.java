@@ -70,6 +70,9 @@ public class Health {
     public static void updateHeart(CustomPlayer customPlayer, double health, double maxHealth){
         double maxHealthInHearts = translateHpToHearts((int) maxHealth);
         int healthInHearts = (int) (health * maxHealthInHearts / maxHealth);
+        if(healthInHearts<1){
+            healthInHearts = 1;
+        }
         customPlayer.getPlayer().setHealth(healthInHearts);
     }
 }

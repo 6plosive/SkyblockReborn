@@ -75,7 +75,7 @@ public class CustomMob {
         setHealth(getFullHealth());
 //        entity.setMaximumNoDamageTicks(10);
 //        entity.setMetadata("Custom", new FixedMetadataValue(SkyblockReborn.getPlugin(SkyblockReborn.class),true));
-        DamageHandler.addMob(this);
+        CustomMobManager.addMob(this);
 
 
         healthBar.setText(String.format("§8[§7Lv%d§8] §c%s §a%d§f/§a%d§c❤",getLevel(),getName(),(int)getHealth(),getFullHealth()));
@@ -91,17 +91,23 @@ public class CustomMob {
 //    public double getHealth(){
 //        return entity.getHealth();
 //    }
+public String getName() {
+    return customMobID.getName();
+}
     public double getHealth(){
         return health;
     }
     public int getFullHealth() {
         return customMobID.getFullHealth();
     }
-    public String getName() {
-        return customMobID.getName();
+    public int getDamage() {
+        return customMobID.getDamage();
     }
     public Class<? extends Entity> getEntityClass(){
         return customMobID.getEntityClass();
+    }
+    public CustomMobID getCustomMobID() {
+        return customMobID;
     }
     public LivingEntity getEntity() {
         return entity;

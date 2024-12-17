@@ -1,6 +1,9 @@
 package me.alwayslg.customplayers.stats;
 
+import me.alwayslg.custommobs.CustomMobID;
 import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.util.Utilities;
+import org.bukkit.Bukkit;
 
 public class StatsManager {
     CustomPlayer customPlayer;
@@ -12,11 +15,12 @@ public class StatsManager {
 
     public StatsManager(CustomPlayer customPlayer){
         this.customPlayer = customPlayer;
+        // get player spawn max health
+        updateMaxHealth();
         // Default stats
-        this.critChance = 30;
-        this.critDamage = 50;
-        this.health = 500;
-        this.maxHealth = 100;
+        this.critChance = CritChance.getDefaultCritChance();
+        this.critDamage = CritDamage.getDefaultCritDamage();
+        this.health = maxHealth;
     }
     public int getCritChance(){
         return critChance;
@@ -29,6 +33,11 @@ public class StatsManager {
     }
     public int getMaxHealth(){
         return maxHealth;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
+        updateHeart();
     }
 
     public void updateHeart(){
@@ -47,6 +56,22 @@ public class StatsManager {
         }
         // Update real health bar display
         customPlayer.getPlayer().setMaxHealth(Health.translateHpToHearts(maxHealth));
+    }
+
+    public void dealDamage(int damage, CustomMobID damagerID){
+        // Deal damage to the player
+        health -= damage;
+        // If health is less than 0, player died
+        if(health <= 0){
+            // Broadcast death message
+            customPlayer.getPlayer().sendMessage(String.format(" §c☠ §7You were killed by %s.",damagerID.getName()));
+            String playerNameColor = customPlayer.getRank().getChatPrefix().substring(0,2);
+            Utilities.broadcastMessageExcept(String.format(" §c☠ %s%s §7was killed by %s.",playerNameColor,customPlayer.getPlayer().getName(),damagerID.getName()), customPlayer.getPlayer());
+            // Respawn player at hub portal location
+            customPlayer.respawn();
+        }
+        // Update real health bar (heart) display
+        Health.updateHeart(customPlayer, health, maxHealth);
     }
 
     // Run the below method to heal the player

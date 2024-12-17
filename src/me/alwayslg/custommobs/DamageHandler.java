@@ -6,30 +6,36 @@ import me.alwayslg.customitems.ItemType;
 import me.alwayslg.customplayers.CustomPlayer;
 import me.alwayslg.customplayers.CustomPlayerManager;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
+import net.minecraft.server.v1_8_R3.EntityInsentient;
+import net.minecraft.server.v1_8_R3.EntityLiving;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 
 import java.util.*;
 
 import static me.alwayslg.customitems.CustomItem.*;
 import static me.alwayslg.customitems.CustomWeapon.isCustomWeapon;
+import static me.alwayslg.custommobs.CustomMobManager.*;
 import static me.alwayslg.listeners.DingOnHit.playDing;
 import static me.alwayslg.util.Utilities.*;
 
 public class DamageHandler implements Listener {
-    private static HashMap<UUID,CustomMob> customMobs = new HashMap<>();
+//    private static HashMap<UUID,CustomMob> customMobs = new HashMap<>();
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         Entity damagedEntity = event.getEntity();
 //        Bukkit.broadcastMessage("Damaged UUID: "+damagedentity.getUniqueId());
-        if(customMobs.get(damagedEntity.getUniqueId())!=null){
-            CustomMob customMob = customMobs.get(damagedEntity.getUniqueId());
+        if(getCustomMob(damagedEntity.getUniqueId())!=null){
+            CustomMob customMob = getCustomMob(damagedEntity.getUniqueId());
 
 //            Bukkit.broadcastMessage("Damager type:"+event.getDamager().getType());
 //            Bukkit.broadcastMessage("Damaged nodmgtick:"+customMob.getEntity().getNoDamageTicks()+":"+customMob.getEntity().getMaximumNoDamageTicks());
@@ -68,7 +74,7 @@ public class DamageHandler implements Listener {
     // x,y,z is the radius of the collision box
     public static List<CustomMob> getNearbyCustomMobs(Location location, double x, double y, double z){
         List<CustomMob> nearbyCustomMobs = new ArrayList<>();
-        for (CustomMob customMob : customMobs.values()) {
+        for (CustomMob customMob : getCustomMobValues()) {
 //            Location mobLocation = customMob.getEntity().getLocation();
 //            if (location.distanceSquared(mobLocation) <= (x * x + y * y + z * z)) {
 //                nearbyCustomMobs.add(customMob);
@@ -108,7 +114,7 @@ public class DamageHandler implements Listener {
 
     public static List<CustomMob> getCustomMobsAtLocation(Location location){
         List<CustomMob> collisions = new ArrayList<>();
-        for(CustomMob customMob:customMobs.values()){
+        for(CustomMob customMob:getCustomMobValues()){
             AxisAlignedBB boundingBox = getBoundingBox(customMob.getEntity());
             if(checkCollisionLocationBoundingBox(location,boundingBox)){
                 collisions.add(customMob);
@@ -125,9 +131,17 @@ public class DamageHandler implements Listener {
         }
     }
 
+
+    public static void setMobTarget(LivingEntity mob, Player target) {
+        EntityInsentient nmsMob = (EntityInsentient) ((CraftLivingEntity) mob).getHandle();
+        EntityLiving nmsTarget = (EntityLiving) ((CraftLivingEntity) target).getHandle();
+        nmsMob.setGoalTarget(nmsTarget, EntityTargetEvent.TargetReason.CUSTOM, false);
+    }
+
     private static void dealCustomDamage(Player damager, CustomMob target){
         // Turn mob to red effect
         target.getEntity().damage(0);
+        setMobTarget(target.getEntity(),damager);
         if(isCustomWeapon(damager.getInventory().getItemInHand())) {
             CustomWeapon itemInHand = new CustomWeapon(damager.getInventory().getItemInHand());
             CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(damager.getUniqueId());
@@ -157,6 +171,7 @@ public class DamageHandler implements Listener {
     private static void dealMagicDamage(Player damager, CustomMob target){
         // Turn mob to red effect
         target.getEntity().damage(0);
+        setMobTarget(target.getEntity(),damager);
         if(isCustomWeapon(damager.getInventory().getItemInHand())) {
             CustomWeapon itemInHand = new CustomWeapon(damager.getInventory().getItemInHand());
             double damage = itemInHand.getMagicDamage();
@@ -226,16 +241,16 @@ public class DamageHandler implements Listener {
         target.getHealthBar().setText(String.format("§8[§7Lv%d§8] §c%s §%c%d§f/§a%d§c❤",target.getLevel(),target.getName(),healthColor,remainingHealth,target.getFullHealth()));
     }
 
-    public static void addMob(CustomMob mob){
-        customMobs.put(mob.getEntity().getUniqueId(), mob);
-    }
-    public static void removeMob(UUID deathEntityUUID){
-        if(customMobs.get(deathEntityUUID)!=null){
-            CustomMob customMob = customMobs.get(deathEntityUUID);
-            //Remove overhead display
-            HealthBarHandler.removeDisplay(customMob.getHealthBar());
-            //Remove from map
-            customMobs.remove(deathEntityUUID);
-        }
-    }
+//    public static void addMob(CustomMob mob){
+//        customMobs.put(mob.getEntity().getUniqueId(), mob);
+//    }
+//    public static void removeMob(UUID deathEntityUUID){
+//        if(customMobs.get(deathEntityUUID)!=null){
+//            CustomMob customMob = customMobs.get(deathEntityUUID);
+//            //Remove overhead display
+//            HealthBarHandler.removeDisplay(customMob.getHealthBar());
+//            //Remove from map
+//            customMobs.remove(deathEntityUUID);
+//        }
+//    }
 }

@@ -18,13 +18,13 @@ public class CustomActionBar {
         // main bukkit scheduler loop
         Bukkit.getScheduler().runTaskTimer(SkyblockReborn.getInstance(), () -> {
 //            sendActionBar("");
-            customPlayer.getStatsManager().updateHeart();
             customPlayer.getStatsManager().updateMaxHealth();
+            customPlayer.getStatsManager().updateHeart();
             if(interruptMessage==null){
                 String message = String.format("§c%s/%s❤", Utilities.numberFormatComma(customPlayer.getStatsManager().getHealth()), Utilities.numberFormatComma(customPlayer.getStatsManager().getMaxHealth()));
                 sendActionBar(message);
             }
-        }, 20L*1L /*<-- the initial delay */, 20L /*<-- the interval */);
+        }, 20L*0L /*<-- the initial delay */, 20L /*<-- the interval */);
     }
 
     public void addInterrupt(String message, int second) {
