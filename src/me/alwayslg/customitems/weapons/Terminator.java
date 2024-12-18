@@ -5,6 +5,10 @@ import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import me.alwayslg.customitems.CustomWeapon;
+import me.alwayslg.custommobs.Damage;
+import me.alwayslg.custommobs.DamageHandler;
+import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.customplayers.CustomPlayerManager;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -41,6 +45,8 @@ public class Terminator extends CustomWeapon implements Listener {
                 return;
             }
 
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
+
             // Shoot 3 arrows in a fan pattern
             Location arrowLocation = player.getEyeLocation();
             Location arrow2Location = player.getEyeLocation();
@@ -52,9 +58,16 @@ public class Terminator extends CustomWeapon implements Listener {
             Arrow arrow2 = player.getWorld().spawnArrow(arrow2Location, arrow2Location.getDirection(), 4.0f, 1.0f);
             Arrow arrow3 = player.getWorld().spawnArrow(arrow3Location, arrow3Location.getDirection(), 4.0f, 1.0f);
 
-            arrow.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), customItem.getDamage()));
-            arrow2.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), customItem.getDamage()));
-            arrow3.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), customItem.getDamage()));
+            Damage arrowDamage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrow2Damage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrow3Damage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+
+            arrow.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), arrowDamage.finalDamage));
+            arrow2.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), arrow2Damage.finalDamage));
+            arrow3.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), arrow3Damage.finalDamage));
+            arrow.setMetadata("iscrit", new FixedMetadataValue(SkyblockReborn.getInstance(), arrowDamage.isCrit));
+            arrow2.setMetadata("iscrit", new FixedMetadataValue(SkyblockReborn.getInstance(), arrow2Damage.isCrit));
+            arrow3.setMetadata("iscrit", new FixedMetadataValue(SkyblockReborn.getInstance(), arrow3Damage.isCrit));
 
             arrow.setShooter(player);
             arrow2.setShooter(player);

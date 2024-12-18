@@ -101,6 +101,7 @@ public class CustomPlayer implements Listener {
         this.statsManager.setHealth(this.statsManager.getMaxHealth());
         Location spawnLocation = new Location(player.getWorld(), -2.5,70,-84.5,180,0);
         this.player.teleport(spawnLocation);
+        this.player.setFallDistance(0);
         this.player.setVelocity(new Vector(0,0,0)); //doesnt work
     }
 

@@ -2,6 +2,7 @@ package me.alwayslg.customplayers;
 
 import me.alwayslg.custommobs.CustomMob;
 import me.alwayslg.custommobs.CustomMobManager;
+import me.alwayslg.util.Utilities;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -24,6 +25,15 @@ public class PlayerDamageHandler implements Listener {
 //                event.setCancelled(true);
                 double originalFallDamage = event.getDamage();
                 customPlayer.getStatsManager().dealFallDamage((int) originalFallDamage);
+                event.setDamage(0);
+            }else if(event.getCause() == EntityDamageEvent.DamageCause.VOID){
+                // Broadcast death message
+                customPlayer.getPlayer().sendMessage(" §c☠ §7You fell into the void.");
+                String playerNameColor = customPlayer.getRank().getChatPrefix().substring(0,2);
+                Utilities.broadcastMessageExcept(String.format(" §c☠ %s%s §7fell into the void.",playerNameColor,customPlayer.getPlayer().getName()), customPlayer.getPlayer());
+                // immediate death
+                customPlayer.respawn();
+
                 event.setDamage(0);
             }
         }

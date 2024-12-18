@@ -147,7 +147,8 @@ public class DamageHandler implements Listener {
             CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(damager.getUniqueId());
 
             double itemDamage = itemInHand.getDamage();
-            Damage damage = calculateDamage(itemDamage, customPlayer.getStatsManager().getCritChance(), customPlayer.getStatsManager().getCritDamage());
+            double itemStrength = itemInHand.getStrength();
+            Damage damage = calculateDamage(itemDamage, itemStrength, customPlayer.getStatsManager().getCritChance(), customPlayer.getStatsManager().getCritDamage());
             double health = target.getHealth();
 
             // If damage is final blow, remove mob from map & his overhead display
@@ -198,6 +199,7 @@ public class DamageHandler implements Listener {
             return;
         }
         double damage = arrow.getMetadata("damage").get(0).asInt();
+        boolean isCrit = arrow.getMetadata("iscrit").get(0).asBoolean();
         Player damager = null;
         if (arrow.getShooter() instanceof Player) {
             damager = (Player) arrow.getShooter();
@@ -215,21 +217,24 @@ public class DamageHandler implements Listener {
         // Play satisfying ding hit sound
         if(damager != null) playDing(damager);
         // Spawn damage indicator
-        DamageIndicator.spawn(target.getEntity(),(int)damage);
+        DamageIndicator.spawn(target.getEntity(),(int)damage,isCrit);
         // Only no tick for arrow damage cuz terminator shoots 3 arrows simutaneously
         // Remove no damage ticks completely making player damage it every tick
 //        target.getEntity().setNoDamageTicks(0);
         target.getEntity().setMaximumNoDamageTicks(0);
     }
 
-    private static Damage calculateDamage(double itemDamage, double critChance, double critDamage){
+    public static Damage calculateDamage(double weaponDamage, double weaponStrength, double playerCritChance, double playerCritDamage){
+        double finalDamage = 5+weaponDamage;
+        finalDamage += finalDamage * weaponStrength / 100;
+
         SplittableRandom random = new SplittableRandom();
         int randomNumber = random.nextInt(100); // Upper bound is exclusive which means 0-99
-        boolean isCrit = randomNumber<critChance; //if cc=70, 0-69=crit, 70-99=normal
+        boolean isCrit = randomNumber<playerCritChance; //if cc=70, 0-69=crit, 70-99=normal
         if(isCrit){
-            itemDamage += itemDamage * critDamage / 100;
+            finalDamage += finalDamage * playerCritDamage / 100;
         }
-        return new Damage(itemDamage, isCrit);
+        return new Damage(finalDamage, isCrit);
     }
 
     private static void updateHealthBar(CustomMob target){

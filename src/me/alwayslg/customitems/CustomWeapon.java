@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static me.alwayslg.customitems.CustomItemID.getDamageByID;
-import static me.alwayslg.customitems.CustomItemID.getMagicDamageByID;
+import static me.alwayslg.customitems.CustomItemID.*;
 import static me.alwayslg.customitems.ItemType.isWeapon;
 
 public class CustomWeapon extends CustomItem {
@@ -25,6 +24,8 @@ public class CustomWeapon extends CustomItem {
             tempLore.add("§7§8Combinable in Anvil");
             tempLore.add(" ");
         }
+        //Stats chunk
+        int tempLoreLength = tempLore.size();
         if(getDamage() != 0 || getHotPotatoCount() != 0){
             int hotPotatoDamage = getHotPotatoCount()*2;
             if(hotPotatoDamage!=0){
@@ -33,8 +34,19 @@ public class CustomWeapon extends CustomItem {
             }else {
                 tempLore.add(String.format("§7Damage: §c+%d", getDamage()));
             }
-            tempLore.add(" ");
         }
+        if(getStrength() != 0 || getHotPotatoCount() != 0){
+            int hotPotatoStrength = getHotPotatoCount()*2;
+            if(hotPotatoStrength!=0){
+                int totalStrength = getStrength();
+                tempLore.add(String.format("§7Strength: §c+%d §e(+%d)",totalStrength, hotPotatoStrength));
+            }else {
+                tempLore.add(String.format("§7Strength: §c+%d", getStrength()));
+            }
+        }
+        if(tempLore.size()>tempLoreLength) tempLore.add(" ");
+
+        //Description chunk
         if(getDescription() != null){
             tempLore.addAll(getDescription());
             tempLore.add(" ");
@@ -56,6 +68,9 @@ public class CustomWeapon extends CustomItem {
     }
     public int getDamage(){
         return getDamageByID(getID()) + getHotPotatoCount()*2;
+    }
+    public int getStrength(){
+        return getStrengthByID(getID()) + getHotPotatoCount()*2;
     }
     public int getMagicDamage(){
         return getMagicDamageByID(getID());

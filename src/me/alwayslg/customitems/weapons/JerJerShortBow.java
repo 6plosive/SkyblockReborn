@@ -5,6 +5,10 @@ import me.alwayslg.customitems.Cooldown;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import me.alwayslg.customitems.CustomWeapon;
+import me.alwayslg.custommobs.Damage;
+import me.alwayslg.custommobs.DamageHandler;
+import me.alwayslg.customplayers.CustomPlayer;
+import me.alwayslg.customplayers.CustomPlayerManager;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -40,9 +44,12 @@ public class JerJerShortBow extends CustomWeapon implements Listener {
                 return;
             }
             event.setCancelled(true);
+            CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
 
             Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
-            arrow.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),customItem.getDamage()));
+            Damage arrowDamage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            arrow.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),arrowDamage.finalDamage));
+            arrow.setMetadata("iscrit",new FixedMetadataValue(SkyblockReborn.getInstance(),arrowDamage.isCrit));
 
             arrow.setShooter(player);
 
