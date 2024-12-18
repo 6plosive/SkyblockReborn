@@ -12,8 +12,9 @@ public class CustomActionBar {
     private final CustomPlayer customPlayer;
     private InterruptMessage interruptMessage;
     private int counter = 0;
-    private int oldHealth = 0;
-    private int oldMaxHealth = 0;
+    private double oldHealth = 0;
+    private double oldMaxHealth = 0;
+    private double oldDefense = 0;
     public CustomActionBar(CustomPlayer customPlayer) {
         this.customPlayer = customPlayer;
         // main bukkit scheduler loop
@@ -21,7 +22,8 @@ public class CustomActionBar {
 //            sendActionBar("");
             customPlayer.getStatsManager().updateMaxHealth();
             customPlayer.getStatsManager().updateHeart();
-            boolean shouldUpdate = oldHealth != customPlayer.getStatsManager().getHealth() || oldMaxHealth != customPlayer.getStatsManager().getMaxHealth();
+            customPlayer.getStatsManager().updateDefense();
+            boolean shouldUpdate = oldHealth != customPlayer.getStatsManager().getHealth() || oldMaxHealth != customPlayer.getStatsManager().getMaxHealth() || oldDefense != customPlayer.getStatsManager().getDefense();
             //interrupt message takes priority
             if(interruptMessage!=null) {
                 // if interrupt is not divisible by 20 at first, it will not run the first second
@@ -39,13 +41,21 @@ public class CustomActionBar {
                 counter=-1;
             } else {
                 if(shouldUpdate) {
-                    String message = String.format("§c%s/%s❤", Utilities.numberFormatComma(customPlayer.getStatsManager().getHealth()), Utilities.numberFormatComma(customPlayer.getStatsManager().getMaxHealth()));
+                    String message = String.format("§c%s/%s❤    §a%s❈ Defense",
+                            Utilities.numberFormatComma((int)customPlayer.getStatsManager().getHealth()),
+                            Utilities.numberFormatComma((int)customPlayer.getStatsManager().getMaxHealth()),
+                            Utilities.numberFormatComma((int)customPlayer.getStatsManager().getDefense())
+                    );
                     sendActionBar(message);
                     counter = 0;
                 }else{
                     counter++;
                     if(counter%20==0){
-                        String message = String.format("§c%s/%s❤", Utilities.numberFormatComma(customPlayer.getStatsManager().getHealth()), Utilities.numberFormatComma(customPlayer.getStatsManager().getMaxHealth()));
+                        String message = String.format("§c%s/%s❤    §a%s❈ Defense",
+                                Utilities.numberFormatComma((int)customPlayer.getStatsManager().getHealth()),
+                                Utilities.numberFormatComma((int)customPlayer.getStatsManager().getMaxHealth()),
+                                Utilities.numberFormatComma((int)customPlayer.getStatsManager().getDefense())
+                        );
                         sendActionBar(message);
                     }
                 }
@@ -53,6 +63,7 @@ public class CustomActionBar {
 //            customPlayer.getPlayer().sendMessage("Counter: "+counter);
             oldHealth = customPlayer.getStatsManager().getHealth();
             oldMaxHealth = customPlayer.getStatsManager().getMaxHealth();
+            oldDefense = customPlayer.getStatsManager().getDefense();
         }, 20L*0L /*<-- the initial delay */, 1L /*<-- the interval */);
     }
 

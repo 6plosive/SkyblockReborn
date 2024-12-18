@@ -1,6 +1,7 @@
 package me.alwayslg.ui;
 
 import me.alwayslg.SkyblockReborn;
+import me.alwayslg.customitems.CustomArmor;
 import me.alwayslg.customitems.CustomItem;
 import me.alwayslg.customitems.CustomItemID;
 import me.alwayslg.customitems.CustomWeapon;
@@ -19,6 +20,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
+import static me.alwayslg.customitems.CustomItemID.isArmor;
 import static me.alwayslg.customitems.CustomItem.isCustomItem;
 import static me.alwayslg.customitems.CustomItemID.isWeapon;
 import static me.alwayslg.ui.UIItemStack.*;
@@ -94,36 +96,43 @@ public class AnvilUI implements Listener {
                 CustomItem rightCustomItem = new CustomItem(inventory.getItem(33));
                 assert rightCustomItem.getIsCombinableAnvil();
 
-                // Check what item is on the right slot
+                // Hot potato book
                 if(Objects.equals(rightCustomItem.getID(), CustomItemID.HOT_POTATO_BOOK.getID())){
                     //Hot potato book
-                    if(isWeapon(leftCustomItem.getID())){
-                        //if left item has under 10 hot potato count
-                        if(leftCustomItem.getHotPotatoCount()<10){
-                            //Show preview on result slot
-                            CustomWeapon resultItemPreview = new CustomWeapon(leftCustomItem);
-                            resultItemPreview.setHotPotatoCount(resultItemPreview.getHotPotatoCount()+1);
-                            ItemMeta tempItemMeta = resultItemPreview.getItemMeta();
-                            List<String> tempLore = tempItemMeta.getLore();
-                            tempLore.addAll(Arrays.asList("§8§m-----------------", "§7§aThis is the item you will get.", "§7§aClick the §cANVIL BELOW§a to combine."));
-                            tempItemMeta.setLore(tempLore);
-                            resultItemPreview.setItemMeta(tempItemMeta);
-                            inventory.setItem(13,resultItemPreview);
-                            //Set anvil button to pressable
-                            inventory.setItem(22, ANVIL_BUTTON_ON.getItem());
-                            // Set bottom bar to green
-                            for(int anvilBottomBarSlot:anvilBottomBarSlots){
-                                inventory.setItem(anvilBottomBarSlot, GREEN_BACKGROUND.getItem());
-                            }
-                        }else{
-                            //Left item has 10 hot potato count
-                            inventory.setItem(13, ANVIL_RESULT_BARRIER.getItem());
-                            inventory.setItem(22, ANVIL_BUTTON_OFF.getItem());
-                            for(int anvilBottomBarSlot:anvilBottomBarSlots){
-                                inventory.setItem(anvilBottomBarSlot, RED_BACKGROUND.getItem());
-                            }
+                    //if left item has under 10 hot potato count
+                    if(leftCustomItem.getHotPotatoCount()<10 && (isWeapon(leftCustomItem.getID()) || isArmor(leftCustomItem.getID()))){
+                        //Show preview on result slot
+                        CustomItem resultItemPreview = null;
+                        if(isWeapon(leftCustomItem.getID())){
+                            resultItemPreview = new CustomWeapon(leftCustomItem);
+                        }else if(isArmor(leftCustomItem.getID())){
+                            resultItemPreview = new CustomArmor(leftCustomItem);
+                        }
+                        assert resultItemPreview != null;
+                        resultItemPreview.setHotPotatoCount(resultItemPreview.getHotPotatoCount()+1);
+                        ItemMeta tempItemMeta = resultItemPreview.getItemMeta();
+                        List<String> tempLore = tempItemMeta.getLore();
+                        tempLore.addAll(Arrays.asList("§8§m-----------------", "§7§aThis is the item you will get.", "§7§aClick the §cANVIL BELOW§a to combine."));
+                        tempItemMeta.setLore(tempLore);
+                        resultItemPreview.setItemMeta(tempItemMeta);
+                        inventory.setItem(13,resultItemPreview);
+                        //Set anvil button to pressable
+                        inventory.setItem(22, ANVIL_BUTTON_ON.getItem());
+                        // Set bottom bar to green
+                        for(int anvilBottomBarSlot:anvilBottomBarSlots){
+                            inventory.setItem(anvilBottomBarSlot, GREEN_BACKGROUND.getItem());
+                        }
+                    }else{
+                        //Left item has 10 hot potato count
+                        for(int anvilLeftSlot:anvilLeftSlots) inventory.setItem(anvilLeftSlot, ANVIL_LEFT_RED.getItem());
+                        for(int anvilRightSlot:anvilRightSlots) inventory.setItem(anvilRightSlot, ANVIL_RIGHT_RED.getItem());
+                        inventory.setItem(13, ANVIL_RESULT_BARRIER.getItem());
+                        inventory.setItem(22, ANVIL_BUTTON_OFF.getItem());
+                        for(int anvilBottomBarSlot:anvilBottomBarSlots){
+                            inventory.setItem(anvilBottomBarSlot, RED_BACKGROUND.getItem());
                         }
                     }
+
                 }
             }else{
                 inventory.setItem(13, ANVIL_RESULT_BARRIER.getItem());
@@ -152,33 +161,40 @@ public class AnvilUI implements Listener {
 
             // if right item is hot potato book
             if(Objects.equals(rightCustomItem.getID(), CustomItemID.HOT_POTATO_BOOK.getID())){
-                if(isWeapon(leftCustomItem.getID())){
-                    //if left item has under 10 hot potato count
-                    if(leftCustomItem.getHotPotatoCount()<10){
-                        //add hot potato count
-                        CustomWeapon resultItem = new CustomWeapon(leftCustomItem);
-                        resultItem.setHotPotatoCount(resultItem.getHotPotatoCount()+1);
-                        //remove left and right and preview item
-                        inventory.setItem(29, null);
-                        inventory.setItem(33, null);
-                        inventory.setItem(13, null);
-                        //set result item
-                        inventory.setItem(13, resultItem);
-                        //set anvil to claim mode
-                        inventory.setItem(22, ANVIL_BUTTON_CLAIM.getItem());
-                        //play anvil sound
-                        player.playSound(player.getLocation(), Sound.ANVIL_USE, 1, 1);
-
-                        //set bottom bar, left and right to red
-                        for(int anvilBottomBarSlot:anvilBottomBarSlots){
-                            inventory.setItem(anvilBottomBarSlot, RED_BACKGROUND.getItem());
-                        }
-                        for(int anvilLeftSlot:anvilLeftSlots) inventory.setItem(anvilLeftSlot, ANVIL_LEFT_RED.getItem());
-                        for(int anvilRightSlot:anvilRightSlots) inventory.setItem(anvilRightSlot, ANVIL_RIGHT_RED.getItem());
-                        player.updateInventory();
-                    }else{
-                        playerWarn(player, "§cThis item has reached the maximum hot potato count.");
+                //if left item has under 10 hot potato count and is weapon or armor
+                if(leftCustomItem.getHotPotatoCount()<10 && (isWeapon(leftCustomItem.getID()) || isArmor(leftCustomItem.getID()))){
+                    CustomItem resultItem = null;
+                    if(isWeapon(leftCustomItem.getID())){
+                        resultItem = new CustomWeapon(leftCustomItem);
+                    }else if(isArmor(leftCustomItem.getID())){
+                        resultItem = new CustomArmor(leftCustomItem);
                     }
+                    //add hot potato count
+                    assert resultItem != null;
+                    resultItem.setHotPotatoCount(resultItem.getHotPotatoCount() + 1);
+                    //remove left and right and preview item
+                    inventory.setItem(29, null);
+                    inventory.setItem(33, null);
+                    inventory.setItem(13, null);
+                    //set result item
+                    inventory.setItem(13, resultItem);
+                    //set anvil to claim mode
+                    inventory.setItem(22, ANVIL_BUTTON_CLAIM.getItem());
+                    //play anvil sound
+                    player.playSound(player.getLocation(), Sound.ANVIL_USE, 1, 1);
+
+                    //set bottom bar, left and right to red
+                    for(int anvilBottomBarSlot:anvilBottomBarSlots){
+                        inventory.setItem(anvilBottomBarSlot, RED_BACKGROUND.getItem());
+                    }
+                    for(int anvilLeftSlot:anvilLeftSlots) inventory.setItem(anvilLeftSlot, ANVIL_LEFT_RED.getItem());
+                    for(int anvilRightSlot:anvilRightSlots) inventory.setItem(anvilRightSlot, ANVIL_RIGHT_RED.getItem());
+                    player.updateInventory();
+
+                }else if(leftCustomItem.getHotPotatoCount()>=10){
+                    playerWarn(player, "§cThis item has reached the maximum hot potato count.");
+                }else if (!isWeapon(leftCustomItem.getID()) && !isArmor(leftCustomItem.getID())){
+                    playerWarn(player, "§cThis item cannot be combined with hot potato book.");
                 }
             }
 
@@ -325,6 +341,27 @@ public class AnvilUI implements Listener {
                 safeClose(player);
             }
         }
+    }
+
+
+    private ItemStack getItemPreview(CustomItem leftItem, CustomItem rightItem){
+        if(Objects.equals(rightItem.getID(), CustomItemID.HOT_POTATO_BOOK.getID())){
+            if(isWeapon(leftItem.getID())){
+                //if left item has under 10 hot potato count
+                if(leftItem.getHotPotatoCount()<10){
+                    //Show preview on result slot
+                    CustomWeapon resultItemPreview = new CustomWeapon(leftItem);
+                    resultItemPreview.setHotPotatoCount(resultItemPreview.getHotPotatoCount()+1);
+                    ItemMeta tempItemMeta = resultItemPreview.getItemMeta();
+                    List<String> tempLore = tempItemMeta.getLore();
+                    tempLore.addAll(Arrays.asList("§8§m-----------------", "§7§aThis is the item you will get.", "§7§aClick the §cANVIL BELOW§a to combine."));
+                    tempItemMeta.setLore(tempLore);
+                    resultItemPreview.setItemMeta(tempItemMeta);
+                    return resultItemPreview;
+                }
+            }
+        }
+        return null;
     }
 
 //    @EventHandler

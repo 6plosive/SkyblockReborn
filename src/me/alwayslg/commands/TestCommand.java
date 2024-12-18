@@ -1,7 +1,9 @@
 package me.alwayslg.commands;
 
 import com.connorlinfoot.actionbarapi.ActionBarAPI;
+import me.alwayslg.customitems.CustomArmor;
 import me.alwayslg.customitems.CustomItem;
+import me.alwayslg.customitems.CustomWeapon;
 import me.alwayslg.custommobs.customentities.CustomEntityWither;
 import me.alwayslg.custommobs.customentities.CustomEntityZombie;
 import me.alwayslg.custommobs.customentities.EntityTypes;
@@ -16,6 +18,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import static me.alwayslg.customitems.CustomArmor.isCustomArmor;
+import static me.alwayslg.customitems.CustomWeapon.isCustomWeapon;
 
 public class TestCommand implements CommandExecutor {
     private static Entity customEntityWither;
@@ -48,7 +53,13 @@ public class TestCommand implements CommandExecutor {
                 ActionBarAPI.sendActionBar(p, "Hello World!");
             }else if(mode==5){
                 ItemStack item = p.getItemInHand();
-                CustomItem customItem = new CustomItem(item);
+                CustomItem customItem = null;
+                // get custom weapon if customitem is weapon
+                if(isCustomWeapon(item)){
+                    customItem = new CustomWeapon(item);
+                }else if(isCustomArmor(item)){
+                    customItem = new CustomArmor(item);
+                }
                 customItem.setHotPotatoCount(customItem.getHotPotatoCount()+1);
                 p.setItemInHand(customItem);
             }else if(mode==6){

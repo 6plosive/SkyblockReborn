@@ -27,6 +27,9 @@ public class CustomArmor extends CustomItem {
             tempLore.add("§7§8Combinable in Anvil");
             tempLore.add(" ");
         }
+
+        //Stats chunk
+        int tempLoreLength = tempLore.size();
         if (getHealth() != 0 || getHotPotatoCount() != 0) {
             int hotPotatoHealth = getHotPotatoCount() * 4;
             if (hotPotatoHealth != 0) {
@@ -35,8 +38,20 @@ public class CustomArmor extends CustomItem {
             } else {
                 tempLore.add(String.format("§7Health: §a+%d", getHealth()));
             }
-            tempLore.add(" ");
+//            tempLore.add(" ");
         }
+        if (getDefense() != 0 || getHotPotatoCount() != 0) {
+            int hotPotatoDefense = getHotPotatoCount() * 2;
+            if (hotPotatoDefense != 0) {
+                int totalDefense = getDefense();
+                tempLore.add(String.format("§7Defense: §a+%d §e(+%d)", totalDefense, hotPotatoDefense));
+            } else {
+                tempLore.add(String.format("§7Defense: §a+%d", getDefense()));
+            }
+        }
+        if (tempLore.size() > tempLoreLength) tempLore.add(" ");
+
+        //Description chunk
         if (getDescription() != null) {
             tempLore.addAll(getDescription());
             tempLore.add(" ");
@@ -59,6 +74,9 @@ public class CustomArmor extends CustomItem {
     public int getHealth() {
         return getHealthByID(getID()) + getHotPotatoCount() * 4;
     }
+    public int getDefense(){
+        return getDefenseByID(getID()) + getHotPotatoCount() * 2;
+    }
     public Color getColor(){
         return getColorByID(getID());
     }
@@ -70,7 +88,7 @@ public class CustomArmor extends CustomItem {
         setItemMeta(leatherArmorMeta);
     }
 
-    public static boolean isArmor(ItemStack item) {
+    public static boolean isCustomArmor(ItemStack item) {
         return isCustomItem(item) && ItemType.isArmor(new CustomItem(item).getItemType());
     }
 

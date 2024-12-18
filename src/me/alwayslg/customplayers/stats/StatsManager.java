@@ -8,34 +8,40 @@ import org.bukkit.Bukkit;
 public class StatsManager {
     CustomPlayer customPlayer;
 
-    private int critChance;
-    private int critDamage;
-    private int health;
-    private int maxHealth;
+    private double critChance;
+    private double critDamage;
+    private double health;
+    private double maxHealth;
+    private double defense;
 
     public StatsManager(CustomPlayer customPlayer){
         this.customPlayer = customPlayer;
         // get player spawn max health
         updateMaxHealth();
+        // get player spawn defense
+        updateDefense();
         // Default stats
         this.critChance = CritChance.getDefaultCritChance();
         this.critDamage = CritDamage.getDefaultCritDamage();
         this.health = maxHealth;
     }
-    public int getCritChance(){
+    public double getCritChance(){
         return critChance;
     }
-    public int getCritDamage(){
+    public double getCritDamage(){
         return critDamage;
     }
-    public int getHealth(){
+    public double getHealth(){
         return health;
     }
-    public int getMaxHealth(){
+    public double getMaxHealth(){
         return maxHealth;
     }
+    public double getDefense(){
+        return defense;
+    }
 
-    public void setHealth(int health){
+    public void setHealth(double health){
         this.health = health;
         updateHeart();
     }
@@ -47,7 +53,7 @@ public class StatsManager {
 
     public void updateMaxHealth(){
         // get player's armor health
-        int armorHealth = Health.getArmorHealth(customPlayer);
+        double armorHealth = Health.getArmorHealth(customPlayer);
         // update max health
         maxHealth = Health.getDefaultMaxHealth() + armorHealth;
         // check if health is greater than max health
@@ -57,8 +63,17 @@ public class StatsManager {
         // Update real health bar display
         customPlayer.getPlayer().setMaxHealth(Health.translateHpToHearts(maxHealth));
     }
+    public void updateDefense(){
+        // get player's armor defense
+        double armorDefense = Defense.getArmorDefense(customPlayer);
+        // update defense
+        defense = Defense.getDefaultDefense() + armorDefense;
+    }
 
-    public void dealDamage(int damage, CustomMobID damagerID){
+    public void dealDamage(double damage, CustomMobID damagerID){
+        // calculate damage reduction
+        double damageReduction = 1 - calculateDamageReduction(defense);
+        damage = (damage * damageReduction);
         // Deal damage to the player
         health -= damage;
         // If health is less than 0, player died
@@ -90,10 +105,17 @@ public class StatsManager {
         Health.updateHeart(customPlayer, health, maxHealth);
     }
 
+    public static double calculateEHP(double health, double defense){
+        return health * (1 + (defense / 100.0));
+    }
+    public static double calculateDamageReduction(double defense){
+        return defense / (defense + 100.0);
+    }
+
     // Run the below method to heal the player
     // Should only be run once per 2 seconds
     public void healPlayerNaturally(){
-        int healthGained = Health.calculateHeal(maxHealth);
+        double healthGained = Health.calculateHeal(maxHealth);
         if(health + healthGained > maxHealth){
             health = maxHealth;
         }else {

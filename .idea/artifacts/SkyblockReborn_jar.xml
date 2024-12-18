@@ -1,11 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="SkyblockReborn:jar">
+  <artifact name="SkyblockReborn:jar">
     <output-path>$PROJECT_DIR$/server/plugins</output-path>
-    <root id="archive" name="SkyblockReborn.jar">
-      <element id="module-output" name="SkyblockReborn" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/spigot-1.8.8.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/sqlite-jdbc-3.47.1.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/ActionBarAPI-1.5.4.jar" path-in-jar="/" />
+    <root id="root">
+      <element id="archive" name="SkyblockReborn.jar">
+        <element id="module-output" name="SkyblockReborn" />
+        <element id="file-copy" path="$PROJECT_DIR$/spigot-1.8.8.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/ActionBarAPI-1.5.4.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/sqlite-jdbc-3.47.1.0.jar" />
+      </element>
     </root>
   </artifact>
 </component>

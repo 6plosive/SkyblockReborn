@@ -7,15 +7,15 @@ import static me.alwayslg.customitems.CustomArmor.*;
 import static me.alwayslg.customitems.CustomArmor.isBoots;
 
 public class Health {
-//    public final static int defaultHealth = 100;
-    public final static int defaultMaxHealth = 100;
-    public final static int HealthRegen = 100;
-    public static int getDefaultMaxHealth() {
+//    public final static double defaultHealth = 100;
+    public final static double defaultMaxHealth = 100;
+    public final static double HealthRegen = 100;
+    public static double getDefaultMaxHealth() {
         return defaultMaxHealth;
     }
-    public static int getArmorHealth(CustomPlayer customPlayer){
+    public static double getArmorHealth(CustomPlayer customPlayer){
         // get player's armor health
-        int armorHealth = 0;
+        double armorHealth = 0;
         if(isHelmet(customPlayer.getPlayer().getInventory().getHelmet())){
             CustomArmor helmet = new CustomArmor(customPlayer.getPlayer().getInventory().getHelmet());
             armorHealth += helmet.getHealth();
@@ -35,13 +35,13 @@ public class Health {
         return armorHealth;
     }
 
-    public static int calculateHeal(int maxHealth){
-        double heal = 1.5 + ((double) maxHealth / 100);
-        heal *= (double) HealthRegen /100;
-        return (int) heal;
+    public static double calculateHeal(double maxHealth){
+        double heal = 1.5 + (maxHealth / 100);
+        heal *= HealthRegen /100;
+        return heal;
     }
 
-    public static int translateHpToHearts(int maxHealth) {
+    public static int translateHpToHearts(double maxHealth) {
         if (maxHealth < 125) {
             return 20;
         } else if (maxHealth < 165) {

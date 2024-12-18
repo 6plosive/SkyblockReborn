@@ -171,4 +171,7 @@ public enum CustomItemID {
     public static boolean isWeapon(String id){
         return ItemType.isWeapon(getItemTypeByID(id));
     }
+    public static boolean isArmor(String id){
+        return ItemType.isArmor(getItemTypeByID(id));
+    }
 }
