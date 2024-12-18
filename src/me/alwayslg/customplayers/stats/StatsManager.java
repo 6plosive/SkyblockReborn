@@ -74,6 +74,22 @@ public class StatsManager {
         Health.updateHeart(customPlayer, health, maxHealth);
     }
 
+    public void dealFallDamage(int damage){
+        // Deal fall damage to the player
+        health -= damage;
+        // If health is less than 0, player died
+        if(health <= 0){
+            // Broadcast death message
+            customPlayer.getPlayer().sendMessage(" §c☠ §7You fell to your death.");
+            String playerNameColor = customPlayer.getRank().getChatPrefix().substring(0,2);
+            Utilities.broadcastMessageExcept(String.format(" §c☠ %s%s §7fell to their death.",playerNameColor,customPlayer.getPlayer().getName()), customPlayer.getPlayer());
+            // Respawn player at hub portal location
+            customPlayer.respawn();
+        }
+        // Update real health bar (heart) display
+        Health.updateHeart(customPlayer, health, maxHealth);
+    }
+
     // Run the below method to heal the player
     // Should only be run once per 2 seconds
     public void healPlayerNaturally(){

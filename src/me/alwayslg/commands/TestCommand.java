@@ -54,7 +54,7 @@ public class TestCommand implements CommandExecutor {
             }else if(mode==6){
                 ActionBarAPI.sendActionBar(p, "I hate niggerWorld!", 10000);
             }else if(mode==7){
-                customPlayer.getCustomActionBar().addInterrupt("Hello World! I hate niggers for 1 seonc", 1);
+                customPlayer.getCustomActionBar().addInterrupt("Hello World! I hate niggers for 1.5 seonc", 30);
             }
         }
         return true;

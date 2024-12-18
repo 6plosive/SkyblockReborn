@@ -20,8 +20,11 @@ public class PlayerDamageHandler implements Listener {
                 return;
             }
             if(event.getCause() == EntityDamageEvent.DamageCause.FALL) {
-                // Cancel fall damage
-                event.setCancelled(true);
+                // custom fall damage
+//                event.setCancelled(true);
+                double originalFallDamage = event.getDamage();
+                customPlayer.getStatsManager().dealFallDamage((int) originalFallDamage);
+                event.setDamage(0);
             }
         }
     }
