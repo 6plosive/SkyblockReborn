@@ -28,6 +28,7 @@ public enum CustomItemID {
     LAPIS_ARMOR_CHESTPLATE("LAPIS_ARMOR_CHESTPLATE","Lapis Armor Chestplate",Material.LEATHER_CHESTPLATE,ItemType.CHESTPLATE,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
     LAPIS_ARMOR_LEGGINGS("LAPIS_ARMOR_LEGGINGS","Lapis Armor Leggings",Material.LEATHER_LEGGINGS,ItemType.LEGGINGS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
     LAPIS_ARMOR_BOOTS("LAPIS_ARMOR_BOOTS","Lapis Armor Boots",Material.LEATHER_BOOTS,ItemType.BOOTS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
+    NECRON_HELMET("NECRON_HELMET","Necron Helmet",Material.DIAMOND_HELMET,ItemType.HELMET,Rarity.LEGENDARY,0,100,100,null,false,false,null),
 
     SKYBLOCK_MENU("SKYBLOCK_MENU","§aSkyBlock Menu §7(Click)",Material.NETHER_STAR,null,null,0,0,0,false,false,Arrays.asList("§7View all of your SkyBlock progress,", "§7including your Skills, Collections,", "§7Recipes, and more!", "", "§eClick to open!"));
 

@@ -58,9 +58,9 @@ public class Terminator extends CustomWeapon implements Listener {
             Arrow arrow2 = player.getWorld().spawnArrow(arrow2Location, arrow2Location.getDirection(), 4.0f, 1.0f);
             Arrow arrow3 = player.getWorld().spawnArrow(arrow3Location, arrow3Location.getDirection(), 4.0f, 1.0f);
 
-            Damage arrowDamage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
-            Damage arrow2Damage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
-            Damage arrow3Damage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrowDamage = DamageHandler.calculateDamage(customItem.getDamage(),customItem.getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrow2Damage = DamageHandler.calculateDamage(customItem.getDamage(),customItem.getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrow3Damage = DamageHandler.calculateDamage(customItem.getDamage(),customItem.getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
 
             arrow.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), arrowDamage.finalDamage));
             arrow2.setMetadata("damage", new FixedMetadataValue(SkyblockReborn.getInstance(), arrow2Damage.finalDamage));
