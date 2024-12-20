@@ -1,10 +1,7 @@
 package me.alwayslg.ui;
 
 import me.alwayslg.customitems.CustomItem;
-import me.alwayslg.customitems.armors.LapisArmorBoots;
-import me.alwayslg.customitems.armors.LapisArmorChestplate;
-import me.alwayslg.customitems.armors.LapisArmorHelmet;
-import me.alwayslg.customitems.armors.LapisArmorLeggings;
+import me.alwayslg.customitems.armors.*;
 import me.alwayslg.customitems.consumable.HotPotatoBook;
 import me.alwayslg.customitems.unique.SkyblockMenu;
 import me.alwayslg.customitems.weapons.*;
@@ -49,6 +46,10 @@ public class AdminItemUI implements Listener {
         inventory.addItem(new LapisArmorChestplate());
         inventory.addItem(new LapisArmorLeggings());
         inventory.addItem(new LapisArmorBoots());
+        inventory.addItem(new NecronHelmet());
+        inventory.addItem(new NecronChestplate());
+        inventory.addItem(new NecronLeggings());
+        inventory.addItem(new NecronBoots());
 
     }
 

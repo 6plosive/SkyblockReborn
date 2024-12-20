@@ -1,6 +1,7 @@
 package me.alwayslg.customitems;
 
 import com.google.common.collect.Maps;
+import me.alwayslg.util.CustomHeads;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -24,11 +25,14 @@ public enum CustomItemID {
     SIGMA_SKIBIDI_SWORD("SIGMA_SKIBIDI_SWORD","Sigma Skibidi Sword",Material.GOLD_SWORD,ItemType.SWORD,Rarity.ULTIMATE,99999999,8964,0,false,false,null),
     HOT_POTATO_BOOK("HOT_POTATO_BOOK","Hot Potato Book", Material.BOOK, null, Rarity.EPIC, 0,0,0,true,true,Arrays.asList("§7When applied to armor, grants §a+2❈", "§aDefense §7and §c+4❤ Health§7.", "", "§7When applied to weapons, grants", "§7§c+2❁ Strength §7and §c+2❁ Damage§7.", "", "§7This can be applied to an item up to", "§7§a10 §7times!")),
 
-    LAPIS_ARMOR_HELMET("LAPIS_ARMOR_HELMET","Lapis Armor Helmet",Material.SEA_LANTERN,ItemType.HELMET,Rarity.UNCOMMON,0,100,100,null,false,false,null),
-    LAPIS_ARMOR_CHESTPLATE("LAPIS_ARMOR_CHESTPLATE","Lapis Armor Chestplate",Material.LEATHER_CHESTPLATE,ItemType.CHESTPLATE,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
-    LAPIS_ARMOR_LEGGINGS("LAPIS_ARMOR_LEGGINGS","Lapis Armor Leggings",Material.LEATHER_LEGGINGS,ItemType.LEGGINGS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
-    LAPIS_ARMOR_BOOTS("LAPIS_ARMOR_BOOTS","Lapis Armor Boots",Material.LEATHER_BOOTS,ItemType.BOOTS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),false,false,null),
-    NECRON_HELMET("NECRON_HELMET","Necron Helmet",Material.DIAMOND_HELMET,ItemType.HELMET,Rarity.LEGENDARY,0,100,100,null,false,false,null),
+    LAPIS_ARMOR_HELMET("LAPIS_ARMOR_HELMET","Lapis Armor Helmet",Material.SEA_LANTERN,ItemType.HELMET,Rarity.UNCOMMON,0,100,100,null,null,false,false,null),
+    LAPIS_ARMOR_CHESTPLATE("LAPIS_ARMOR_CHESTPLATE","Lapis Armor Chestplate",Material.LEATHER_CHESTPLATE,ItemType.CHESTPLATE,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),null,false,false,null),
+    LAPIS_ARMOR_LEGGINGS("LAPIS_ARMOR_LEGGINGS","Lapis Armor Leggings",Material.LEATHER_LEGGINGS,ItemType.LEGGINGS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),null,false,false,null),
+    LAPIS_ARMOR_BOOTS("LAPIS_ARMOR_BOOTS","Lapis Armor Boots",Material.LEATHER_BOOTS,ItemType.BOOTS,Rarity.UNCOMMON,0,100,100,Color.fromRGB(255),null,false,false,null),
+    NECRON_HELMET("NECRON_HELMET","Necron Helmet",null,ItemType.HELMET,Rarity.LEGENDARY,40,180,100,null,CustomHeads.NECRON_HELMET_SKULL,false,false,null),
+    NECRON_CHESTPLATE("NECRON_CHESTPLATE","Necron Chestplate",Material.LEATHER_CHESTPLATE,ItemType.CHESTPLATE,Rarity.LEGENDARY,40,260,140,Color.fromRGB(15155516),null,false,false,null),
+    NECRON_LEGGINGS("NECRON_LEGGINGS","Necron Leggings",Material.LEATHER_LEGGINGS,ItemType.LEGGINGS,Rarity.LEGENDARY,40,230,125,Color.fromRGB(15162428),null,false,false,null),
+    NECRON_BOOTS("NECRON_BOOTS","Necron Boots",Material.LEATHER_BOOTS,ItemType.BOOTS,Rarity.LEGENDARY,40,145,85,Color.fromRGB(15167036),null,false,false,null),
 
     SKYBLOCK_MENU("SKYBLOCK_MENU","§aSkyBlock Menu §7(Click)",Material.NETHER_STAR,null,null,0,0,0,false,false,Arrays.asList("§7View all of your SkyBlock progress,", "§7including your Skills, Collections,", "§7Recipes, and more!", "", "§eClick to open!"));
 
@@ -43,12 +47,14 @@ public enum CustomItemID {
     private final int health;
     private final int defense;
     private final Color color;
+    private final CustomHeads customHeads;
     private final boolean isEnchanted;
     private final boolean isCombinableAnvil;
     private final List<String> description;
     private static final Map<String, CustomItemID> BY_ID = Maps.newHashMap();
     //Armor
-    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int strength, int health, int defense, Color color, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
+    // If the item is a skull, fill material = null, color = null, customHeads = CustomHeads
+    CustomItemID(String id, String name, Material material, ItemType itemType, Rarity rarity, int strength, int health, int defense, Color color, CustomHeads customHeads, boolean isEnchanted, boolean isCombinableAnvil, List<String> description){
         this.id = id;
         this.name = name;
         this.material = material;
@@ -60,6 +66,7 @@ public enum CustomItemID {
         this.health = health;
         this.defense = defense;
         this.color = color;
+        this.customHeads = customHeads;
         this.isEnchanted = isEnchanted;
         this.isCombinableAnvil = isCombinableAnvil;
         this.description = description;
@@ -77,6 +84,7 @@ public enum CustomItemID {
         this.health = 0;
         this.defense = 0;
         this.color = null;
+        this.customHeads = null;
         this.isEnchanted = isEnchanted;
         this.isCombinableAnvil = isCombinableAnvil;
         this.description = description;
@@ -122,6 +130,9 @@ public enum CustomItemID {
     public Color getColor() {
         return color;
     }
+    public CustomHeads getCustomHeads() {
+        return customHeads;
+    }
     public boolean getIsEnchanted() {
         return isEnchanted;
     }
@@ -166,6 +177,9 @@ public enum CustomItemID {
     }
     public static Color getColorByID(String id) {
         return getCustomItemID(id)==null?null:getCustomItemID(id).getColor();
+    }
+    public static CustomHeads getCustomHeadsByID(String id) {
+        return getCustomItemID(id)==null?null:getCustomItemID(id).getCustomHeads();
     }
     public static boolean getIsEnchantedByID(String id) {
         return getCustomItemID(id)==null?false:getCustomItemID(id).getIsEnchanted();

@@ -47,7 +47,7 @@ public class JerJerShortBow extends CustomWeapon implements Listener {
             CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(player.getUniqueId());
 
             Arrow arrow = player.getWorld().spawnArrow(player.getEyeLocation(), player.getLocation().getDirection(), 4.0f, 1.0f);
-            Damage arrowDamage = DamageHandler.calculateDamage(getDamage(),getStrength(),customPlayer.getStatsManager().getCritChance(),customPlayer.getStatsManager().getCritDamage());
+            Damage arrowDamage = DamageHandler.calculateDamage(customItem,customPlayer);
             arrow.setMetadata("damage",new FixedMetadataValue(SkyblockReborn.getInstance(),arrowDamage.finalDamage));
             arrow.setMetadata("iscrit",new FixedMetadataValue(SkyblockReborn.getInstance(),arrowDamage.isCrit));
 

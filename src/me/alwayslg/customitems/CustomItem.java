@@ -26,8 +26,8 @@ public class CustomItem extends ItemStack{
 //    private CustomItemID id;
 
     public CustomItem(CustomItemID id){
-        //Initialize itemStack
-        super(id.getMaterial());
+        // Initialize itemStack
+        super(createItemStack(id));
         // ID contains all lore, dmg, everything base weapon have
         setID(id);
 
@@ -48,7 +48,15 @@ public class CustomItem extends ItemStack{
 ////        net.md_5.bungee.api.chat.
 //
 //    }
-
+    private static ItemStack createItemStack(CustomItemID id) {
+        if (id.getMaterial() != null) {
+            return new ItemStack(id.getMaterial());
+        } else if (id.getCustomHeads() != null) {
+            return id.getCustomHeads().getItem();
+        } else {
+            throw new IllegalArgumentException("Invalid CustomItemID: both material and custom heads are null");
+        }
+    }
     public void setNBTTags(String s, NBTBase nbtBase){
         net.minecraft.server.v1_8_R3.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(this);
         NBTTagCompound nbtTagCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();

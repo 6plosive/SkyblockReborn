@@ -23,6 +23,7 @@ public class CustomActionBar {
             customPlayer.getStatsManager().updateMaxHealth();
             customPlayer.getStatsManager().updateHeart();
             customPlayer.getStatsManager().updateDefense();
+            customPlayer.getStatsManager().updateStrength();
             boolean shouldUpdate = oldHealth != customPlayer.getStatsManager().getHealth() || oldMaxHealth != customPlayer.getStatsManager().getMaxHealth() || oldDefense != customPlayer.getStatsManager().getDefense();
             //interrupt message takes priority
             if(interruptMessage!=null) {

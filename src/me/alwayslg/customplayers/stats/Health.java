@@ -59,9 +59,9 @@ public class Health {
         } else if (maxHealth < 800) {
             return 34;
         } else if (maxHealth < 1000) {
-            return 136;
+            return 36;
         } else if (maxHealth < 1250) {
-            return 138;
+            return 38;
         } else {
             return 40;
         }

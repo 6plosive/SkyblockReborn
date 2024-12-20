@@ -1,5 +1,6 @@
 package me.alwayslg.customitems;
 
+import me.alwayslg.util.CustomHeads;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.inventory.ItemStack;
@@ -30,6 +31,9 @@ public class CustomArmor extends CustomItem {
 
         //Stats chunk
         int tempLoreLength = tempLore.size();
+        if(getStrength() != 0){
+            tempLore.add(String.format("§7Strength: §c+%d", getStrength()));
+        }
         if (getHealth() != 0 || getHotPotatoCount() != 0) {
             int hotPotatoHealth = getHotPotatoCount() * 4;
             if (hotPotatoHealth != 0) {
@@ -86,6 +90,12 @@ public class CustomArmor extends CustomItem {
         LeatherArmorMeta leatherArmorMeta = (LeatherArmorMeta) meta;
         leatherArmorMeta.setColor(color);
         setItemMeta(leatherArmorMeta);
+    }
+    public int getStrength(){
+        return getStrengthByID(getID());
+    }
+    public CustomHeads getCustomHeads(){
+        return getCustomHeadsByID(getID());
     }
 
     public static boolean isCustomArmor(ItemStack item) {

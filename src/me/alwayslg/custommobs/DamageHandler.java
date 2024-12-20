@@ -146,9 +146,7 @@ public class DamageHandler implements Listener {
             CustomWeapon itemInHand = new CustomWeapon(damager.getInventory().getItemInHand());
             CustomPlayer customPlayer = CustomPlayerManager.getCustomPlayer(damager.getUniqueId());
 
-            double itemDamage = itemInHand.getDamage();
-            double itemStrength = itemInHand.getStrength();
-            Damage damage = calculateDamage(itemDamage, itemStrength, customPlayer.getStatsManager().getCritChance(), customPlayer.getStatsManager().getCritDamage());
+            Damage damage = calculateDamage(itemInHand, customPlayer);
             double health = target.getHealth();
 
             // If damage is final blow, remove mob from map & his overhead display
@@ -224,9 +222,17 @@ public class DamageHandler implements Listener {
         target.getEntity().setMaximumNoDamageTicks(0);
     }
 
-    public static Damage calculateDamage(double weaponDamage, double weaponStrength, double playerCritChance, double playerCritDamage){
+    public static Damage calculateDamage(CustomWeapon customWeapon, CustomPlayer customPlayer){
+        double weaponDamage = customWeapon.getDamage();
+        double weaponStrength = customWeapon.getStrength();
+        double playerCritChance = customPlayer.getStatsManager().getCritChance();
+        double playerCritDamage = customPlayer.getStatsManager().getCritDamage();
+        double playerStrength = customPlayer.getStatsManager().getStrength();
+
+        double strength = playerStrength + weaponStrength;
+
         double finalDamage = 5+weaponDamage;
-        finalDamage += finalDamage * weaponStrength / 100;
+        finalDamage += finalDamage * strength / 100;
 
         SplittableRandom random = new SplittableRandom();
         int randomNumber = random.nextInt(100); // Upper bound is exclusive which means 0-99

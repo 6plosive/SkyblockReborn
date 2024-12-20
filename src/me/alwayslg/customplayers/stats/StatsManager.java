@@ -13,6 +13,7 @@ public class StatsManager {
     private double health;
     private double maxHealth;
     private double defense;
+    private double strength;
 
     public StatsManager(CustomPlayer customPlayer){
         this.customPlayer = customPlayer;
@@ -20,6 +21,8 @@ public class StatsManager {
         updateMaxHealth();
         // get player spawn defense
         updateDefense();
+        // get player spawn strength
+        updateStrength();
         // Default stats
         this.critChance = CritChance.getDefaultCritChance();
         this.critDamage = CritDamage.getDefaultCritDamage();
@@ -39,6 +42,9 @@ public class StatsManager {
     }
     public double getDefense(){
         return defense;
+    }
+    public double getStrength(){
+        return strength;
     }
 
     public void setHealth(double health){
@@ -68,6 +74,10 @@ public class StatsManager {
         double armorDefense = Defense.getArmorDefense(customPlayer);
         // update defense
         defense = Defense.getDefaultDefense() + armorDefense;
+    }
+    public void updateStrength(){
+        // get player's armor and item in hand's strength
+        strength = Strength.getArmorStrength(customPlayer);
     }
 
     public void dealDamage(double damage, CustomMobID damagerID){
